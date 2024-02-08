@@ -1,0 +1,13 @@
+{
+  "values": [
+    "festival_delicacies:pot",
+    {
+      "id": "farmersdelight:cooking_pot",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:skillet",
+      "required": false
+    }
+  ]
+}

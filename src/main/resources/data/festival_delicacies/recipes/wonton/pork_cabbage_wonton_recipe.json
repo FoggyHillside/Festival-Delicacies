@@ -1,0 +1,29 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "tag": "festival_delicacies:cabbage"
+    },
+    {
+      "tag": "festival_delicacies:greenonion"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:pork_cabbage_wonton"
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "experience": 0.35,
+  "cookingtime": 200,
+  "needpot": true
+}

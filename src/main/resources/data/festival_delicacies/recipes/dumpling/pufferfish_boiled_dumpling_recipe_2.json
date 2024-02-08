@@ -1,0 +1,26 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:wheat"
+      },
+      {
+        "item": "farmersdelight:wheat_dough"
+      }
+    ],
+    {
+      "item": "minecraft:pufferfish"
+    },
+    {
+      "tag": "festival_delicacies:greenonion"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:pufferfish_boiled_dumpling",
+    "count": 2
+  },
+  "experience": 0.35,
+  "cookingtime": 200,
+  "needpot": true
+}

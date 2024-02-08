@@ -1,0 +1,24 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+     "item": "minecraft:red_mushroom"
+    },
+    {
+      "tag": "festival_delicacies:greenonion"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:mushroom_boiled_dumpling",
+    "count": 2
+  },
+  "experience": 0.35,
+  "cookingtime": 200,
+  "needpot": true
+}

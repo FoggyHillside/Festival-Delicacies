@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#forge:vegetables/onion",
+      "required": false
+    },
+    {
+      "id": "#forge:crops/onion",
+      "required": false
+    }
+  ]
+}

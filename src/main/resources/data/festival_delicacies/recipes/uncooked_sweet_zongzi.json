@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:jujube"
+    },
+    {
+      "item": "festival_delicacies:red_bean_paste"
+    },
+    {
+      "tag": "forge:crops/rice"
+    },
+    {
+      "item": "festival_delicacies:bamboo_leaf"
+    },
+    {
+      "item": "festival_delicacies:bamboo_leaf"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:uncooked_sweet_zongzi",
+    "count": 2
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#forge:vegetables/cabbage",
+      "required": false
+    },
+    {
+      "id": "#forge:crops/cabbage",
+      "required": false
+    },
+    {
+      "id": "#forge:vegetables/chinese_cabbage",
+      "required": false
+    },
+    {
+      "id": "#forge:crops/chinese_cabbage",
+      "required": false
+    }
+  ]
+}

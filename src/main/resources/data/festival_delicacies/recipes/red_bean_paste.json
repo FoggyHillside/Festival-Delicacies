@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:red_bean"
+    },
+    {
+      "item": "festival_delicacies:red_bean"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:red_bean_paste",
+    "count": 1
+  }
+}

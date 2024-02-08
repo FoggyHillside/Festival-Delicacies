@@ -1,0 +1,11 @@
+{
+  "type": "festival_delicacies:loot_table",
+  "conditions":
+  [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/shipwreck_supply"
+    }
+  ],
+  "lootTable": "festival_delicacies:chests/shipwreck_supply"
+}

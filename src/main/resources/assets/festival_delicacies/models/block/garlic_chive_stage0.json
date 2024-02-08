@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/crop",
+  "render_type": "cutout",
+  "textures": {
+    "crop": "festival_delicacies:block/garlic_chive_stage0"
+  }
+}

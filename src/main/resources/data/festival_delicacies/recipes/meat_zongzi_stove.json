@@ -1,0 +1,24 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:preserved_meat"
+    },
+    {
+      "tag": "forge:crops/rice"
+    },
+    {
+      "item": "festival_delicacies:bamboo_leaf"
+    },
+    {
+      "item": "festival_delicacies:bamboo_leaf"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:meat_zongzi",
+    "count": 2
+  },
+  "experience": 0.35,
+  "cookingtime": 200,
+  "needpot": true
+}

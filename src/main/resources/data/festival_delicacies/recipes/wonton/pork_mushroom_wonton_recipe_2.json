@@ -1,0 +1,40 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:wheat"
+      },
+      {
+        "item": "farmersdelight:wheat_dough"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:porkchop"
+      },
+      {
+        "tag": "forge:raw_pork"
+      }
+    ],
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+      "tag": "festival_delicacies:greenonion"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:pork_mushroom_wonton",
+    "count": 1
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "experience": 0.35,
+  "cookingtime": 200,
+  "needpot": true
+}

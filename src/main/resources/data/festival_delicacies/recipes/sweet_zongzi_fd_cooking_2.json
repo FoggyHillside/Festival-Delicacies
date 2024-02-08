@@ -1,0 +1,13 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:uncooked_sweet_zongzi"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:sweet_zongzi"
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    [
+      {
+        "item": "festival_delicacies:eggplant"
+      }
+    ]
+  ],
+  "result": {
+    "item": "festival_delicacies:eggplant_seeds"
+  }
+}

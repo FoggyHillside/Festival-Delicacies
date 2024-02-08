@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "festival_delicacies:item/eggplant_egg_boiled_dumpling"
+  }
+}

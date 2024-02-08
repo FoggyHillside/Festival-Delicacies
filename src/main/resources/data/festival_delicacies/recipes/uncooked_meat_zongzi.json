@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:preserved_meat"
+    },
+    {
+      "tag": "forge:crops/rice"
+    },
+    {
+      "item": "festival_delicacies:bamboo_leaf"
+    },
+    {
+      "item": "festival_delicacies:bamboo_leaf"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:uncooked_meat_zongzi",
+    "count": 2
+  }
+}

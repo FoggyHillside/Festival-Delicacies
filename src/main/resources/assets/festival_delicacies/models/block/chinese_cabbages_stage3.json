@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "render_type": "cutout",
+  "textures": {
+    "cross": "festival_delicacies:block/chinese_cabbages_stage3"
+  }
+}

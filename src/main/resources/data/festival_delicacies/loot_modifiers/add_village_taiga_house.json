@@ -1,0 +1,10 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/village/village_taiga_house"
+    }
+  ],
+  "lootTable": "festival_delicacies:chests/village_taiga_house",
+  "type": "festival_delicacies:loot_table"
+}

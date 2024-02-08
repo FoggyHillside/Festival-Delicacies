@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "entries": [
+    "festival_delicacies:add_bamboo_leaf",
+    "festival_delicacies:add_village_plains_house",
+    "festival_delicacies:add_village_taiga_house",
+    "festival_delicacies:add_village_snowy_house",
+    "festival_delicacies:add_simple_dungeon",
+    "festival_delicacies:add_shipwreck_supply",
+    "festival_delicacies:add_pillager_outpost",
+    "festival_delicacies:add_abandoned_mineshaft"
+  ]
+}

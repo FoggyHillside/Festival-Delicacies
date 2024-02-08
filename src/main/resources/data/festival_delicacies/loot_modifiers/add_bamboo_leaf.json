@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:block_state_property",
+      "block": "minecraft:bamboo",
+      "properties": {
+        "leaves": "large"
+      }
+    }
+  ],
+  "item": "festival_delicacies:bamboo_leaf",
+  "type": "festival_delicacies:bamboo_leaf"
+}

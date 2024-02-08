@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "festival_delicacies:block/pot",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "festival_delicacies:block/pot"
+    },
+    "facing=south": {
+      "model": "festival_delicacies:block/pot",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "festival_delicacies:block/pot",
+      "y": 270
+    }
+  }
+}

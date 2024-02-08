@@ -1,0 +1,21 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:artemisia_argyi"
+    },
+    {
+      "item": "festival_delicacies:red_bean_paste"
+    },
+    {
+      "tag": "forge:crops/rice"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:qingtuan",
+    "count": 2
+  },
+  "experience": 0.35,
+  "cookingtime": 200,
+  "needpot": true
+}

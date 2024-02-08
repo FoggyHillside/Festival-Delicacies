@@ -1,0 +1,39 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:wheat"
+      },
+      {
+        "item": "farmersdelight:wheat_dough"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:porkchop"
+      },
+      {
+        "tag": "forge:raw_pork"
+      }
+    ],
+    {
+    	"item":"minecraft:egg"
+    },
+    {
+    	"item":"minecraft:carrot"
+    },
+    {
+    	"item":"minecraft:dried_kelp"  	
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:pork_carrot_wonton",
+    "count": 1
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}

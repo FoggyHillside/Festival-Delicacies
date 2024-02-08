@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    "2 2",
+    "232"
+  ],
+  "key": {
+    "1": [
+      {
+        "item": "minecraft:stone"
+      },
+      {
+        "item": "minecraft:cobblestone"
+      },
+      {
+        "item": "minecraft:granite"
+      },
+      {
+        "item": "minecraft:diorite"
+      },
+      {
+        "item": "minecraft:andesite"
+      }
+    ],
+    "2": {
+      "item": "minecraft:bricks"
+    },
+    "3": {
+      "item": "minecraft:campfire"
+    }
+  },
+  "result": {
+    "item": "festival_delicacies:stove"
+  }
+}

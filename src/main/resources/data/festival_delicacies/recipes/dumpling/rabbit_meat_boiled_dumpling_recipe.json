@@ -1,0 +1,21 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "tag": "festival_delicacies:greenonion"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:rabbit_meat_boiled_dumpling",
+    "count": 2
+  },
+  "experience": 0.35,
+  "cookingtime": 200,  
+  "needpot": true
+}

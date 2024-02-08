@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "festival_delicacies:uncooked_meat_zongzi"
+  },
+  "result": "festival_delicacies:meat_zongzi",
+  "cookingtime": 200
+}

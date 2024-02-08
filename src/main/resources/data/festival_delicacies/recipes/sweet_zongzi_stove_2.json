@@ -1,0 +1,14 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:uncooked_sweet_zongzi"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:sweet_zongzi"
+  },
+  "cookingtime": 200,
+  "experience": 0.35,
+  "needpot": true
+}
