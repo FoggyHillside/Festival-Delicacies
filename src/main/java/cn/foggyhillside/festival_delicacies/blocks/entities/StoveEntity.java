@@ -5,7 +5,6 @@ import cn.foggyhillside.festival_delicacies.blocks.screen.StoveMenu;
 import cn.foggyhillside.festival_delicacies.recipe.StoveRecipe;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockEntities;
 import cn.foggyhillside.festival_delicacies.tag.ModTags;
-import cn.foggyhillside.festival_delicacies.util.RecipeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -149,9 +148,10 @@ public class StoveEntity extends BlockEntity implements MenuProvider {
     }
 
     private static boolean canOutput(StoveEntity entity, Optional<StoveRecipe> recipe) {
+        var registryAccess = entity.getLevel().registryAccess();
         return entity.itemStackHandler.getStackInSlot(10) == ItemStack.EMPTY
-                || (entity.itemStackHandler.getStackInSlot(10).getItem() == RecipeUtils.getResultItem(recipe.get()).getItem()
-                && entity.itemStackHandler.getStackInSlot(10).getCount() < RecipeUtils.getResultItem(recipe.get()).getItem().getMaxStackSize());
+                || (entity.itemStackHandler.getStackInSlot(10).getItem() == recipe.get().getResultItem(registryAccess).getItem()
+                && entity.itemStackHandler.getStackInSlot(10).getCount() < recipe.get().getResultItem(registryAccess).getMaxStackSize());
     }
 
     private static boolean hasRecipe(StoveEntity entity, Optional<StoveRecipe> recipe) {
@@ -192,7 +192,7 @@ public class StoveEntity extends BlockEntity implements MenuProvider {
             }
             entity.itemStackHandler.setStackInSlot(10, new ItemStack(recipe.get().getResultItem(level.registryAccess()).getItem(),
                     entity.itemStackHandler.getStackInSlot(10).getCount()
-                            + RecipeUtils.getResultItem(recipe.get()).getCount()));
+                            + recipe.get().getResultItem(level.registryAccess()).getCount()));
             entity.resetProgress();
         }
     }

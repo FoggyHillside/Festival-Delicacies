@@ -5,11 +5,14 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class RecipeUtils {
     public RecipeUtils() {
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static ItemStack getResultItem(Recipe<?> recipe) {
         Minecraft minecraft = Minecraft.getInstance();
         ClientLevel level = minecraft.level;
