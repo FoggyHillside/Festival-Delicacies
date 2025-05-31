@@ -47,7 +47,7 @@ public class PotBlock extends HorizontalDirectionalBlock implements SimpleWaterl
             if (!level.isClientSide) {
                 BlockEntity entity = level.getBlockEntity(pos.below());
                 if (entity instanceof StoveEntity stoveEntity) {
-                    NetworkHooks.openGui((ServerPlayer) player, (StoveEntity) entity, pos.below());
+                    NetworkHooks.openScreen((ServerPlayer) player, (StoveEntity) entity, pos.below());
                 } else {
                     throw new IllegalStateException("Our Container provider is missing");
                 }

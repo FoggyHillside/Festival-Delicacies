@@ -13,10 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.CapabilityToken;
-import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class StoveMenu extends AbstractContainerMenu {
@@ -26,8 +23,6 @@ public class StoveMenu extends AbstractContainerMenu {
     private final Level level;
 
     private final ContainerData data;
-
-    private static final Capability<IItemHandler> capability = CapabilityManager.get(new CapabilityToken<>() {});
 
     public StoveMenu(int id, Inventory inventory, FriendlyByteBuf extraData) {
         this(id, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
@@ -43,7 +38,7 @@ public class StoveMenu extends AbstractContainerMenu {
         addPlayerHotbar(inventory);
         addPlayerInventory(inventory);
 
-        this.entity.getCapability(capability).ifPresent(handler -> {
+        this.entity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 30, 17));
             this.addSlot(new SlotItemHandler(handler, 1, 48, 17));
             this.addSlot(new StoveSlot(inventory.player.level, inventory.player, this.entity, handler, 2, 66, 17));

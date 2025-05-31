@@ -28,11 +28,11 @@ import java.util.Objects;
 public class JEIPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(ModItems.STOVE.get()), STOVE);
+        registration.addRecipeCatalyst(new ItemStack(ModItems.STOVE.get()), new RecipeType[]{STOVE});
     }
 
-    public static RecipeType<StoveRecipe> STOVE = RecipeType.create(FestivalDelicacies.MOD_ID, "stove", StoveRecipe.class);
-//            new RecipeType<>(StoveRecipeCategory.UID, StoveRecipe.class);
+    public static RecipeType<StoveRecipe> STOVE =
+            new RecipeType<>(StoveRecipeCategory.UID, StoveRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -42,7 +42,7 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        registration.addRecipeTransferHandler(StoveMenu.class, STOVE, 36, 9, 0, 36);
+        registration.addRecipeTransferHandler(StoveMenu.class, ModMenuTypes.STOVE_MENU.get(), STOVE, 36, 9, 0, 36);
     }
 
     @Override

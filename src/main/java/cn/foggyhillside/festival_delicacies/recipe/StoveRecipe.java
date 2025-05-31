@@ -195,22 +195,6 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
             buffer.writeVarInt(recipe.cookTime);
             buffer.writeBoolean(recipe.needPot);
         }
-
-        @Override
-        public RecipeSerializer<?> setRegistryName(ResourceLocation resourceLocation) {
-            return this;
-        }
-
-        @org.jetbrains.annotations.Nullable
-        @Override
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        @Override
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return (Class<RecipeSerializer<?>>) (Class<?>) RecipeSerializer.class;
-        }
     }
 
 }

@@ -16,7 +16,7 @@ public class BowlItem extends Item {
     }
 
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
-        ItemStack containerStack = itemStack.getItem().getCraftingRemainingItem().getDefaultInstance();
+        ItemStack containerStack = itemStack.getCraftingRemainingItem();
         Player player;
         if (itemStack.isEdible()) {
             super.finishUsingItem(itemStack, level, entity);

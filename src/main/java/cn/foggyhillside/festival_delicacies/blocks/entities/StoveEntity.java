@@ -9,7 +9,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -25,8 +24,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.CapabilityToken;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.util.RecipeMatcher;
 import net.minecraftforge.items.IItemHandler;
@@ -44,8 +42,6 @@ public class StoveEntity extends BlockEntity implements MenuProvider {
 
     private int maxprogress;
 
-    private static final Capability<IItemHandler> capability = CapabilityManager.get(new CapabilityToken<>() {});
-
     private LazyOptional<IItemHandler> handlerLazyOptional = LazyOptional.empty();
 
     public final ItemStackHandler itemStackHandler = new ItemStackHandler(11) {
@@ -57,7 +53,7 @@ public class StoveEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
-        if (cap == capability) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return handlerLazyOptional.cast();
         }
         return super.getCapability(cap);
@@ -65,7 +61,7 @@ public class StoveEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("block.festival_delicacies.stove");
+        return Component.translatable("block.festival_delicacies.stove");
     }
 
     @Override
@@ -190,8 +186,8 @@ public class StoveEntity extends BlockEntity implements MenuProvider {
         if (hasRecipe(entity, recipe)) {
             for (int i = 0; i < 10; i++) {
                 if (entity.itemStackHandler.getStackInSlot(i) != ItemStack.EMPTY) {
-                    if (entity.itemStackHandler.getStackInSlot(i).getItem().hasCraftingRemainingItem()) {
-                        spawnItem(entity, level, i, entity.itemStackHandler.getStackInSlot(i).getItem().getCraftingRemainingItem().getDefaultInstance());
+                    if (entity.itemStackHandler.getStackInSlot(i).hasCraftingRemainingItem()) {
+                        spawnItem(entity, level, i, entity.itemStackHandler.getStackInSlot(i).getCraftingRemainingItem());
                     }
                     entity.itemStackHandler.extractItem(i, 1, false);
                 }

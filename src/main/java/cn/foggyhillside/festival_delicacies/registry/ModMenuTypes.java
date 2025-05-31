@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModMenuTypes {
-    public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.CONTAINERS, FestivalDelicacies.MOD_ID);
+    public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, FestivalDelicacies.MOD_ID);
 
     public static final RegistryObject<MenuType<StoveMenu>> STOVE_MENU = MENU_TYPES.register("stove_menu", () ->
             IForgeMenuType.create(StoveMenu::new));
