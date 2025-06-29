@@ -1,0 +1,30 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "festival_delicacies:dough"
+    },
+    {
+      "tag": "festival_delicacies:pork"
+    },
+    {
+      "tag": "festival_delicacies:wonton_ingredients"
+    },
+    {
+      "tag": "festival_delicacies:greenonion"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "festival_delicacies:wonton",
+    "count": 1
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "experience": 1.0,
+  "cookingtime": 200
+}

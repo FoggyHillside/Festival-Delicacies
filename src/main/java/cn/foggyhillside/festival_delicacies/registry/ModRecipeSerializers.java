@@ -1,6 +1,7 @@
 package cn.foggyhillside.festival_delicacies.registry;
 
 import cn.foggyhillside.festival_delicacies.FestivalDelicacies;
+import cn.foggyhillside.festival_delicacies.recipe.ChoppingRecipe;
 import cn.foggyhillside.festival_delicacies.recipe.StoveRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.DeferredRegister;
@@ -12,4 +13,6 @@ public class ModRecipeSerializers {
 
     public static final RegistryObject<RecipeSerializer<StoveRecipe>> STOVE_SERIALIZER =
             RECIPE_SERIALIZERS.register("stove", () -> StoveRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<ChoppingRecipe>> CHOPPING_SERIALIZER =
+            RECIPE_SERIALIZERS.register("chopping", () -> ChoppingRecipe.Serializer.INSTANCE);
 }

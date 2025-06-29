@@ -1,0 +1,29 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "tag": "festival_delicacies:dough"
+    },
+    {
+      "tag": "festival_delicacies:pork"
+    },
+    {
+      "tag": "festival_delicacies:wonton_ingredients"
+    },
+    {
+      "tag": "festival_delicacies:greenonion"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:wonton"
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "experience": 0.35,
+  "cookingtime": 200,
+  "cookingType": "default"
+}

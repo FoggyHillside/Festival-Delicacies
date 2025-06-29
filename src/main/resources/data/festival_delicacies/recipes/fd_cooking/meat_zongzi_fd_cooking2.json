@@ -1,0 +1,14 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:uncooked_meat_zongzi"
+    }
+  ],
+  "recipe_book_tab": "misc",
+  "result": {
+    "item": "festival_delicacies:meat_zongzi"
+  },
+  "experience": 1.0,
+  "cookingtime": 200
+}

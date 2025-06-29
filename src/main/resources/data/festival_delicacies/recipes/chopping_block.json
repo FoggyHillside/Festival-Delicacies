@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "121"
+  ],
+  "key": {
+    "1": {
+      "tag": "forge:nuggets/iron"
+    },
+    "2": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "festival_delicacies:chopping_block"
+  }
+}

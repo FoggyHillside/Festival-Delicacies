@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=west,with_knife=false,knife_inserted=false": {
+      "model": "festival_delicacies:block/chopping_block",
+      "y": 270
+    },
+    "facing=south,with_knife=false,knife_inserted=false": {
+      "model": "festival_delicacies:block/chopping_block",
+      "y": 180
+    },
+    "facing=north,with_knife=false,knife_inserted=false": {
+      "model": "festival_delicacies:block/chopping_block"
+    },
+    "facing=east,with_knife=false,knife_inserted=false": {
+      "model": "festival_delicacies:block/chopping_block",
+      "y": 90
+    },
+    "facing=west,with_knife=false,knife_inserted=true": {
+      "model": "festival_delicacies:block/chopping_block",
+      "y": 270
+    },
+    "facing=south,with_knife=false,knife_inserted=true": {
+      "model": "festival_delicacies:block/chopping_block",
+      "y": 180
+    },
+    "facing=north,with_knife=false,knife_inserted=true": {
+      "model": "festival_delicacies:block/chopping_block"
+    },
+    "facing=east,with_knife=false,knife_inserted=true": {
+      "model": "festival_delicacies:block/chopping_block",
+      "y": 90
+    },
+    "facing=west,with_knife=true,knife_inserted=false": {
+      "model": "festival_delicacies:block/chopping_block_knife",
+      "y": 270
+    },
+    "facing=south,with_knife=true,knife_inserted=false": {
+      "model": "festival_delicacies:block/chopping_block_knife",
+      "y": 180
+    },
+    "facing=north,with_knife=true,knife_inserted=false": {
+      "model": "festival_delicacies:block/chopping_block_knife"
+    },
+    "facing=east,with_knife=true,knife_inserted=false": {
+      "model": "festival_delicacies:block/chopping_block_knife",
+      "y": 90
+    },
+    "facing=west,with_knife=true,knife_inserted=true": {
+      "model": "festival_delicacies:block/chopping_block_knife_stand",
+      "y": 270
+    },
+    "facing=south,with_knife=true,knife_inserted=true": {
+      "model": "festival_delicacies:block/chopping_block_knife_stand",
+      "y": 180
+    },
+    "facing=north,with_knife=true,knife_inserted=true": {
+      "model": "festival_delicacies:block/chopping_block_knife_stand"
+    },
+    "facing=east,with_knife=true,knife_inserted=true": {
+      "model": "festival_delicacies:block/chopping_block_knife_stand",
+      "y": 90
+    }
+  }
+}

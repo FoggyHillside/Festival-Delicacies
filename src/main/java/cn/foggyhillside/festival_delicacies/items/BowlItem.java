@@ -5,15 +5,22 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class BowlItem extends Item {
+public class BowlItem extends TooltipItem {
+
     public BowlItem(Properties properties) {
         super(properties);
+        this.hasTooltip = false;
     }
 
+    public BowlItem(Properties properties, boolean hasTooltip) {
+        super(properties, hasTooltip);
+        this.hasTooltip = hasTooltip;
+    }
+
+    @Override
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
         ItemStack containerStack = itemStack.getCraftingRemainingItem();
         Player player;

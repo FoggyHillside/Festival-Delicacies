@@ -1,7 +1,6 @@
 package cn.foggyhillside.festival_delicacies.recipe;
 
-import cn.foggyhillside.festival_delicacies.FestivalDelicacies;
-import com.google.gson.JsonArray;
+import cn.foggyhillside.festival_delicacies.util.Utils;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import net.minecraft.core.NonNullList;
@@ -21,7 +20,6 @@ import net.minecraftforge.common.util.RecipeMatcher;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class StoveRecipe implements Recipe<SimpleContainer> {
@@ -34,20 +32,20 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
 
     private final NonNullList<Ingredient> ingredients;
 
-    private final Float experience;
+    private final float experience;
 
-    private final Integer cookTime;
+    private final int cookTime;
 
-    private final boolean needPot;
+    private final int cookingType;
 
-    public StoveRecipe(ResourceLocation id, ItemStack output, ItemStack container, NonNullList<Ingredient> ingredients, Float experience, Integer cookTime, Boolean needPot) {
+    public StoveRecipe(ResourceLocation id, ItemStack output, ItemStack container, NonNullList<Ingredient> ingredients, float experience, int cookTime, int cookingType) {
         this.id = id;
         this.output = output;
         this.ingredients = ingredients;
         this.container = container;
         this.experience = experience;
         this.cookTime = cookTime;
-        this.needPot = needPot;
+        this.cookingType = cookingType;
     }
 
     @Override
@@ -59,17 +57,17 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
         return container;
     }
 
-    public Integer getCookTime() {
+    public int getCookTime() {
         return cookTime;
     }
 
-    public Boolean getNeedPot() {
-        return needPot;
+    public int getCookingType() {
+        return cookingType;
     }
 
     @Override
-    public NonNullList<ItemStack> getRemainingItems(SimpleContainer p_44004_) {
-        return Recipe.super.getRemainingItems(p_44004_);
+    public NonNullList<ItemStack> getRemainingItems(SimpleContainer container) {
+        return Recipe.super.getRemainingItems(container);
     }
 
     @Override
@@ -78,7 +76,7 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
             return false;
         }
         ItemStack inputContainer = inventory.getItem(9);
-        List<ItemStack> inputs = new ArrayList();
+        List<ItemStack> inputs = new ArrayList<>();
         int i = 0;
 
         for (int j = 0; j < 9; j++) {
@@ -122,24 +120,30 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
     }
 
     public static class Type implements RecipeType<StoveRecipe> {
-        private Type() {
-        }
-
         public static final Type INSTANCE = new Type();
-
-        public static final String ID = "stove";
     }
 
     public static class Serializer implements RecipeSerializer<StoveRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
-        public static final ResourceLocation ID =
-                new ResourceLocation(FestivalDelicacies.MODID, "stove");
+        private int getCookingTypeInt(String type) {
+            return switch (type) {
+                case "default" -> 1;
+                case "steam" -> 2;
+                case "fry" -> 3;
+                case "bake" -> 4;
+                default -> 0;
+            };
+        }
 
         @Override
         public StoveRecipe fromJson(ResourceLocation location, JsonObject json) {
-            NonNullList<Ingredient> ingredients = readIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
-            if (ingredients.isEmpty()) {
+            String cookingType = GsonHelper.getAsString(json, "cookingType", "default");
+            int cookingTypeInt = getCookingTypeInt(cookingType);
+            NonNullList<Ingredient> ingredients = Utils.readIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
+            if (cookingTypeInt < 1 || cookingTypeInt > 4) {
+                throw new JsonParseException("Invalid cooking type");
+            } else if (ingredients.isEmpty()) {
                 throw new JsonParseException("No ingredients for cooking recipe");
             } else if (ingredients.size() > 9) {
                 throw new JsonParseException("Too many ingredients for stove recipe! The max is 9");
@@ -148,21 +152,8 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
                 ItemStack container = GsonHelper.isValidNode(json, "container") ? CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "container"), true) : ItemStack.EMPTY;
                 float experience = GsonHelper.getAsFloat(json, "experience", 0.0F);
                 int cookTime = GsonHelper.getAsInt(json, "cookingtime", 200);
-                boolean needPot = GsonHelper.getAsBoolean(json, "needpot", false);
-                return new StoveRecipe(location, output, container, ingredients, experience, cookTime, needPot);
+                return new StoveRecipe(location, output, container, ingredients, experience, cookTime, cookingTypeInt);
             }
-        }
-
-        private static NonNullList<Ingredient> readIngredients(JsonArray ingredientArray) {
-            NonNullList<Ingredient> nonnulllist = NonNullList.create();
-
-            for (int i = 0; i < ingredientArray.size(); ++i) {
-                Ingredient ingredient = Ingredient.fromJson(ingredientArray.get(i));
-                if (!ingredient.isEmpty()) {
-                    nonnulllist.add(ingredient);
-                }
-            }
-            return nonnulllist;
         }
 
         @Nullable
@@ -170,24 +161,20 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
             int i = buffer.readVarInt();
             NonNullList<Ingredient> inputItemsIn = NonNullList.withSize(i, Ingredient.EMPTY);
 
-            for (int j = 0; j < inputItemsIn.size(); ++j) {
-                inputItemsIn.set(j, Ingredient.fromNetwork(buffer));
-            }
+            inputItemsIn.replaceAll(ignored -> Ingredient.fromNetwork(buffer));
 
             ItemStack output = buffer.readItem();
             ItemStack container = buffer.readItem();
             float experience = buffer.readFloat();
             int cookTime = buffer.readVarInt();
-            boolean needPot = buffer.readBoolean();
-            return new StoveRecipe(id, container, output, inputItemsIn, experience, cookTime, needPot);
+            int cookingType = buffer.readVarInt();
+            return new StoveRecipe(id, container, output, inputItemsIn, experience, cookTime, cookingType);
         }
 
         public void toNetwork(FriendlyByteBuf buffer, StoveRecipe recipe) {
             buffer.writeVarInt(recipe.ingredients.size());
-            Iterator var3 = recipe.ingredients.iterator();
 
-            while (var3.hasNext()) {
-                Ingredient ingredient = (Ingredient) var3.next();
+            for (Ingredient ingredient : recipe.ingredients) {
                 ingredient.toNetwork(buffer);
             }
 
@@ -195,7 +182,7 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
             buffer.writeItem(recipe.container);
             buffer.writeFloat(recipe.experience);
             buffer.writeVarInt(recipe.cookTime);
-            buffer.writeBoolean(recipe.needPot);
+            buffer.writeVarInt(recipe.cookingType);
         }
     }
 

@@ -1,0 +1,11 @@
+{
+  "values": [
+    {
+      "id": "minecraft:wheat"
+    },
+    {
+      "id": "#forge:dough",
+      "required": false
+    }
+  ]
+}

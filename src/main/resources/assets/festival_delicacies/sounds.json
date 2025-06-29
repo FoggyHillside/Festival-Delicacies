@@ -1,0 +1,11 @@
+{
+  "block.chop": {
+    "subtitle": "festival_delicacies.subtitles.chop",
+    "sounds": [
+      {
+        "name": "block.wood.place",
+        "type": "event"
+      }
+    ]
+  }
+}

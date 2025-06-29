@@ -1,10 +1,14 @@
 package cn.foggyhillside.festival_delicacies.blocks.screen;
 
 import cn.foggyhillside.festival_delicacies.FestivalDelicacies;
-import cn.foggyhillside.festival_delicacies.tag.ModTags;
+import cn.foggyhillside.festival_delicacies.network.ModNetwork;
+import cn.foggyhillside.festival_delicacies.network.packet.ServerCookingTypeButtonPacket;
+import cn.foggyhillside.festival_delicacies.network.packet.ServerRedstoneButtonPacket;
+import cn.foggyhillside.festival_delicacies.network.packet.ServerStartButtonPacket;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -12,19 +16,67 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static cn.foggyhillside.festival_delicacies.blocks.StoveBlock.LIT;
+import static cn.foggyhillside.festival_delicacies.blocks.StoveBlock.*;
 
 public class StoveScreen extends AbstractContainerScreen<StoveMenu> {
 
+    public ModeButton cookingTypeButton;
+    public ModeButton startButton;
+    public ModeButton redstoneButton;
+
     @Override
     protected void init() {
+        this.cookingTypeButton = new ModeButton(new Button.Builder(Component.translatable("gui." + FestivalDelicacies.MODID + ".cooking_type_button"), pButton -> {
+            if (menu.entity.getBlockState().getValue(LIT)) {
+                ModNetwork.sendToServer(new ServerCookingTypeButtonPacket(this.getMenu().entity.getBlockPos()));
+            }
+        }).pos(((width - imageWidth) / 2) + 91, ((height - imageHeight) / 2) + 55).size(19, 17), 176, 35, 256, 256, TEXTURE, () ->
+                switch (cookingTypeButton.mode) {
+                    case 0 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.not_lit"));
+                    case 1 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.default"));
+                    case 2 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.steam"));
+                    case 3 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.fry"));
+                    case 4 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.bake"));
+                    case 5 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.default_dumpling"));
+                    case 6 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.steamed_dumpling"));
+                    case 7 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.baozi"));
+                    default -> throw new IllegalStateException("Unexpected value: " + cookingTypeButton.mode);
+                });
+        this.startButton = new ModeButton(new Button.Builder(Component.translatable("gui." + FestivalDelicacies.MODID + ".start_button"), pButton -> {
+            ModNetwork.sendToServer(new ServerStartButtonPacket(this.getMenu().entity.getBlockPos()));
+        }).pos(((width - imageWidth) / 2) + 6, ((height - imageHeight) / 2) + 34).size(19, 17), 0, 166, 256, 256, TEXTURE, () ->
+                switch (startButton.mode) {
+                    case 0 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.not_started"));
+                    case 1 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.started"));
+                    default -> throw new IllegalStateException("Unexpected value: " + startButton.mode);
+                });
+        this.redstoneButton = new ModeButton(new Button.Builder(Component.translatable("gui." + FestivalDelicacies.MODID + ".redstoneButton"), pButton -> {
+            ModNetwork.sendToServer(new ServerRedstoneButtonPacket(this.getMenu().entity.getBlockPos()));
+        }).pos(((width - imageWidth) / 2) + 8, ((height - imageHeight) / 2) + 55).size(15, 14), 0, 200, 256, 256, TEXTURE, () ->
+                switch (redstoneButton.mode) {
+                    case 0 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.no_redstone"));
+                    case 1 ->
+                            Tooltip.create(Component.translatable("gui." + FestivalDelicacies.MODID + ".stove.button.redstone"));
+                    default -> throw new IllegalStateException("Unexpected value: " + redstoneButton.mode);
+                });
+        this.addWidget(this.cookingTypeButton);
+        this.addWidget(this.startButton);
+        this.addWidget(this.redstoneButton);
         super.init();
     }
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(FestivalDelicacies.MODID, "textures/gui/pot_stove_gui.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(FestivalDelicacies.MODID, "textures/gui/stove_gui.png");
 
     public StoveScreen(StoveMenu menu, Inventory inventory, Component component) {
         super(menu, inventory, component);
@@ -39,26 +91,7 @@ public class StoveScreen extends AbstractContainerScreen<StoveMenu> {
         int y = (height - imageHeight) / 2;
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
         renderProgressArrow(guiGraphics, x, y);
-        renderLit(guiGraphics, x, y);
-        renderNotLit(guiGraphics, x, y);
-        renderPot(guiGraphics, x, y);
         renderContainerSlot(guiGraphics, x, y);
-        renderDarkSlot(guiGraphics, x, y);
-    }
-
-    private void renderHeatIndicatorTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        if (this.isHovering(94, 52, 15, 18, (double)mouseX, (double)mouseY)) {
-            List<Component> tooltip = new ArrayList();
-            if(!menu.entity.getBlockState().getValue(LIT)){
-                tooltip.add(Component.translatable(FestivalDelicacies.MODID + ".stove" + ".not_lit" ));
-            }else if(!menu.entity.getLevel().getBlockState(menu.entity.getBlockPos().above()).is(ModTags.IS_POT)){
-                tooltip.add(Component.translatable(FestivalDelicacies.MODID + ".stove" + ".lit" ));
-            }else {
-                tooltip.add(Component.translatable(FestivalDelicacies.MODID + ".stove" + ".pot" ));
-            }
-            guiGraphics.renderComponentTooltip(this.font, tooltip, mouseX, mouseY);
-        }
-
     }
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
@@ -67,45 +100,43 @@ public class StoveScreen extends AbstractContainerScreen<StoveMenu> {
         }
     }
 
-    private void renderLit(GuiGraphics guiGraphics, int x, int y) {
-        if (menu.entity.getBlockState().getValue(LIT) && !menu.entity.getLevel().getBlockState(menu.entity.getBlockPos().above()).is(ModTags.IS_POT)) {
-            guiGraphics.blit(TEXTURE, x + 94, y + 52, 176, 17, 14, 18);
-        }
-    }
-    private void renderNotLit(GuiGraphics guiGraphics, int x, int y) {
-        if (!menu.entity.getBlockState().getValue(LIT)) {
-            guiGraphics.blit(TEXTURE, x + 94, y + 52, 190, 17, 14, 18);
-        }
-    }
-
-    private void renderPot(GuiGraphics guiGraphics, int x, int y) {
-        if (menu.entity.getBlockState().getValue(LIT) && menu.entity.getLevel().getBlockState(menu.entity.getBlockPos().above()).is(ModTags.IS_POT)) {
-            guiGraphics.blit(TEXTURE, x + 94, y + 54, 193, 35, 15, 15);
-        }
-    }
-
     private void renderContainerSlot(GuiGraphics guiGraphics, int x, int y) {
-        if (menu.entity.itemStackHandler.getStackInSlot(9) != ItemStack.EMPTY) {
-            guiGraphics.blit(TEXTURE, x + 93, y + 17, 30, 17, 17, 17);
-        }
-    }
-
-    private void renderDarkSlot(GuiGraphics guiGraphics, int x, int y) {
-        if (!menu.entity.getLevel().getBlockState(menu.entity.getBlockPos().above()).is(ModTags.IS_POT)) {
-            guiGraphics.blit(TEXTURE, x + 65, y + 16, 176, 35, 17, 17);
-            guiGraphics.blit(TEXTURE, x + 65, y + 34, 176, 35, 17, 17);
-            guiGraphics.blit(TEXTURE, x + 29, y + 52, 176, 35, 17, 17);
-            guiGraphics.blit(TEXTURE, x + 47, y + 52, 176, 35, 17, 17);
-            guiGraphics.blit(TEXTURE, x + 65, y + 52, 176, 35, 17, 17);
+        if (menu.entity.inventory.getStackInSlot(9) == ItemStack.EMPTY) {
+            int type = menu.entity.getBlockState().getValue(COOKING_TYPE);
+            if (type > 4 && type < 8) {
+                guiGraphics.blit(TEXTURE, x + 92, y + 16, 176, 17, 18, 18);
+            } else {
+                guiGraphics.blit(TEXTURE, x + 92, y + 16, 194, 17, 18, 18);
+            }
         }
     }
 
     @Override
     public void render(GuiGraphics poseStack, int mouseX, int mouseY, float f) {
+        if (menu.entity.getBlockState().getValue(LIT)) {
+            cookingTypeButton.setMode(menu.entity.getBlockState().getValue(COOKING_TYPE));
+        } else {
+            cookingTypeButton.setMode(0);
+        }
+        if (menu.entity.getBlockState().getValue(LIT) && cookingTypeButton.mode >= 5 && cookingTypeButton.mode <= 7) {
+            if (!startButton.visible) {
+                startButton.visible = true;
+                redstoneButton.visible = true;
+            }
+        } else {
+            if (startButton.visible) {
+                startButton.visible = false;
+                redstoneButton.visible = false;
+            }
+        }
+        startButton.setMode(menu.entity.getBlockState().getValue(START_BUTTON));
+        redstoneButton.setMode(menu.entity.getBlockState().getValue(RED_STONE));
         renderBackground(poseStack);
         super.render(poseStack, mouseX, mouseY, f);
         renderTooltip(poseStack, mouseX, mouseY);
-        this.renderHeatIndicatorTooltip(poseStack, mouseX, mouseY);
+        this.cookingTypeButton.render(poseStack, mouseX, mouseY, f);
+        this.startButton.render(poseStack, mouseX, mouseY, f);
+        this.redstoneButton.render(poseStack, mouseX, mouseY, f);
     }
 
 }

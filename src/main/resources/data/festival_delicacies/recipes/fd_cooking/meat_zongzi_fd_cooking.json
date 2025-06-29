@@ -1,0 +1,24 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:crops/rice"
+    },
+    {
+      "item": "festival_delicacies:preserved_meat"
+    },
+    {
+      "item": "festival_delicacies:bamboo_leavse"
+    },
+    {
+      "item": "festival_delicacies:bamboo_leaves"
+    }
+  ],
+  "recipe_book_tab": "misc",
+  "result": {
+    "item": "festival_delicacies:meat_zongzi",
+    "count": 2
+  },
+  "cookingtime": 200,
+  "experience": 1.0
+}

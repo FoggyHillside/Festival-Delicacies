@@ -1,0 +1,12 @@
+{
+  "type": "festival_delicacies:chopping",
+  "ingredient": {
+    "item": "festival_delicacies:chinese_cabbage"
+  },
+  "results": [
+    {
+      "item": "festival_delicacies:chinese_cabbage_leaf",
+      "count": 3
+    }
+  ]
+}

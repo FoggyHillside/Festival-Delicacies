@@ -1,0 +1,14 @@
+{
+  "values": [
+    {
+      "id": "minecraft:carrot"
+    },
+    {
+      "id": "minecraft:brown_mushroom"
+    },
+    {
+      "id": "#festival_delicacies:cabbage",
+      "required": false
+    }
+  ]
+}

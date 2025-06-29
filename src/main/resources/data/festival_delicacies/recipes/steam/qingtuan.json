@@ -1,0 +1,21 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "tag": "forge:crops/rice"
+    },
+    {
+      "item": "festival_delicacies:mugwort_leaves"
+    },
+    {
+      "item": "festival_delicacies:red_bean_paste"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:qingtuan",
+    "count": 2
+  },
+  "experience": 1.0,
+  "cookingtime": 200,
+  "cookingType": "steam"
+}

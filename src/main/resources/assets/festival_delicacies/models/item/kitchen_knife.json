@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "festival_delicacies:item/kitchen_knife"
+  }
+}

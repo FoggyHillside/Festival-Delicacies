@@ -1,0 +1,27 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "tag": "forge:crops/rice"
+    },
+    {
+      "item": "festival_delicacies:jujube"
+    },
+    {
+      "item": "festival_delicacies:red_bean_paste"
+    },
+    {
+      "item": "festival_delicacies:bamboo_leaves"
+    },
+    {
+      "item": "festival_delicacies:bamboo_leaves"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:sweet_zongzi",
+    "count": 2
+  },
+  "cookingtime": 200,
+  "experience": 1.0,
+  "cookingType": "default"
+}

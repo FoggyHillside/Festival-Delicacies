@@ -1,0 +1,14 @@
+{
+  "values": [
+    {
+      "id": "minecraft:potion"
+    },
+    {
+      "id": "minecraft:milk_bucket"
+    },
+    {
+      "id": "#forge:milk",
+      "required": false
+    }
+  ]
+}

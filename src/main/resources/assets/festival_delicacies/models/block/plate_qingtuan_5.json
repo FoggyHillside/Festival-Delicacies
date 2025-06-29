@@ -1,0 +1,95 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "festival_delicacies:block/plate",
+		"1": "festival_delicacies:block/on_plate",
+		"particle": "festival_delicacies:block/plate"
+	},
+	"elements": [
+		{
+			"name": "tray",
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 0, 2]},
+			"faces": {
+				"north": {"uv": [0, 11, 8, 12], "texture": "#0"},
+				"east": {"uv": [0, 8, 8, 9], "texture": "#0"},
+				"south": {"uv": [0, 9, 8, 10], "texture": "#0"},
+				"west": {"uv": [0, 10, 8, 11], "texture": "#0"},
+				"up": {"uv": [0, 0, 8, 8], "texture": "#0"},
+				"down": {"uv": [8, 0, 16, 8], "texture": "#0"}
+			}
+		},
+		{
+			"name": "qingtuan0",
+			"from": [6.5, 2, 6.5],
+			"to": [9.5, 5, 9.5],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 3.5, 8]},
+			"faces": {
+				"north": {"uv": [4.5, 1.5, 6, 3], "texture": "#1"},
+				"east": {"uv": [6, 1.5, 4.5, 3], "texture": "#1"},
+				"south": {"uv": [4.5, 1.5, 6, 3], "texture": "#1"},
+				"west": {"uv": [6, 1.5, 4.5, 3], "texture": "#1"},
+				"up": {"uv": [4.5, 0, 6, 1.5], "texture": "#1"},
+				"down": {"uv": [14.5, 14.5, 16, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "qingtuan1",
+			"from": [9.75, 2, 3.25],
+			"to": [12.75, 5, 6.25],
+			"rotation": {"angle": 45, "axis": "y", "origin": [11.25, 3.5, 4.75]},
+			"faces": {
+				"north": {"uv": [4.5, 1.5, 6, 3], "texture": "#1"},
+				"east": {"uv": [6, 1.5, 4.5, 3], "texture": "#1"},
+				"south": {"uv": [4.5, 1.5, 6, 3], "texture": "#1"},
+				"west": {"uv": [6, 1.5, 4.5, 3], "texture": "#1"},
+				"up": {"uv": [4.5, 0, 6, 1.5], "texture": "#1"},
+				"down": {"uv": [14.5, 14.5, 16, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "qingtuan2",
+			"from": [9.75, 2, 9.75],
+			"to": [12.75, 5, 12.75],
+			"rotation": {"angle": 45, "axis": "y", "origin": [11.25, 3.5, 11.25]},
+			"faces": {
+				"north": {"uv": [4.5, 1.5, 6, 3], "texture": "#1"},
+				"east": {"uv": [6, 1.5, 4.5, 3], "texture": "#1"},
+				"south": {"uv": [4.5, 1.5, 6, 3], "texture": "#1"},
+				"west": {"uv": [6, 1.5, 4.5, 3], "texture": "#1"},
+				"up": {"uv": [4.5, 0, 6, 1.5], "texture": "#1"},
+				"down": {"uv": [14.5, 14.5, 16, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "qingtuan3",
+			"from": [3.25, 2, 9.75],
+			"to": [6.25, 5, 12.75],
+			"rotation": {"angle": 45, "axis": "y", "origin": [4.75, 3.5, 11.25]},
+			"faces": {
+				"north": {"uv": [4.5, 1.5, 6, 3], "texture": "#1"},
+				"east": {"uv": [6, 1.5, 4.5, 3], "texture": "#1"},
+				"south": {"uv": [4.5, 1.5, 6, 3], "texture": "#1"},
+				"west": {"uv": [6, 1.5, 4.5, 3], "texture": "#1"},
+				"up": {"uv": [4.5, 0, 6, 1.5], "texture": "#1"},
+				"down": {"uv": [14.5, 14.5, 16, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "qingtuan4",
+			"from": [3.25, 2, 3.25],
+			"to": [6.25, 5, 6.25],
+			"rotation": {"angle": 45, "axis": "y", "origin": [4.75, 3.5, 4.75]},
+			"faces": {
+				"north": {"uv": [4.5, 1.5, 6, 3], "texture": "#1"},
+				"east": {"uv": [6, 1.5, 4.5, 3], "texture": "#1"},
+				"south": {"uv": [4.5, 1.5, 6, 3], "texture": "#1"},
+				"west": {"uv": [6, 1.5, 4.5, 3], "texture": "#1"},
+				"up": {"uv": [4.5, 0, 6, 1.5], "texture": "#1"},
+				"down": {"uv": [14.5, 14.5, 16, 16], "texture": "#1"}
+			}
+		}
+	]
+}

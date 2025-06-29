@@ -1,0 +1,11 @@
+{
+  "values": [
+    {
+      "id": "minecraft:porkchop"
+    },
+    {
+      "id": "#forge:raw_pork",
+      "required": false
+    }
+  ]
+}

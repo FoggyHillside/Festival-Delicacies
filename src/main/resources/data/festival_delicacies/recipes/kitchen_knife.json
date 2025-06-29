@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "11 ",
+    "12 ",
+    " 3 "
+  ],
+  "key": {
+    "1": {
+        "tag": "forge:nuggets/iron"
+      },
+    "2": {
+      "tag": "forge:ingots/iron"
+    },
+    "3": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "festival_delicacies:kitchen_knife"
+  }
+}

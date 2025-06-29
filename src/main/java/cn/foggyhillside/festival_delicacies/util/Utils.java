@@ -1,0 +1,109 @@
+package cn.foggyhillside.festival_delicacies.util;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.List;
+
+public class Utils {
+    //Recipe
+    @OnlyIn(Dist.CLIENT)
+    public static ItemStack getResultItem(Recipe<?> recipe) {
+        Minecraft minecraft = Minecraft.getInstance();
+        ClientLevel level = minecraft.level;
+        if (level == null) {
+            throw new NullPointerException("level must not be null.");
+        } else {
+            RegistryAccess registryAccess = level.registryAccess();
+            return recipe.getResultItem(registryAccess);
+        }
+    }
+
+
+    public static NonNullList<Ingredient> readIngredients(JsonArray ingredientArray) {
+        NonNullList<Ingredient> nonnulllist = NonNullList.create();
+
+        for (int i = 0; i < ingredientArray.size(); i++) {
+            Ingredient ingredient = Ingredient.fromJson(ingredientArray.get(i));
+            if (!ingredient.isEmpty()) {
+                nonnulllist.add(ingredient);
+            }
+        }
+        return nonnulllist;
+    }
+
+    public static NonNullList<ItemStack> readResults(JsonArray resultArray) {
+        NonNullList<ItemStack> results = NonNullList.create();
+
+        for(JsonElement element : resultArray){
+            ItemStack result = CraftingHelper.getItemStack(element.getAsJsonObject(), true);
+            if (!result.isEmpty()) {
+                results.add(result);
+            }
+        }
+        return results;
+    }
+
+    //Config
+    public static boolean checkItem(ForgeConfigSpec.ConfigValue<List<? extends String>> config, ItemStack itemStack) {
+        for (String str : config.get()) {
+            ResourceLocation id = ResourceLocation.tryParse(str);
+            if (id != null) {
+                Item item = ForgeRegistries.ITEMS.getValue(id);
+                return item == itemStack.getItem();
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkTag(ForgeConfigSpec.ConfigValue<List<? extends String>> config, ItemStack itemStack) {
+        for (String str : config.get()) {
+            ResourceLocation id = ResourceLocation.tryParse(str);
+            if (id != null) {
+                TagKey<Item> tag = TagKey.create(Registries.ITEM, id);
+                return itemStack.is(tag);
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkItemAndTag(TagKey<Item> itemTag, ForgeConfigSpec.ConfigValue<List<? extends String>> configItem, ForgeConfigSpec.ConfigValue<List<? extends String>> configTag, ItemStack itemStack) {
+        ResourceLocation locationItem = null;
+        ResourceLocation locationTag = null;
+        if (itemStack.is(itemTag)) {
+            return true;
+        }
+        for (String str : configItem.get()) {
+            locationItem = ResourceLocation.tryParse(str);
+        }
+        for (String str : configTag.get()) {
+            locationTag = ResourceLocation.tryParse(str);
+        }
+        if (locationItem != null) {
+            Item item = ForgeRegistries.ITEMS.getValue(locationItem);
+            if (item == itemStack.getItem()) {
+                return true;
+            } else if (locationTag != null) {
+                TagKey<Item> tag = TagKey.create(Registries.ITEM, locationTag);
+                return itemStack.is(tag);
+            }
+        }
+        return false;
+    }
+}

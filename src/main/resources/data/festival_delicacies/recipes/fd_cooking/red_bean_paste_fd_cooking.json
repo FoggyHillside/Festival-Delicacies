@@ -1,0 +1,22 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:red_bean"
+    },
+    {
+      "item": "festival_delicacies:red_bean"
+    }
+  ],
+  "recipe_book_tab": "misc",
+  "result": {
+    "item": "festival_delicacies:red_bean_paste",
+    "count": 1
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "experience": 0.35,
+  "cookingtime": 100,
+  "cookingType": "default"
+}

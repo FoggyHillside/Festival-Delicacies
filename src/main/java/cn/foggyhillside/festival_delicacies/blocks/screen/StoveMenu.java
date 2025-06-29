@@ -1,10 +1,10 @@
 package cn.foggyhillside.festival_delicacies.blocks.screen;
 
-import cn.foggyhillside.festival_delicacies.blocks.container.ResultSlot;
-import cn.foggyhillside.festival_delicacies.blocks.container.StoveSlot;
+import cn.foggyhillside.festival_delicacies.blocks.StoveBlock;
 import cn.foggyhillside.festival_delicacies.blocks.entities.StoveEntity;
 import cn.foggyhillside.festival_delicacies.registry.ModBlocks;
 import cn.foggyhillside.festival_delicacies.registry.ModMenuTypes;
+import cn.foggyhillside.festival_delicacies.registry.ModTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -41,15 +41,15 @@ public class StoveMenu extends AbstractContainerMenu {
         this.entity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 30, 17));
             this.addSlot(new SlotItemHandler(handler, 1, 48, 17));
-            this.addSlot(new StoveSlot(inventory.player.level(), inventory.player, this.entity, handler, 2, 66, 17));
+            this.addSlot(new SlotItemHandler(handler, 2, 66, 17));
             this.addSlot(new SlotItemHandler(handler, 3, 30, 35));
             this.addSlot(new SlotItemHandler(handler, 4, 48, 35));
-            this.addSlot(new StoveSlot(inventory.player.level(), inventory.player, this.entity, handler, 5, 66, 35));
-            this.addSlot(new StoveSlot(inventory.player.level(), inventory.player, this.entity, handler, 6, 30, 53));
-            this.addSlot(new StoveSlot(inventory.player.level(), inventory.player, this.entity, handler, 7, 48, 53));
-            this.addSlot(new StoveSlot(inventory.player.level(), inventory.player, this.entity, handler, 8, 66, 53));
+            this.addSlot(new SlotItemHandler(handler, 5, 66, 35));
+            this.addSlot(new SlotItemHandler(handler, 6, 30, 53));
+            this.addSlot(new SlotItemHandler(handler, 7, 48, 53));
+            this.addSlot(new SlotItemHandler(handler, 8, 66, 53));
             this.addSlot(new SlotItemHandler(handler, 9, 93, 17));
-            this.addSlot(new ResultSlot(inventory.player, this.entity, handler, 10, 124, 36));
+            this.addSlot(new SlotItemHandler(handler, 10, 124, 36));
         });
 
         addDataSlots(data);
@@ -74,7 +74,7 @@ public class StoveMenu extends AbstractContainerMenu {
         int startPlayerInv = 0;
         int endPlayerInv = 35;
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = (Slot) this.slots.get(id);
+        Slot slot = this.slots.get(id);
         if (slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
@@ -83,8 +83,15 @@ public class StoveMenu extends AbstractContainerMenu {
                     return ItemStack.EMPTY;
                 }
             } else if (id <= endPlayerInv) {
-                if ((itemstack1.getItem() == Items.BOWL || itemstack1.getItem() == Items.GLASS_BOTTLE) && !this.moveItemStackTo(itemstack1, containerInput, containerInput + 1, false)) {
-                    return ItemStack.EMPTY;
+                if (entity.getBlockState().getValue(StoveBlock.COOKING_TYPE) >= 1
+                        && entity.getBlockState().getValue(StoveBlock.COOKING_TYPE) <= 4) {
+                    if ((itemstack1.is(Items.BOWL) || itemstack1.is(Items.GLASS_BOTTLE)) && !this.moveItemStackTo(itemstack1, containerInput, containerInput + 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else {
+                    if (itemstack1.is(ModTags.DOUGH) && !this.moveItemStackTo(itemstack1, containerInput, containerInput + 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
                 }
                 if (!this.moveItemStackTo(itemstack1, containerInput - 9, containerInput, false)) {
                     return ItemStack.EMPTY;

@@ -1,0 +1,949 @@
+{
+  "variants": {
+    "facing=west,plate_item_type=0,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=0,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=0,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=0,amount=1": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=0,amount=1": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=0,amount=1": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=0,amount=1": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=0,amount=2": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=0,amount=2": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=0,amount=2": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=0,amount=2": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=0,amount=3": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=0,amount=3": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=0,amount=3": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=0,amount=3": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=0,amount=4": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=0,amount=4": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=0,amount=4": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=0,amount=4": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=0,amount=5": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=0,amount=5": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=0,amount=5": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=0,amount=5": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=0,amount=6": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=0,amount=6": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=0,amount=6": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=0,amount=6": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=0,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=1,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=1,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=1,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=1,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=1,amount=1": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_1",
+      "y": 270
+    },
+    "facing=south,plate_item_type=1,amount=1": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_1",
+      "y": 180
+    },
+    "facing=north,plate_item_type=1,amount=1": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_1"
+    },
+    "facing=east,plate_item_type=1,amount=1": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_1",
+      "y": 90
+    },
+    "facing=west,plate_item_type=1,amount=2": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_2",
+      "y": 270
+    },
+    "facing=south,plate_item_type=1,amount=2": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_2",
+      "y": 180
+    },
+    "facing=north,plate_item_type=1,amount=2": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_2"
+    },
+    "facing=east,plate_item_type=1,amount=2": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_2",
+      "y": 90
+    },
+    "facing=west,plate_item_type=1,amount=3": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_3",
+      "y": 270
+    },
+    "facing=south,plate_item_type=1,amount=3": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_3",
+      "y": 180
+    },
+    "facing=north,plate_item_type=1,amount=3": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_3"
+    },
+    "facing=east,plate_item_type=1,amount=3": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_3",
+      "y": 90
+    },
+    "facing=west,plate_item_type=1,amount=4": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_4",
+      "y": 270
+    },
+    "facing=south,plate_item_type=1,amount=4": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_4",
+      "y": 180
+    },
+    "facing=north,plate_item_type=1,amount=4": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_4"
+    },
+    "facing=east,plate_item_type=1,amount=4": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_4",
+      "y": 90
+    },
+    "facing=west,plate_item_type=1,amount=5": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_5",
+      "y": 270
+    },
+    "facing=south,plate_item_type=1,amount=5": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_5",
+      "y": 180
+    },
+    "facing=north,plate_item_type=1,amount=5": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_5"
+    },
+    "facing=east,plate_item_type=1,amount=5": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_5",
+      "y": 90
+    },
+    "facing=west,plate_item_type=1,amount=6": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_6",
+      "y": 270
+    },
+    "facing=south,plate_item_type=1,amount=6": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_6",
+      "y": 180
+    },
+    "facing=north,plate_item_type=1,amount=6": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_6"
+    },
+    "facing=east,plate_item_type=1,amount=6": {
+      "model": "festival_delicacies:block/plate_boiled_dumpling_6",
+      "y": 90
+    },
+    "facing=west,plate_item_type=2,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=2,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=2,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=2,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=2,amount=1": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_1",
+      "y": 270
+    },
+    "facing=south,plate_item_type=2,amount=1": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_1",
+      "y": 180
+    },
+    "facing=north,plate_item_type=2,amount=1": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_1"
+    },
+    "facing=east,plate_item_type=2,amount=1": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_1",
+      "y": 90
+    },
+    "facing=west,plate_item_type=2,amount=2": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_2",
+      "y": 270
+    },
+    "facing=south,plate_item_type=2,amount=2": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_2",
+      "y": 180
+    },
+    "facing=north,plate_item_type=2,amount=2": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_2"
+    },
+    "facing=east,plate_item_type=2,amount=2": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_2",
+      "y": 90
+    },
+    "facing=west,plate_item_type=2,amount=3": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_3",
+      "y": 270
+    },
+    "facing=south,plate_item_type=2,amount=3": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_3",
+      "y": 180
+    },
+    "facing=north,plate_item_type=2,amount=3": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_3"
+    },
+    "facing=east,plate_item_type=2,amount=3": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_3",
+      "y": 90
+    },
+    "facing=west,plate_item_type=2,amount=4": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_4",
+      "y": 270
+    },
+    "facing=south,plate_item_type=2,amount=4": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_4",
+      "y": 180
+    },
+    "facing=north,plate_item_type=2,amount=4": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_4"
+    },
+    "facing=east,plate_item_type=2,amount=4": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_4",
+      "y": 90
+    },
+    "facing=west,plate_item_type=2,amount=5": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_5",
+      "y": 270
+    },
+    "facing=south,plate_item_type=2,amount=5": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_5",
+      "y": 180
+    },
+    "facing=north,plate_item_type=2,amount=5": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_5"
+    },
+    "facing=east,plate_item_type=2,amount=5": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_5",
+      "y": 90
+    },
+    "facing=west,plate_item_type=2,amount=6": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_6",
+      "y": 270
+    },
+    "facing=south,plate_item_type=2,amount=6": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_6",
+      "y": 180
+    },
+    "facing=north,plate_item_type=2,amount=6": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_6"
+    },
+    "facing=east,plate_item_type=2,amount=6": {
+      "model": "festival_delicacies:block/plate_steamed_dumpling_6",
+      "y": 90
+    },
+    "facing=west,plate_item_type=3,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=3,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=3,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=3,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=3,amount=1": {
+      "model": "festival_delicacies:block/plate_baozi_1",
+      "y": 270
+    },
+    "facing=south,plate_item_type=3,amount=1": {
+      "model": "festival_delicacies:block/plate_baozi_1",
+      "y": 180
+    },
+    "facing=north,plate_item_type=3,amount=1": {
+      "model": "festival_delicacies:block/plate_baozi_1"
+    },
+    "facing=east,plate_item_type=3,amount=1": {
+      "model": "festival_delicacies:block/plate_baozi_1",
+      "y": 90
+    },
+    "facing=west,plate_item_type=3,amount=2": {
+      "model": "festival_delicacies:block/plate_baozi_2",
+      "y": 270
+    },
+    "facing=south,plate_item_type=3,amount=2": {
+      "model": "festival_delicacies:block/plate_baozi_2",
+      "y": 180
+    },
+    "facing=north,plate_item_type=3,amount=2": {
+      "model": "festival_delicacies:block/plate_baozi_2"
+    },
+    "facing=east,plate_item_type=3,amount=2": {
+      "model": "festival_delicacies:block/plate_baozi_2",
+      "y": 90
+    },
+    "facing=west,plate_item_type=3,amount=3": {
+      "model": "festival_delicacies:block/plate_baozi_3",
+      "y": 270
+    },
+    "facing=south,plate_item_type=3,amount=3": {
+      "model": "festival_delicacies:block/plate_baozi_3",
+      "y": 180
+    },
+    "facing=north,plate_item_type=3,amount=3": {
+      "model": "festival_delicacies:block/plate_baozi_3"
+    },
+    "facing=east,plate_item_type=3,amount=3": {
+      "model": "festival_delicacies:block/plate_baozi_3",
+      "y": 90
+    },
+    "facing=west,plate_item_type=3,amount=4": {
+      "model": "festival_delicacies:block/plate_baozi_4",
+      "y": 270
+    },
+    "facing=south,plate_item_type=3,amount=4": {
+      "model": "festival_delicacies:block/plate_baozi_4",
+      "y": 180
+    },
+    "facing=north,plate_item_type=3,amount=4": {
+      "model": "festival_delicacies:block/plate_baozi_4"
+    },
+    "facing=east,plate_item_type=3,amount=4": {
+      "model": "festival_delicacies:block/plate_baozi_4",
+      "y": 90
+    },
+    "facing=west,plate_item_type=3,amount=5": {
+      "model": "festival_delicacies:block/plate_baozi_5",
+      "y": 270
+    },
+    "facing=south,plate_item_type=3,amount=5": {
+      "model": "festival_delicacies:block/plate_baozi_5",
+      "y": 180
+    },
+    "facing=north,plate_item_type=3,amount=5": {
+      "model": "festival_delicacies:block/plate_baozi_5"
+    },
+    "facing=east,plate_item_type=3,amount=5": {
+      "model": "festival_delicacies:block/plate_baozi_5",
+      "y": 90
+    },
+    "facing=west,plate_item_type=3,amount=6": {
+      "model": "festival_delicacies:block/plate_baozi_6",
+      "y": 270
+    },
+    "facing=south,plate_item_type=3,amount=6": {
+      "model": "festival_delicacies:block/plate_baozi_6",
+      "y": 180
+    },
+    "facing=north,plate_item_type=3,amount=6": {
+      "model": "festival_delicacies:block/plate_baozi_6"
+    },
+    "facing=east,plate_item_type=3,amount=6": {
+      "model": "festival_delicacies:block/plate_baozi_6",
+      "y": 90
+    },
+    "facing=west,plate_item_type=4,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=4,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=4,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=4,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=4,amount=1": {
+      "model": "festival_delicacies:block/plate_qingtuan_1",
+      "y": 270
+    },
+    "facing=south,plate_item_type=4,amount=1": {
+      "model": "festival_delicacies:block/plate_qingtuan_1",
+      "y": 180
+    },
+    "facing=north,plate_item_type=4,amount=1": {
+      "model": "festival_delicacies:block/plate_qingtuan_1"
+    },
+    "facing=east,plate_item_type=4,amount=1": {
+      "model": "festival_delicacies:block/plate_qingtuan_1",
+      "y": 90
+    },
+    "facing=west,plate_item_type=4,amount=2": {
+      "model": "festival_delicacies:block/plate_qingtuan_2",
+      "y": 270
+    },
+    "facing=south,plate_item_type=4,amount=2": {
+      "model": "festival_delicacies:block/plate_qingtuan_2",
+      "y": 180
+    },
+    "facing=north,plate_item_type=4,amount=2": {
+      "model": "festival_delicacies:block/plate_qingtuan_2"
+    },
+    "facing=east,plate_item_type=4,amount=2": {
+      "model": "festival_delicacies:block/plate_qingtuan_2",
+      "y": 90
+    },
+    "facing=west,plate_item_type=4,amount=3": {
+      "model": "festival_delicacies:block/plate_qingtuan_3",
+      "y": 270
+    },
+    "facing=south,plate_item_type=4,amount=3": {
+      "model": "festival_delicacies:block/plate_qingtuan_3",
+      "y": 180
+    },
+    "facing=north,plate_item_type=4,amount=3": {
+      "model": "festival_delicacies:block/plate_qingtuan_3"
+    },
+    "facing=east,plate_item_type=4,amount=3": {
+      "model": "festival_delicacies:block/plate_qingtuan_3",
+      "y": 90
+    },
+    "facing=west,plate_item_type=4,amount=4": {
+      "model": "festival_delicacies:block/plate_qingtuan_4",
+      "y": 270
+    },
+    "facing=south,plate_item_type=4,amount=4": {
+      "model": "festival_delicacies:block/plate_qingtuan_4",
+      "y": 180
+    },
+    "facing=north,plate_item_type=4,amount=4": {
+      "model": "festival_delicacies:block/plate_qingtuan_4"
+    },
+    "facing=east,plate_item_type=4,amount=4": {
+      "model": "festival_delicacies:block/plate_qingtuan_4",
+      "y": 90
+    },
+    "facing=west,plate_item_type=4,amount=5": {
+      "model": "festival_delicacies:block/plate_qingtuan_5",
+      "y": 270
+    },
+    "facing=south,plate_item_type=4,amount=5": {
+      "model": "festival_delicacies:block/plate_qingtuan_5",
+      "y": 180
+    },
+    "facing=north,plate_item_type=4,amount=5": {
+      "model": "festival_delicacies:block/plate_qingtuan_5"
+    },
+    "facing=east,plate_item_type=4,amount=5": {
+      "model": "festival_delicacies:block/plate_qingtuan_5",
+      "y": 90
+    },
+    "facing=west,plate_item_type=4,amount=6": {
+      "model": "festival_delicacies:block/plate_qingtuan_6",
+      "y": 270
+    },
+    "facing=south,plate_item_type=4,amount=6": {
+      "model": "festival_delicacies:block/plate_qingtuan_6",
+      "y": 180
+    },
+    "facing=north,plate_item_type=4,amount=6": {
+      "model": "festival_delicacies:block/plate_qingtuan_6"
+    },
+    "facing=east,plate_item_type=4,amount=6": {
+      "model": "festival_delicacies:block/plate_qingtuan_6",
+      "y": 90
+    },
+    "facing=west,plate_item_type=5,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=5,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=5,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=5,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=5,amount=1": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_1",
+      "y": 270
+    },
+    "facing=south,plate_item_type=5,amount=1": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_1",
+      "y": 180
+    },
+    "facing=north,plate_item_type=5,amount=1": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_1"
+    },
+    "facing=east,plate_item_type=5,amount=1": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_1",
+      "y": 90
+    },
+    "facing=west,plate_item_type=5,amount=2": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_2",
+      "y": 270
+    },
+    "facing=south,plate_item_type=5,amount=2": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_2",
+      "y": 180
+    },
+    "facing=north,plate_item_type=5,amount=2": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_2"
+    },
+    "facing=east,plate_item_type=5,amount=2": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_2",
+      "y": 90
+    },
+    "facing=west,plate_item_type=5,amount=3": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_3",
+      "y": 270
+    },
+    "facing=south,plate_item_type=5,amount=3": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_3",
+      "y": 180
+    },
+    "facing=north,plate_item_type=5,amount=3": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_3"
+    },
+    "facing=east,plate_item_type=5,amount=3": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_3",
+      "y": 90
+    },
+    "facing=west,plate_item_type=5,amount=4": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_4",
+      "y": 270
+    },
+    "facing=south,plate_item_type=5,amount=4": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_4",
+      "y": 180
+    },
+    "facing=north,plate_item_type=5,amount=4": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_4"
+    },
+    "facing=east,plate_item_type=5,amount=4": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_4",
+      "y": 90
+    },
+    "facing=west,plate_item_type=5,amount=5": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_5",
+      "y": 270
+    },
+    "facing=south,plate_item_type=5,amount=5": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_5",
+      "y": 180
+    },
+    "facing=north,plate_item_type=5,amount=5": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_5"
+    },
+    "facing=east,plate_item_type=5,amount=5": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_5",
+      "y": 90
+    },
+    "facing=west,plate_item_type=5,amount=6": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_6",
+      "y": 270
+    },
+    "facing=south,plate_item_type=5,amount=6": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_6",
+      "y": 180
+    },
+    "facing=north,plate_item_type=5,amount=6": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_6"
+    },
+    "facing=east,plate_item_type=5,amount=6": {
+      "model": "festival_delicacies:block/plate_five_nuts_mooncake_6",
+      "y": 90
+    },
+    "facing=west,plate_item_type=6,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=6,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=6,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=6,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=6,amount=1": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_1",
+      "y": 270
+    },
+    "facing=south,plate_item_type=6,amount=1": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_1",
+      "y": 180
+    },
+    "facing=north,plate_item_type=6,amount=1": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_1"
+    },
+    "facing=east,plate_item_type=6,amount=1": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_1",
+      "y": 90
+    },
+    "facing=west,plate_item_type=6,amount=2": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_2",
+      "y": 270
+    },
+    "facing=south,plate_item_type=6,amount=2": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_2",
+      "y": 180
+    },
+    "facing=north,plate_item_type=6,amount=2": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_2"
+    },
+    "facing=east,plate_item_type=6,amount=2": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_2",
+      "y": 90
+    },
+    "facing=west,plate_item_type=6,amount=3": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_3",
+      "y": 270
+    },
+    "facing=south,plate_item_type=6,amount=3": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_3",
+      "y": 180
+    },
+    "facing=north,plate_item_type=6,amount=3": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_3"
+    },
+    "facing=east,plate_item_type=6,amount=3": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_3",
+      "y": 90
+    },
+    "facing=west,plate_item_type=6,amount=4": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_4",
+      "y": 270
+    },
+    "facing=south,plate_item_type=6,amount=4": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_4",
+      "y": 180
+    },
+    "facing=north,plate_item_type=6,amount=4": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_4"
+    },
+    "facing=east,plate_item_type=6,amount=4": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_4",
+      "y": 90
+    },
+    "facing=west,plate_item_type=6,amount=5": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_5",
+      "y": 270
+    },
+    "facing=south,plate_item_type=6,amount=5": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_5",
+      "y": 180
+    },
+    "facing=north,plate_item_type=6,amount=5": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_5"
+    },
+    "facing=east,plate_item_type=6,amount=5": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_5",
+      "y": 90
+    },
+    "facing=west,plate_item_type=6,amount=6": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_6",
+      "y": 270
+    },
+    "facing=south,plate_item_type=6,amount=6": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_6",
+      "y": 180
+    },
+    "facing=north,plate_item_type=6,amount=6": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_6"
+    },
+    "facing=east,plate_item_type=6,amount=6": {
+      "model": "festival_delicacies:block/plate_hawthorn_and_jujube_paste_mooncake_6",
+      "y": 90
+    },
+    "facing=west,plate_item_type=7,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=7,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=7,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=7,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=7,amount=1": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_1",
+      "y": 270
+    },
+    "facing=south,plate_item_type=7,amount=1": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_1",
+      "y": 180
+    },
+    "facing=north,plate_item_type=7,amount=1": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_1"
+    },
+    "facing=east,plate_item_type=7,amount=1": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_1",
+      "y": 90
+    },
+    "facing=west,plate_item_type=7,amount=2": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_2",
+      "y": 270
+    },
+    "facing=south,plate_item_type=7,amount=2": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_2",
+      "y": 180
+    },
+    "facing=north,plate_item_type=7,amount=2": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_2"
+    },
+    "facing=east,plate_item_type=7,amount=2": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_2",
+      "y": 90
+    },
+    "facing=west,plate_item_type=7,amount=3": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_3",
+      "y": 270
+    },
+    "facing=south,plate_item_type=7,amount=3": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_3",
+      "y": 180
+    },
+    "facing=north,plate_item_type=7,amount=3": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_3"
+    },
+    "facing=east,plate_item_type=7,amount=3": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_3",
+      "y": 90
+    },
+    "facing=west,plate_item_type=7,amount=4": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_4",
+      "y": 270
+    },
+    "facing=south,plate_item_type=7,amount=4": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_4",
+      "y": 180
+    },
+    "facing=north,plate_item_type=7,amount=4": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_4"
+    },
+    "facing=east,plate_item_type=7,amount=4": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_4",
+      "y": 90
+    },
+    "facing=west,plate_item_type=7,amount=5": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_5",
+      "y": 270
+    },
+    "facing=south,plate_item_type=7,amount=5": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_5",
+      "y": 180
+    },
+    "facing=north,plate_item_type=7,amount=5": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_5"
+    },
+    "facing=east,plate_item_type=7,amount=5": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_5",
+      "y": 90
+    },
+    "facing=west,plate_item_type=7,amount=6": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_6",
+      "y": 270
+    },
+    "facing=south,plate_item_type=7,amount=6": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_6",
+      "y": 180
+    },
+    "facing=north,plate_item_type=7,amount=6": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_6"
+    },
+    "facing=east,plate_item_type=7,amount=6": {
+      "model": "festival_delicacies:block/plate_lotus_seed_paste_with_salted_yolk_mooncake_6",
+      "y": 90
+    },
+    "facing=west,plate_item_type=8,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 270
+    },
+    "facing=south,plate_item_type=8,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 180
+    },
+    "facing=north,plate_item_type=8,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate"
+    },
+    "facing=east,plate_item_type=8,amount=0": {
+      "model": "festival_delicacies:block/wooden_plate",
+      "y": 90
+    },
+    "facing=west,plate_item_type=8,amount=1": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_1",
+      "y": 270
+    },
+    "facing=south,plate_item_type=8,amount=1": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_1",
+      "y": 180
+    },
+    "facing=north,plate_item_type=8,amount=1": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_1"
+    },
+    "facing=east,plate_item_type=8,amount=1": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_1",
+      "y": 90
+    },
+    "facing=west,plate_item_type=8,amount=2": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_2",
+      "y": 270
+    },
+    "facing=south,plate_item_type=8,amount=2": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_2",
+      "y": 180
+    },
+    "facing=north,plate_item_type=8,amount=2": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_2"
+    },
+    "facing=east,plate_item_type=8,amount=2": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_2",
+      "y": 90
+    },
+    "facing=west,plate_item_type=8,amount=3": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_3",
+      "y": 270
+    },
+    "facing=south,plate_item_type=8,amount=3": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_3",
+      "y": 180
+    },
+    "facing=north,plate_item_type=8,amount=3": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_3"
+    },
+    "facing=east,plate_item_type=8,amount=3": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_3",
+      "y": 90
+    },
+    "facing=west,plate_item_type=8,amount=4": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_4",
+      "y": 270
+    },
+    "facing=south,plate_item_type=8,amount=4": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_4",
+      "y": 180
+    },
+    "facing=north,plate_item_type=8,amount=4": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_4"
+    },
+    "facing=east,plate_item_type=8,amount=4": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_4",
+      "y": 90
+    },
+    "facing=west,plate_item_type=8,amount=5": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_5",
+      "y": 270
+    },
+    "facing=south,plate_item_type=8,amount=5": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_5",
+      "y": 180
+    },
+    "facing=north,plate_item_type=8,amount=5": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_5"
+    },
+    "facing=east,plate_item_type=8,amount=5": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_5",
+      "y": 90
+    },
+    "facing=west,plate_item_type=8,amount=6": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_6",
+      "y": 270
+    },
+    "facing=south,plate_item_type=8,amount=6": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_6",
+      "y": 180
+    },
+    "facing=north,plate_item_type=8,amount=6": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_6"
+    },
+    "facing=east,plate_item_type=8,amount=6": {
+      "model": "festival_delicacies:block/plate_preserved_meat_mooncake_6",
+      "y": 90
+    }
+  }
+}

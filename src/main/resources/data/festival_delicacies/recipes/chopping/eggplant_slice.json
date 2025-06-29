@@ -1,0 +1,12 @@
+{
+  "type": "festival_delicacies:chopping",
+  "ingredient": {
+    "item": "festival_delicacies:eggplant"
+  },
+  "results": [
+    {
+      "item": "festival_delicacies:eggplant_slice",
+      "count": 3
+    }
+  ]
+}

@@ -2,6 +2,7 @@ package cn.foggyhillside.festival_delicacies.blocks;
 
 import cn.foggyhillside.festival_delicacies.blocks.entities.StoveEntity;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockEntities;
+import cn.foggyhillside.festival_delicacies.registry.ModBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -37,29 +39,38 @@ public class StoveBlock extends BaseEntityBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
+    public static final IntegerProperty COOKING_TYPE = ModBlockStateProperties.COOKING_TYPE;
+    public static final IntegerProperty START_BUTTON = ModBlockStateProperties.START_BUTTON;
+    public static final IntegerProperty RED_STONE = ModBlockStateProperties.RED_STONE;
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext placeContext) {
-        return defaultBlockState().setValue(FACING, placeContext.getHorizontalDirection().getOpposite()).setValue(LIT, true);
+        return defaultBlockState().setValue(FACING, placeContext.getHorizontalDirection().getOpposite());
     }
 
     public StoveBlock(Properties properties) {
         super(properties);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH)
+                .setValue(LIT, true)
+                .setValue(COOKING_TYPE, 1)
+                .setValue(START_BUTTON, 0)
+                .setValue(RED_STONE, 0));
     }
 
 
     @OnlyIn(Dist.CLIENT)
+    @Override
     public void animateTick(BlockState stateIn, Level level, BlockPos pos, RandomSource rand) {
-        if ((Boolean) stateIn.getValue(StoveBlock.LIT)) {
+        if (stateIn.getValue(StoveBlock.LIT)) {
             double x = (double) pos.getX() + 0.5;
-            double y = (double) pos.getY();
+            double y = pos.getY();
             double z = (double) pos.getZ() + 0.5;
             if (rand.nextInt(10) == 0) {
                 level.playLocalSound(x, y, z, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
 
-            Direction direction = (Direction) stateIn.getValue(HorizontalDirectionalBlock.FACING);
+            Direction direction = stateIn.getValue(HorizontalDirectionalBlock.FACING);
             Direction.Axis direction$axis = direction.getAxis();
             double horizontalOffset = rand.nextDouble() * 0.6 - 0.3;
             double xOffset = direction$axis == Direction.Axis.X ? (double) direction.getStepX() * 0.52 : horizontalOffset;
@@ -72,19 +83,22 @@ public class StoveBlock extends BaseEntityBlock {
     }
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rotation) {
-        return super.rotate(state, rotation);
+    public BlockState rotate(BlockState pState, Rotation pRotation) {
+        return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirror) {
-        return super.mirror(state, mirror);
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
         builder.add(LIT);
+        builder.add(COOKING_TYPE);
+        builder.add(START_BUTTON);
+        builder.add(RED_STONE);
     }
 
     @Nullable
@@ -114,7 +128,7 @@ public class StoveBlock extends BaseEntityBlock {
         ItemStack heldStack = player.getItemInHand(hand);
         Item heldItem = heldStack.getItem();
         Random random = new Random();
-        if ((Boolean) state.getValue(LIT)) {
+        if (state.getValue(LIT)) {
             if (heldStack.canPerformAction(ToolActions.SHOVEL_DIG)) {
                 this.extinguish(state, level, pos);
                 heldStack.hurtAndBreak(1, player, (action) -> {
@@ -125,7 +139,7 @@ public class StoveBlock extends BaseEntityBlock {
 
             if (heldItem == Items.WATER_BUCKET) {
                 if (!level.isClientSide()) {
-                    level.playSound((Player) null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    level.playSound(null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
 
                 this.extinguish(state, level, pos);
@@ -138,7 +152,7 @@ public class StoveBlock extends BaseEntityBlock {
         } else {
             if (heldItem instanceof FlintAndSteelItem) {
                 level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-                level.setBlock(pos, (BlockState) state.setValue(BlockStateProperties.LIT, Boolean.TRUE), 11);
+                level.setBlock(pos, (BlockState) state.setValue(BlockStateProperties.LIT, Boolean.TRUE), 2);
                 heldStack.hurtAndBreak(1, player, (action) -> {
                     action.broadcastBreakEvent(hand);
                 });
@@ -146,8 +160,8 @@ public class StoveBlock extends BaseEntityBlock {
             }
 
             if (heldItem instanceof FireChargeItem) {
-                level.playSound((Player) null, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
-                level.setBlock(pos, (BlockState) state.setValue(BlockStateProperties.LIT, Boolean.TRUE), 11);
+                level.playSound(null, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
+                level.setBlock(pos, state.setValue(BlockStateProperties.LIT, Boolean.TRUE), 2);
                 if (!player.isCreative()) {
                     heldStack.shrink(1);
                 }
@@ -156,11 +170,11 @@ public class StoveBlock extends BaseEntityBlock {
             }
         }
 
-        if(!player.isShiftKeyDown()) {
+        if (!player.isShiftKeyDown()) {
             if (!level.isClientSide) {
                 BlockEntity entity = level.getBlockEntity(pos);
                 if (entity instanceof StoveEntity stoveEntity) {
-                    NetworkHooks.openScreen((ServerPlayer) player, (StoveEntity) entity, pos);
+                    NetworkHooks.openScreen((ServerPlayer) player, stoveEntity, pos);
                 } else {
                     throw new IllegalStateException("Our Container provider is missing");
                 }
@@ -171,9 +185,9 @@ public class StoveBlock extends BaseEntityBlock {
     }
 
     public void extinguish(BlockState state, Level level, BlockPos pos) {
-        level.setBlock(pos, (BlockState) state.setValue(LIT, false), 2);
+        level.setBlock(pos, state.setValue(LIT, false), 2);
         double x = (double) pos.getX() + 0.5;
-        double y = (double) pos.getY();
+        double y = pos.getY();
         double z = (double) pos.getZ() + 0.5;
         level.playLocalSound(x, y, z, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F, false);
     }
