@@ -2,13 +2,16 @@ package cn.foggyhillside.festival_delicacies.blocks;
 
 import cn.foggyhillside.festival_delicacies.blocks.entities.DryingRackEntity;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockEntities;
+import cn.foggyhillside.festival_delicacies.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -21,12 +24,21 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+
 public class DryingRack extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    protected static final VoxelShape SHAPE = Block.box(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F);
+    protected static final VoxelShape SHAPE = Shapes.or(
+            Block.box(0.0F, 0.0F, 0.0F, 2.0F, 15.99F, 2.0F),
+            Block.box(0.0F, 0.0F, 14.0F, 2.0F, 15.99F, 16.0F),
+            Block.box(14.0F, 0.0F, 0.0F, 16.0F, 15.99F, 2.0F),
+            Block.box(14.0F, 0.0F, 14.0F, 16.0F, 15.99F, 16.0F),
+            Block.box(0.0F, 4.0F, 0.0F, 16.0F, 6.0F, 16.0F),
+            Block.box(0.0F, 12.0F, 0.0F, 16.0F, 14.0F, 16.0F));
 
     public DryingRack(Properties pProperties) {
         super(pProperties);
@@ -43,16 +55,39 @@ public class DryingRack extends BaseEntityBlock {
         ItemStack heldStack = pPlayer.getItemInHand(pHand);
         BlockEntity entity = pLevel.getBlockEntity(pPos);
         if (entity instanceof DryingRackEntity rackEntity) {
-            if (pPlayer.isShiftKeyDown() && pHand.equals(InteractionHand.MAIN_HAND) && !rackEntity.isEmpty()) {
-                Containers.dropContents(pLevel, pPos, rackEntity.getInventoryList());
-                pLevel.updateNeighbourForOutputSignal(pPos, this);
-            }
             int nextSlot = rackEntity.getNextEmptySlot();
-            if (nextSlot < 0) {
-                return InteractionResult.PASS;
-            }
-            //后面写shift右击物品全部弹出，放东西时，有配方才能放
+            if (pPlayer.isShiftKeyDown()) {
+                if (pHand.equals(InteractionHand.MAIN_HAND)) {
+                    if (heldStack.isEmpty() && !rackEntity.isEmpty()) {
+                        NonNullList<ItemStack> list = rackEntity.getInventoryList();
+                        Direction direction = pState.getValue(FACING).getCounterClockWise();
+                        for (int i = 0; i < list.size(); i++) {
+                            Utils.dropItem(pLevel, list.get(i), pPos.getX() + 0.5F, pPos.getY() + 1F, pPos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
+                        }
+                        Arrays.fill(rackEntity.getProgressArray(), 0);
+                        pLevel.updateNeighbourForOutputSignal(pPos, this);
 
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+            } else {
+                if (nextSlot < 0) {
+                    return InteractionResult.PASS;
+                }
+                if (pHand.equals(InteractionHand.MAIN_HAND)) {
+                    if (rackEntity.addItem(heldStack, pPlayer, nextSlot)) {
+                        return InteractionResult.SUCCESS;
+                    }
+
+                } else {
+                    ItemStack mainHandStack = pPlayer.getItemInHand(InteractionHand.MAIN_HAND);
+                    if (mainHandStack.isEmpty()) {
+                        if (rackEntity.addItem(heldStack, pPlayer, nextSlot)) {
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+                }
+            }
         }
         return InteractionResult.PASS;
     }
@@ -118,6 +153,11 @@ public class DryingRack extends BaseEntityBlock {
         } else {
             return super.getAnalogOutputSignal(pState, pLevel, pPos);
         }
+    }
+
+    @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        return defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
     }
 
     @Override

@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "111",
-    "2 2",
+    "141",
+    "242",
     "232"
   ],
   "key": {
@@ -28,6 +28,9 @@
     },
     "3": {
       "item": "minecraft:campfire"
+    },
+    "4": {
+      "item": "minecraft:iron_ingot"
     }
   },
   "result": {

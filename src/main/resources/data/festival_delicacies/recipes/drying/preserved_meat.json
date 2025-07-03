@@ -1,0 +1,9 @@
+{
+  "type": "festival_delicacies:drying",
+  "ingredient": {
+    "item": "minecraft:porkchop"
+  },
+  "result": {
+    "item": "festival_delicacies:preserved_meat"
+  }
+}

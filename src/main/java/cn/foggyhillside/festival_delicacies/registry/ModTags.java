@@ -15,5 +15,6 @@ public class ModTags {
     public static final TagKey<Item> BANNED_DUMPLING_INGREDIENTS_CONSUMPTION = ItemTags.create((new ResourceLocation(FestivalDelicacies.MODID, "banned_dumpling_ingredients_consumption")));
     public static final TagKey<Item> ALLOWED_INEDIBLE_CRAFTING = ItemTags.create((new ResourceLocation(FestivalDelicacies.MODID, "allowed_inedible_crafting")));
     public static final TagKey<Item> ALLOWED_INEDIBLE_CONSUMPTION = ItemTags.create((new ResourceLocation(FestivalDelicacies.MODID, "allowed_inedible_consumption")));
+    public static final TagKey<Item> DRYING_RACK_ALLOWED = ItemTags.create((new ResourceLocation(FestivalDelicacies.MODID, "drying_rack_allowed")));
 
 }

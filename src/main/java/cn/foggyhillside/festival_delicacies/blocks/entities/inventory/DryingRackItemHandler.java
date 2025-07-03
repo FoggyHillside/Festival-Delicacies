@@ -1,14 +1,17 @@
 package cn.foggyhillside.festival_delicacies.blocks.entities.inventory;
 
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 
 public class DryingRackItemHandler implements IItemHandlerModifiable {
     private final IItemHandlerModifiable itemHandler;
+    private Direction direction;
 
-    public DryingRackItemHandler(IItemHandlerModifiable itemHandler) {
+    public DryingRackItemHandler(IItemHandlerModifiable itemHandler, Direction direction) {
         this.itemHandler = itemHandler;
+        this.direction = direction;
     }
 
     @Override
@@ -28,12 +31,12 @@ public class DryingRackItemHandler implements IItemHandlerModifiable {
 
     @Override
     public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-        return itemHandler.insertItem(slot, stack, simulate);
+        return direction.equals(Direction.DOWN) ? stack : itemHandler.insertItem(slot, stack, simulate);
     }
 
     @Override
     public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-        return itemHandler.extractItem(slot, amount, simulate);
+        return ItemStack.EMPTY;
     }
 
     @Override

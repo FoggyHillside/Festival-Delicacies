@@ -42,6 +42,7 @@
   "block.festival_delicacies.stove": "灶台",
   "block.festival_delicacies.wooden_plate": "木盘",
   "block.festival_delicacies.chopping_block": "菜墩",
+  "block.festival_delicacies.drying_rack": "风干架",
   "gui.festival_delicacies.stove.button.not_lit": "未点燃",
   "gui.festival_delicacies.stove.button.default": "默认",
   "gui.festival_delicacies.stove.button.steam": "蒸制",

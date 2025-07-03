@@ -7,8 +7,10 @@ import cn.foggyhillside.festival_delicacies.registry.ModBlockEntities;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockStateProperties;
 import cn.foggyhillside.festival_delicacies.registry.ModSounds;
 import cn.foggyhillside.festival_delicacies.registry.ModTags;
+import cn.foggyhillside.festival_delicacies.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -123,6 +125,7 @@ public class ChoppingBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack heldStack = pPlayer.getItemInHand(pHand);
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        Direction direction = pState.getValue(ChoppingBlock.FACING).getCounterClockWise();
         if (blockEntity instanceof ChoppingBlockEntity choppingBlockEntity) {
             if (choppingBlockEntity.getItemStack().isEmpty()) {
                 if (isKnife(heldStack) && choppingBlockEntity.addItem(heldStack, pPlayer)) {
@@ -143,13 +146,16 @@ public class ChoppingBlock extends BaseEntityBlock {
                     Optional<ChoppingRecipe> recipe = pLevel.getRecipeManager().getRecipeFor(ChoppingRecipe.Type.INSTANCE, container, pLevel);
 
                     if (recipe.isPresent()) {
+                        NonNullList<ItemStack> list = recipe.get().getResultsList();
                         pLevel.playSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), ModSounds.CHOP.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                         spawnChoppingParticles(pLevel, pPos, heldStack);
                         if (!pPlayer.isCreative()) {
                             heldStack.shrink(1);
                             choppingBlockEntity.itemHurt(pLevel, pPos, pState);
                         }
-                        Containers.dropContents(pLevel, pPos, recipe.get().getResultsList());
+                        for (int i = 0; i < list.size(); i++) {
+                            Utils.dropItem(pLevel, list.get(i), pPos.getX() + 0.5F, pPos.getY() + 0.3F, pPos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
+                        }
                         return InteractionResult.SUCCESS;
                     }
 

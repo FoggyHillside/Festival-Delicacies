@@ -9,10 +9,12 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -22,7 +24,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.List;
 
 public class Utils {
-    //Recipe
+    //JEI
     @OnlyIn(Dist.CLIENT)
     public static ItemStack getResultItem(Recipe<?> recipe) {
         Minecraft minecraft = Minecraft.getInstance();
@@ -35,7 +37,7 @@ public class Utils {
         }
     }
 
-
+    //Recipe
     public static NonNullList<Ingredient> readIngredients(JsonArray ingredientArray) {
         NonNullList<Ingredient> nonnulllist = NonNullList.create();
 
@@ -51,7 +53,7 @@ public class Utils {
     public static NonNullList<ItemStack> readResults(JsonArray resultArray) {
         NonNullList<ItemStack> results = NonNullList.create();
 
-        for(JsonElement element : resultArray){
+        for (JsonElement element : resultArray) {
             ItemStack result = CraftingHelper.getItemStack(element.getAsJsonObject(), true);
             if (!result.isEmpty()) {
                 results.add(result);
@@ -105,5 +107,12 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    //Item
+    public static void dropItem(Level level, ItemStack stack, double x, double y, double z, double xMotion, double yMotion, double zMotion) {
+        ItemEntity entity = new ItemEntity(level, x, y, z, stack.split(stack.getCount()));
+        entity.setDeltaMovement(xMotion, yMotion, zMotion);
+        level.addFreshEntity(entity);
     }
 }

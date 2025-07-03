@@ -40,6 +40,7 @@ public class FestivalDelicacies {
                 output.accept(ModItems.STOVE.get());
                 output.accept(ModItems.CHOPPING_BLOCK.get());
                 output.accept(ModItems.WOODEN_PLATE.get());
+                output.accept(ModItems.DRYING_RACK.get());
                 output.accept(ModItems.KITCHEN_KNIFE.get());
                 output.accept(ModItems.UNCOOKED_SWEET_ZONGZI.get());
                 output.accept(ModItems.UNCOOKED_MEAT_ZONGZI.get());

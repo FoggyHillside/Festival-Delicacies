@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=west": {
+      "model": "festival_delicacies:block/drying_rack",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "festival_delicacies:block/drying_rack",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "festival_delicacies:block/drying_rack"
+    },
+    "facing=east": {
+      "model": "festival_delicacies:block/drying_rack",
+      "y": 90
+    }
+  }
+}

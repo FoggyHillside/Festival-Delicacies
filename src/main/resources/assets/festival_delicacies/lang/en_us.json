@@ -42,6 +42,7 @@
   "block.festival_delicacies.stove": "Stove",
   "block.festival_delicacies.wooden_plate": "Wooden Plate",
   "block.festival_delicacies.chopping_block": "Chopping Block",
+  "block.festival_delicacies.drying_rack": "Drying Rack",
   "gui.festival_delicacies.stove.button.not_lit": "Not Lit",
   "gui.festival_delicacies.stove.button.default": "Default",
   "gui.festival_delicacies.stove.button.steam": "Steam",

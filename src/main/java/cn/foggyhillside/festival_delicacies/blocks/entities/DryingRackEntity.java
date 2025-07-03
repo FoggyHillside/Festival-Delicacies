@@ -1,7 +1,11 @@
 package cn.foggyhillside.festival_delicacies.blocks.entities;
 
+import cn.foggyhillside.festival_delicacies.blocks.DryingRack;
 import cn.foggyhillside.festival_delicacies.blocks.entities.inventory.DryingRackItemHandler;
+import cn.foggyhillside.festival_delicacies.recipe.DryingRecipe;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockEntities;
+import cn.foggyhillside.festival_delicacies.registry.ModTags;
+import cn.foggyhillside.festival_delicacies.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -21,20 +25,23 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DryingRackEntity extends SyncedBlockEntity {
-    private final int TOTAL_PROGRESS = 600;
+    private final int MAX_PROGRESS = 600;
     private final int SLOTS = 12;
 
     private final ItemStackHandler inventory;
-    private final LazyOptional<IItemHandler> itemHandler;
+    private final LazyOptional<IItemHandler> inputItemHandler;
+    private final LazyOptional<IItemHandler> outputItemHandler;
 
-    private final int[] progress = new int[SLOTS];
+    private final int[] progressArray = new int[SLOTS];
 
     public DryingRackEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.DRYING_RACK.get(), pPos, pBlockState);
         this.inventory = this.createHandler();
-        this.itemHandler = LazyOptional.of(() -> new DryingRackItemHandler(inventory));
+        this.inputItemHandler = LazyOptional.of(() -> new DryingRackItemHandler(inventory, Direction.UP));
+        this.outputItemHandler = LazyOptional.of(() -> new DryingRackItemHandler(inventory, Direction.DOWN));
     }
 
     private ItemStackHandler createHandler() {
@@ -54,14 +61,12 @@ public class DryingRackEntity extends SyncedBlockEntity {
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
-        if (pTag.contains("Inventory")) {
-            this.inventory.deserializeNBT(pTag.getCompound("Inventory"));
-        } else {
-            this.inventory.deserializeNBT(pTag);
+        if (pTag.contains("inventory")) {
+            this.inventory.deserializeNBT(pTag.getCompound("inventory"));
         }
         if (pTag.contains("progress", 11)) {
             int[] arrayProgress = pTag.getIntArray("progress");
-            System.arraycopy(arrayProgress, 0, this.progress, 0, Math.min(this.progress.length, arrayProgress.length));
+            System.arraycopy(arrayProgress, 0, this.progressArray, 0, Math.min(this.progressArray.length, arrayProgress.length));
         }
     }
 
@@ -69,40 +74,66 @@ public class DryingRackEntity extends SyncedBlockEntity {
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.put("inventory", this.inventory.serializeNBT());
-        pTag.putIntArray("progress", progress);
+        pTag.putIntArray("progress", progressArray);
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        return cap.equals(ForgeCapabilities.ITEM_HANDLER) ? this.itemHandler.cast() : super.getCapability(cap, side);
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (side == null) {
+                return inputItemHandler.cast();
+            } else if (side.equals(Direction.DOWN)) {
+                return outputItemHandler.cast();
+            } else {
+                return inputItemHandler.cast();
+            }
+        }
+        return super.getCapability(cap, side);
     }
 
     @Override
     public void setRemoved() {
         super.setRemoved();
-        this.itemHandler.invalidate();
+        this.inputItemHandler.invalidate();
+        this.outputItemHandler.invalidate();
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, DryingRackEntity stove) {
+    public static void tick(Level level, BlockPos pos, BlockState state, DryingRackEntity rackEntity) {
+        if (level.isClientSide) {
+            return;
+        }
+        ItemStackHandler rackInventory = rackEntity.inventory;
+        Direction direction = state.getValue(DryingRack.FACING).getCounterClockWise();
+        for (int i = 0; i < rackInventory.getSlots(); i++) {
+            ItemStack stack = rackInventory.getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                SimpleContainer container = new SimpleContainer(stack);
+                Optional<DryingRecipe> recipe = level.getRecipeManager().getRecipeFor(DryingRecipe.Type.INSTANCE, container, level);
+
+                if (recipe.isPresent()) {
+                    if (rackEntity.progressArray[i] < rackEntity.MAX_PROGRESS) {
+                        rackEntity.progressArray[i]++;
+                        setChanged(level, pos, state);
+                    } else {
+                        rackInventory.setStackInSlot(i, recipe.get().getResultItem(level.registryAccess()).copy());
+                        Utils.dropItem(level, rackInventory.getStackInSlot(i), pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
+                        rackEntity.progressArray[i] = 0;
+                        setChanged(level, pos, state);
+                    }
+                } else {
+                    Utils.dropItem(level, stack, pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
+                    setChanged(level, pos, state);
+                }
+            }
+        }
+    }
+
+    public int[] getProgressArray() {
+        return this.progressArray;
     }
 
     public ItemStackHandler getInventory() {
         return this.inventory;
-    }
-
-    public SimpleContainer getInventoryContainer() {
-        SimpleContainer container;
-        int slot = 0;
-        container = new SimpleContainer(this.inventory.getSlots());
-        for (int i = 0; i < SLOTS; i++) {
-            ItemStack stack = this.inventory.getStackInSlot(i);
-            if (!stack.isEmpty()) {
-                container.setItem(slot, this.inventory.getStackInSlot(i));
-                slot++;
-            }
-        }
-
-        return container;
     }
 
     public NonNullList<ItemStack> getInventoryList() {
@@ -117,7 +148,7 @@ public class DryingRackEntity extends SyncedBlockEntity {
 
         NonNullList<ItemStack> nonNullList = NonNullList.withSize(list.size(), ItemStack.EMPTY);
         for (int i = 0; i < list.size(); i++) {
-            nonNullList.set(i, list.get(0).copy());
+            nonNullList.set(i, list.get(i));
         }
 
         return nonNullList;
@@ -134,8 +165,17 @@ public class DryingRackEntity extends SyncedBlockEntity {
         return -1;
     }
 
-    public void addItem(ItemStack itemStack, Player player, int slot) {
-
+    public boolean addItem(ItemStack heldStack, Player player, int nextSlot) {
+        if (!heldStack.isEmpty() && heldStack.is(ModTags.DRYING_RACK_ALLOWED)) {
+            if (!player.isCreative()) {
+                this.inventory.setStackInSlot(nextSlot, heldStack.split(1));
+            } else {
+                this.inventory.setStackInSlot(nextSlot, heldStack.copyWithCount(1));
+            }
+            setChanged();
+            return true;
+        }
+        return false;
     }
 
     public boolean isEmpty() {

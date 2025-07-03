@@ -2,6 +2,7 @@ package cn.foggyhillside.festival_delicacies.registry;
 
 import cn.foggyhillside.festival_delicacies.FestivalDelicacies;
 import cn.foggyhillside.festival_delicacies.recipe.ChoppingRecipe;
+import cn.foggyhillside.festival_delicacies.recipe.DryingRecipe;
 import cn.foggyhillside.festival_delicacies.recipe.StoveRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -14,10 +15,10 @@ public class ModRecipeTypes {
 
     public static final RegistryObject<RecipeType<StoveRecipe>> STOVE_RECIPE = RECIPE_TYPES.register("stove", () -> registerRecipeType("stove"));
     public static final RegistryObject<RecipeType<ChoppingRecipe>> CHOPPING_RECIPE = RECIPE_TYPES.register("chopping", () -> registerRecipeType("chopping"));
+    public static final RegistryObject<RecipeType<DryingRecipe>> DRYING_RECIPE = RECIPE_TYPES.register("drying", () -> registerRecipeType("drying"));
 
     public static <T extends Recipe<?>> RecipeType<T> registerRecipeType(final String identifier) {
-        return new RecipeType<>()
-        {
+        return new RecipeType<>() {
             public String toString() {
                 return FestivalDelicacies.MODID + ":" + identifier;
             }
