@@ -23,6 +23,8 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.WOODEN_PLATE.get(), new Item.Properties()));
     public static final RegistryObject<Item> DRYING_RACK = ITEMS.register("drying_rack",
             () -> new BlockItem(ModBlocks.DRYING_RACK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> FERMENTATION_JAR = ITEMS.register("fermentation_jar",
+            () -> new BlockItem(ModBlocks.FERMENTATION_JAR.get(), new Item.Properties()));
 
     //Tool
     public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife",

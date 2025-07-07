@@ -70,6 +70,10 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
         return Recipe.super.getRemainingItems(container);
     }
 
+    public float getExperience() {
+        return experience;
+    }
+
     @Override
     public boolean matches(SimpleContainer inventory, Level level) {
         if (level.isClientSide) {
@@ -144,7 +148,7 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
             if (cookingTypeInt < 1 || cookingTypeInt > 4) {
                 throw new JsonParseException("Invalid cooking type");
             } else if (ingredients.isEmpty()) {
-                throw new JsonParseException("No ingredients for cooking recipe");
+                throw new JsonParseException("No ingredients for stove recipe");
             } else if (ingredients.size() > 9) {
                 throw new JsonParseException("Too many ingredients for stove recipe! The max is 9");
             } else {

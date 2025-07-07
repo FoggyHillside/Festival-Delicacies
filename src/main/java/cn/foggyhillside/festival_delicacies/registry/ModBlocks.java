@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -18,11 +19,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> STOVE = BLOCKS.register("stove",
             () -> new StoveBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(2.0F).requiresCorrectToolForDrops().noOcclusion().lightLevel((state) -> state.getValue(BlockStateProperties.LIT) ? 13 : 0)));
     public static final RegistryObject<Block> CHOPPING_BLOCK = BLOCKS.register("chopping_block",
-            () -> new ChoppingBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD)));
+            () -> new ChoppingBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> WOODEN_PLATE = BLOCKS.register("wooden_plate",
-            () -> new WoodenPlateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD)));
+            () -> new WoodenPlateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> DRYING_RACK = BLOCKS.register("drying_rack",
-            () -> new DryingRack(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD)));
+            () -> new DryingRackBlock(BlockBehaviour.Properties.copy(Blocks.BAMBOO_PLANKS).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> FERMENTATION_JAR = BLOCKS.register("fermentation_jar",
+            () -> new FermentationJarBlock(BlockBehaviour.Properties.copy(Blocks.BROWN_GLAZED_TERRACOTTA).sound(SoundType.DECORATED_POT).pushReaction(PushReaction.IGNORE)));
 
     //Crops
     public static final RegistryObject<Block> CHINESE_CABBAGE = BLOCKS.register("chinese_cabbage",

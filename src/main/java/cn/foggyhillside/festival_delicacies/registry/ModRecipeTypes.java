@@ -16,6 +16,7 @@ public class ModRecipeTypes {
     public static final RegistryObject<RecipeType<StoveRecipe>> STOVE_RECIPE = RECIPE_TYPES.register("stove", () -> registerRecipeType("stove"));
     public static final RegistryObject<RecipeType<ChoppingRecipe>> CHOPPING_RECIPE = RECIPE_TYPES.register("chopping", () -> registerRecipeType("chopping"));
     public static final RegistryObject<RecipeType<DryingRecipe>> DRYING_RECIPE = RECIPE_TYPES.register("drying", () -> registerRecipeType("drying"));
+    public static final RegistryObject<RecipeType<DryingRecipe>> FERMENTING_RECIPE = RECIPE_TYPES.register("fermenting", () -> registerRecipeType("fermenting"));
 
     public static <T extends Recipe<?>> RecipeType<T> registerRecipeType(final String identifier) {
         return new RecipeType<>() {

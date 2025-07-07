@@ -1,5 +1,6 @@
 package cn.foggyhillside.festival_delicacies;
 
+import cn.foggyhillside.festival_delicacies.blocks.screen.FermentationJarScreen;
 import cn.foggyhillside.festival_delicacies.blocks.screen.StoveScreen;
 import cn.foggyhillside.festival_delicacies.config.CommonConfigs;
 import cn.foggyhillside.festival_delicacies.events.loot.CompostableAddition;
@@ -41,6 +42,7 @@ public class FestivalDelicacies {
                 output.accept(ModItems.CHOPPING_BLOCK.get());
                 output.accept(ModItems.WOODEN_PLATE.get());
                 output.accept(ModItems.DRYING_RACK.get());
+                output.accept(ModItems.FERMENTATION_JAR.get());
                 output.accept(ModItems.KITCHEN_KNIFE.get());
                 output.accept(ModItems.UNCOOKED_SWEET_ZONGZI.get());
                 output.accept(ModItems.UNCOOKED_MEAT_ZONGZI.get());
@@ -106,6 +108,7 @@ public class FestivalDelicacies {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             MenuScreens.register(ModMenuTypes.STOVE_MENU.get(), StoveScreen::new);
+            MenuScreens.register(ModMenuTypes.FERMENTATION_JAR_MENU.get(), FermentationJarScreen::new);
         }
     }
 

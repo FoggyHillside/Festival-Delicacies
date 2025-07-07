@@ -1,7 +1,7 @@
 package cn.foggyhillside.festival_delicacies.blocks.entities;
 
 import cn.foggyhillside.festival_delicacies.blocks.StoveBlock;
-import cn.foggyhillside.festival_delicacies.blocks.entities.inventory.StoveItemHandler;
+import cn.foggyhillside.festival_delicacies.blocks.entities.inventory.MenuBlockItemHandler;
 import cn.foggyhillside.festival_delicacies.blocks.screen.StoveMenu;
 import cn.foggyhillside.festival_delicacies.config.CommonConfigs;
 import cn.foggyhillside.festival_delicacies.items.DumplingItem;
@@ -9,24 +9,31 @@ import cn.foggyhillside.festival_delicacies.recipe.StoveRecipe;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockEntities;
 import cn.foggyhillside.festival_delicacies.registry.ModTags;
 import cn.foggyhillside.festival_delicacies.util.Utils;
+import com.google.common.collect.Lists;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Containers;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.RecipeHolder;
 import net.minecraft.world.item.BowlFoodItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SuspiciousStewItem;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -36,22 +43,26 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import static cn.foggyhillside.festival_delicacies.blocks.StoveBlock.RED_STONE;
-import static cn.foggyhillside.festival_delicacies.blocks.StoveBlock.START_BUTTON;
-
-public class StoveEntity extends SyncedBlockEntity implements MenuProvider {
+public class StoveEntity extends SyncedBlockEntity implements MenuProvider, RecipeHolder {
+    private static final int CONTAINER_INPUT = 9;
+    private static final int RESULT_OUTPUT = 10;
 
     public final ItemStackHandler inventory;
     private final LazyOptional<IItemHandlerModifiable> playerInputHandler;
     private final LazyOptional<IItemHandlerModifiable> inputHandler;
     private final LazyOptional<IItemHandlerModifiable> outputHandler;
 
+    private final Object2IntOpenHashMap<ResourceLocation> usedRecipeTracker;
+
     protected final ContainerData data;
 
     private int progress = 0;
     private int maxProgress;
+
+    private boolean hasLastSignal;
 
     private ItemStackHandler createHandler() {
         return new ItemStackHandler(11) {
@@ -65,9 +76,10 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider {
     public StoveEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.STOVE.get(), pos, state);
         this.inventory = createHandler();
-        this.playerInputHandler = LazyOptional.of(() -> new StoveItemHandler(inventory, null));
-        this.inputHandler = LazyOptional.of(() -> new StoveItemHandler(inventory, Direction.UP));
-        this.outputHandler = LazyOptional.of(() -> new StoveItemHandler(inventory, Direction.DOWN));
+        this.playerInputHandler = LazyOptional.of(() -> new MenuBlockItemHandler(inventory, null, CONTAINER_INPUT, RESULT_OUTPUT));
+        this.inputHandler = LazyOptional.of(() -> new MenuBlockItemHandler(inventory, Direction.UP, CONTAINER_INPUT, RESULT_OUTPUT));
+        this.outputHandler = LazyOptional.of(() -> new MenuBlockItemHandler(inventory, Direction.DOWN, CONTAINER_INPUT, RESULT_OUTPUT));
+        this.usedRecipeTracker = new Object2IntOpenHashMap();
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
@@ -125,6 +137,9 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider {
         nbt.put("inventory", inventory.serializeNBT());
         nbt.putInt("progress", this.progress);
         nbt.putInt("maxprogress", this.maxProgress);
+        CompoundTag compoundRecipes = new CompoundTag();
+        this.usedRecipeTracker.forEach((recipeId, craftedAmount) -> compoundRecipes.putInt(recipeId.toString(), craftedAmount));
+        nbt.put("RecipesUsed", compoundRecipes);
     }
 
     @Override
@@ -132,15 +147,20 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider {
         inventory.deserializeNBT(nbt.getCompound("inventory"));
         this.progress = nbt.getInt("progress");
         this.maxProgress = nbt.getInt("maxprogress");
+        CompoundTag compoundRecipes = nbt.getCompound("RecipesUsed");
+        for (String key : compoundRecipes.getAllKeys()) {
+            this.usedRecipeTracker.put(new ResourceLocation(key), compoundRecipes.getInt(key));
+        }
         super.load(nbt);
     }
 
-    public void drops() {
+    public SimpleContainer getInventoryContainer() {
         SimpleContainer container = new SimpleContainer(inventory.getSlots());
         for (int i = 0; i < inventory.getSlots(); i++) {
-            container.setItem(i, inventory.getStackInSlot(i));
+            container.addItem(inventory.getStackInSlot(i));
         }
-        Containers.dropContents(this.level, this.worldPosition, container);
+
+        return container;
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, StoveEntity entity) {
@@ -148,28 +168,27 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider {
             return;
         }
         int type = state.getValue(StoveBlock.COOKING_TYPE);
-        int start = state.getValue(START_BUTTON);
-        int redstone = state.getValue(RED_STONE);
+        int start = state.getValue(StoveBlock.START_BUTTON);
+        int redstone = state.getValue(StoveBlock.RED_STONE);
         if (type >= 1 && type <= 4) {
             if (start == 1) {
-                level.setBlockAndUpdate(pos, state.setValue(START_BUTTON, 0));
+                level.setBlockAndUpdate(pos, state.setValue(StoveBlock.START_BUTTON, 0));
             }
-            Optional<StoveRecipe> recipe = level.getRecipeManager().getRecipeFor(StoveRecipe.Type.INSTANCE, getInventory(entity), level);
+            Optional<StoveRecipe> recipe = level.getRecipeManager().getRecipeFor(StoveRecipe.Type.INSTANCE, getOrderedInventoryContainer(entity), level);
             int cookingType = state.getValue(StoveBlock.COOKING_TYPE);
-            if (hasRecipe(recipe) && canCook(level, cookingType, entity, state, recipe)) {
+            if (recipe.isPresent() && canCook(level, cookingType, entity, state, recipe.get())) {
                 entity.progress++;
                 entity.maxProgress = recipe.get().getCookTime();
                 setChanged(level, pos, state);
                 if (entity.progress >= recipe.get().getCookTime()) {
-                    craftItem(level, entity, recipe);
+                    craftItem(level, entity, recipe.get());
                 }
             } else {
                 entity.resetProgress();
                 setChanged(level, pos, state);
             }
         } else {
-            if (!entity.inventory.getStackInSlot(9).isEmpty()
-                    && entity.inventory.getStackInSlot(9).is(ModTags.DOUGH)) {
+            if (entity.inventory.getStackInSlot(9).is(ModTags.DOUGH)) {
                 ArrayList<ItemStack> list = new ArrayList<>();
                 int count = 0;
                 for (int i = 0; i < 9; i++) {
@@ -200,32 +219,34 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider {
                     }
                 } else {
                     entity.resetProgress();
-                    entity.resetStartButton(level, pos, entity);
+                    entity.resetStartButton(level, pos);
                     setChanged(level, pos, state);
                 }
             } else {
                 entity.resetProgress();
-                entity.resetStartButton(level, pos, entity);
+                entity.resetStartButton(level, pos);
                 setChanged(level, pos, state);
             }
 
         }
+
+        entity.hasLastSignal = level.hasNeighborSignal(pos);
     }
 
-    private static boolean canCook(Level level, int cookingType, StoveEntity entity, BlockState state, Optional<StoveRecipe> recipe) {
-        boolean isSameType = recipe.filter(stoveRecipe -> (cookingType == stoveRecipe.getCookingType())).isPresent();
+    private static boolean canCook(Level level, int cookingType, StoveEntity entity, BlockState state, StoveRecipe recipe) {
+        boolean isSameType = cookingType == recipe.getCookingType();
         return isSameType && isLit(state) && canOutput(level, entity, recipe);
     }
 
     private static boolean canCookDumpling(Level level, BlockPos pos, StoveEntity entity, BlockState state, ItemStack result, int redstone) {
-        return isLit(state) && canOutputDumpling(entity, result) && isStartButtonDown(level, pos, state, redstone);
+        return isLit(state) && canOutputDumpling(entity, result) && isStartButtonDown(level, pos, state, entity, redstone);
     }
 
-    private static boolean canOutput(Level level, StoveEntity entity, Optional<StoveRecipe> recipe) {
+    private static boolean canOutput(Level level, StoveEntity entity, StoveRecipe recipe) {
         var registryAccess = level.registryAccess();
         return entity.inventory.getStackInSlot(10) == ItemStack.EMPTY
-                || (entity.inventory.getStackInSlot(10).getItem() == recipe.get().getResultItem(registryAccess).getItem()
-                && entity.inventory.getStackInSlot(10).getCount() < recipe.get().getResultItem(registryAccess).getMaxStackSize());
+                || (entity.inventory.getStackInSlot(10).getItem() == recipe.getResultItem(registryAccess).getItem()
+                && entity.inventory.getStackInSlot(10).getCount() < recipe.getResultItem(registryAccess).getMaxStackSize());
     }
 
     private static boolean canOutputDumpling(StoveEntity entity, ItemStack result) {
@@ -238,26 +259,25 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider {
         return state.getValue(StoveBlock.LIT);
     }
 
-    private static boolean isStartButtonDown(Level level, BlockPos pos, BlockState state, int redstone) {
-        if (state.getValue(START_BUTTON) == 1) {
-            return true;
-        } else {
-            return switch (state.getValue(START_BUTTON)) {
-                case 0 -> {
-                    if (redstone == 1 && level.hasNeighborSignal(pos)) {
-                        level.setBlockAndUpdate(pos, state.setValue(START_BUTTON, 1));
-                        yield true;
-                    }
+    private static boolean isStartButtonDown(Level level, BlockPos pos, BlockState state, StoveEntity entity, int redstone) {
+        return switch (state.getValue(StoveBlock.START_BUTTON)) {
+            case 0 -> {
+                if (redstone == 1 && !entity.hasLastSignal && level.hasNeighborSignal(pos)) {
+                    level.setBlockAndUpdate(pos, state.setValue(StoveBlock.START_BUTTON, 1));
+                    yield true;
+                }
+                yield false;
+            }
+            case 1 -> {
+                if (redstone == 1 && !entity.hasLastSignal && level.hasNeighborSignal(pos)) {
+                    level.setBlockAndUpdate(pos, state.setValue(StoveBlock.START_BUTTON, 0));
                     yield false;
                 }
-                case 1 -> true;
-                default -> throw new IllegalStateException("Unexpected value: " + state.getValue(START_BUTTON));
-            };
-        }
-    }
-
-    private static boolean hasRecipe(Optional<StoveRecipe> recipe) {
-        return recipe.isPresent();
+                yield true;
+            }
+            default ->
+                    throw new IllegalStateException("Unexpected value: " + state.getValue(StoveBlock.START_BUTTON));
+        };
     }
 
     private void resetProgress() {
@@ -265,43 +285,43 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider {
         inventoryChanged();
     }
 
-    private void resetStartButton(Level level, BlockPos pos, StoveEntity entity) {
-        level.setBlockAndUpdate(pos, entity.getBlockState().setValue(START_BUTTON, 0));
+    private void resetStartButton(Level level, BlockPos pos) {
+        level.setBlockAndUpdate(pos, this.getBlockState().setValue(StoveBlock.START_BUTTON, 0));
     }
 
-    private static SimpleContainer getInventory(StoveEntity entity) {
-        int h = 0;
-
+    private static SimpleContainer getOrderedInventoryContainer(StoveEntity entity) {
         SimpleContainer container = new SimpleContainer(entity.inventory.getSlots());
-        for (int i = 0; i < entity.inventory.getSlots(); i++) {
-            if (i < 9 && entity.inventory.getStackInSlot(i) != ItemStack.EMPTY) {
-                container.setItem(h, entity.inventory.getStackInSlot(i));
-                h++;
-            } else if (i < 9) {
-                container.setItem(8 - (i - h), entity.inventory.getStackInSlot(i));
-            }
-            if (i == 9 || i == 10) {
-                container.setItem(i, entity.inventory.getStackInSlot(i));
+
+        for (int i = 0; i < 11; i++) {
+            ItemStack stack = entity.inventory.getStackInSlot(i);
+
+            if (i < 9) {
+                if (stack != ItemStack.EMPTY) {
+                    container.addItem(stack);
+                }
+            } else {
+                container.setItem(i, stack);
             }
         }
+
         return container;
     }
 
-    private static void craftItem(Level level, StoveEntity entity, Optional<StoveRecipe> recipe) {
-        if (hasRecipe(recipe)) {
-            for (int i = 0; i < 10; i++) {
-                if (entity.inventory.getStackInSlot(i) != ItemStack.EMPTY) {
-                    if (entity.inventory.getStackInSlot(i).hasCraftingRemainingItem()) {
-                        spawnItem(entity, level, entity.inventory.getStackInSlot(i).getCraftingRemainingItem());
-                    }
-                    entity.inventory.extractItem(i, 1, false);
+    private static void craftItem(Level level, StoveEntity entity, StoveRecipe recipe) {
+        for (int i = 0; i < 10; i++) {
+            if (entity.inventory.getStackInSlot(i) != ItemStack.EMPTY) {
+                if (entity.inventory.getStackInSlot(i).hasCraftingRemainingItem()) {
+                    spawnItem(entity, level, entity.inventory.getStackInSlot(i).getCraftingRemainingItem());
                 }
+                entity.inventory.extractItem(i, 1, false);
             }
-            entity.inventory.setStackInSlot(10, new ItemStack(recipe.get().getResultItem(level.registryAccess()).getItem(),
-                    entity.inventory.getStackInSlot(10).getCount()
-                            + recipe.get().getResultItem(level.registryAccess()).getCount()));
-            entity.resetProgress();
         }
+        entity.inventory.setStackInSlot(10, new ItemStack(recipe.getResultItem(level.registryAccess()).getItem(),
+                entity.inventory.getStackInSlot(10).getCount()
+                        + recipe.getResultItem(level.registryAccess()).getCount()));
+        entity.setRecipeUsed(recipe);
+        entity.resetProgress();
+
     }
 
     private static void craftDumpling(Level level, StoveEntity entity, ItemStack result) {
@@ -331,16 +351,50 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider {
 
     private static void spawnItem(StoveEntity entity, Level level, ItemStack itemStack) {
         Direction direction = (entity.getBlockState().getValue(StoveBlock.FACING)).getCounterClockWise();
-        double x = entity.worldPosition.getX() + 0.5 + direction.getStepX() * 0.25;
-        double y = entity.worldPosition.getY() + 1.0;
-        double z = entity.worldPosition.getZ() + 0.5 + direction.getStepZ() * 0.25;
-        ItemEntity itemEntity = new ItemEntity(level, x, y, z, itemStack);
-        itemEntity.setDeltaMovement(direction.getStepX() * 0.06F, 0.2, direction.getStepZ() * 0.06F);
-        level.addFreshEntity(itemEntity);
+        double x = entity.worldPosition.getX() + 0.5F + direction.getStepX() * 0.25F;
+        double y = entity.worldPosition.getY() + 1.0F;
+        double z = entity.worldPosition.getZ() + 0.5F + direction.getStepZ() * 0.25F;
+        Utils.dropItem(level, itemStack, x, y, z, direction.getStepX() * 0.06F, 0.2F, direction.getStepZ() * 0.06F);
     }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
         return new StoveMenu(pContainerId, pPlayerInventory, this, this.data);
     }
+
+    @Override
+    public void setRecipeUsed(@Nullable Recipe<?> pRecipe) {
+        if (pRecipe != null) {
+            ResourceLocation recipeID = pRecipe.getId();
+            this.usedRecipeTracker.addTo(recipeID, 1);
+        }
+    }
+
+    @Override
+    public @Nullable Recipe<?> getRecipeUsed() {
+        return null;
+    }
+
+    @Override
+    public void awardUsedRecipes(Player pPlayer, List<ItemStack> pItems) {
+        List<Recipe<?>> usedRecipes = this.getUsedRecipesAndPopExperience(pPlayer.level(), pPlayer.position());
+        pPlayer.awardRecipes(usedRecipes);
+        this.usedRecipeTracker.clear();
+    }
+
+    public List<Recipe<?>> getUsedRecipesAndPopExperience(Level level, Vec3 pos) {
+        List<Recipe<?>> list = Lists.newArrayList();
+        ObjectIterator var4 = this.usedRecipeTracker.object2IntEntrySet().iterator();
+
+        while (var4.hasNext()) {
+            Object2IntMap.Entry<ResourceLocation> entry = (Object2IntMap.Entry) var4.next();
+            level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
+                list.add(recipe);
+                Utils.splitAndSpawnExperience((ServerLevel) level, pos, entry.getIntValue(), ((StoveRecipe) recipe).getExperience());
+            });
+        }
+
+        return list;
+    }
+
 }

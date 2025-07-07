@@ -7,15 +7,17 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class StoveItemHandler implements IItemHandlerModifiable {
-    private static final int CONTAINER_INPUT = 9;
-    private static final int RESULT_OUTPUT = 10;
+public class MenuBlockItemHandler implements IItemHandlerModifiable {
+    private final int containerInput;
+    private final int resultInput;
     private final IItemHandlerModifiable itemHandler;
     private final Direction side;
 
-    public StoveItemHandler(IItemHandlerModifiable itemHandler, @Nullable Direction side) {
+    public MenuBlockItemHandler(IItemHandlerModifiable itemHandler, @Nullable Direction side, int containerInput, int resultInput) {
         this.itemHandler = itemHandler;
         this.side = side;
+        this.containerInput = containerInput;
+        this.resultInput = resultInput;
     }
 
     @Override
@@ -31,22 +33,22 @@ public class StoveItemHandler implements IItemHandlerModifiable {
     @Override
     public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
         if (side == null) {
-            return slot <= CONTAINER_INPUT ? itemHandler.insertItem(slot, stack, simulate) : stack;
+            return slot <= containerInput ? itemHandler.insertItem(slot, stack, simulate) : stack;
         } else if (side.equals(Direction.UP)) {
-            return slot < CONTAINER_INPUT ? itemHandler.insertItem(slot, stack, simulate) : stack;
+            return slot < containerInput ? itemHandler.insertItem(slot, stack, simulate) : stack;
         } else {
-            return slot == CONTAINER_INPUT ? itemHandler.insertItem(slot, stack, simulate) : stack;
+            return slot == containerInput ? itemHandler.insertItem(slot, stack, simulate) : stack;
         }
     }
 
     @Override
     public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
         if (side == null) {
-            return slot <= RESULT_OUTPUT ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+            return slot <= resultInput ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         } else if (side.equals(Direction.UP)) {
-            return slot < CONTAINER_INPUT ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+            return slot < containerInput ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         } else {
-            return slot == RESULT_OUTPUT ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+            return slot == resultInput ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         }
     }
 
@@ -57,7 +59,7 @@ public class StoveItemHandler implements IItemHandlerModifiable {
 
     @Override
     public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-        return slot >= 0 && slot <= 9;
+        return slot >= 0 && slot <= containerInput;
     }
 
     @Override

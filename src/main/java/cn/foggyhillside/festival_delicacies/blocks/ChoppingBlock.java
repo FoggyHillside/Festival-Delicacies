@@ -153,8 +153,8 @@ public class ChoppingBlock extends BaseEntityBlock {
                             heldStack.shrink(1);
                             choppingBlockEntity.itemHurt(pLevel, pPos, pState);
                         }
-                        for (int i = 0; i < list.size(); i++) {
-                            Utils.dropItem(pLevel, list.get(i), pPos.getX() + 0.5F, pPos.getY() + 0.3F, pPos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
+                        for (ItemStack stack : list) {
+                            Utils.dropItem(pLevel, stack.split(stack.getCount()), pPos.getX() + 0.5F, pPos.getY() + 0.3F, pPos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
                         }
                         return InteractionResult.SUCCESS;
                     }

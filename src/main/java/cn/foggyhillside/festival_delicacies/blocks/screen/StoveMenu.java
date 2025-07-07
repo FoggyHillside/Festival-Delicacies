@@ -2,6 +2,7 @@ package cn.foggyhillside.festival_delicacies.blocks.screen;
 
 import cn.foggyhillside.festival_delicacies.blocks.StoveBlock;
 import cn.foggyhillside.festival_delicacies.blocks.entities.StoveEntity;
+import cn.foggyhillside.festival_delicacies.blocks.entities.container.MenuResultSlot;
 import cn.foggyhillside.festival_delicacies.registry.ModBlocks;
 import cn.foggyhillside.festival_delicacies.registry.ModMenuTypes;
 import cn.foggyhillside.festival_delicacies.registry.ModTags;
@@ -16,6 +17,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
+import java.util.Objects;
+
 public class StoveMenu extends AbstractContainerMenu {
 
     public final StoveEntity entity;
@@ -25,7 +28,7 @@ public class StoveMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public StoveMenu(int id, Inventory inventory, FriendlyByteBuf extraData) {
-        this(id, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(id, inventory, getBlockEntity(inventory, extraData), new SimpleContainerData(2));
     }
 
     public StoveMenu(int id, Inventory inventory, BlockEntity entity, ContainerData data) {
@@ -49,7 +52,7 @@ public class StoveMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 7, 48, 53));
             this.addSlot(new SlotItemHandler(handler, 8, 66, 53));
             this.addSlot(new SlotItemHandler(handler, 9, 93, 17));
-            this.addSlot(new SlotItemHandler(handler, 10, 124, 36));
+            this.addSlot(new MenuResultSlot(inventory.player, (RecipeHolder) entity, handler, 10, 124, 36));
         });
 
         addDataSlots(data);
@@ -79,7 +82,7 @@ public class StoveMenu extends AbstractContainerMenu {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
             if (id == output) {
-                if (!this.moveItemStackTo(itemstack1, startPlayerInv, endPlayerInv, true)) {
+                if (!this.moveItemStackTo(itemstack1, startPlayerInv, endPlayerInv + 1, true)) {
                     return ItemStack.EMPTY;
                 }
             } else if (id <= endPlayerInv) {
@@ -135,4 +138,14 @@ public class StoveMenu extends AbstractContainerMenu {
         }
     }
 
+    private static StoveEntity getBlockEntity(Inventory inventory, FriendlyByteBuf extraData) {
+        Objects.requireNonNull(inventory, "inventory cannot be null");
+        Objects.requireNonNull(extraData, "extraData cannot be null");
+        BlockEntity blockEntity = inventory.player.level().getBlockEntity(extraData.readBlockPos());
+        if (blockEntity instanceof StoveEntity) {
+            return (StoveEntity) blockEntity;
+        } else {
+            throw new IllegalStateException("Block entity is not correct! " + blockEntity);
+        }
+    }
 }

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=west": {
+      "model": "festival_delicacies:block/fermentation_jar",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "festival_delicacies:block/fermentation_jar",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "festival_delicacies:block/fermentation_jar"
+    },
+    "facing=east": {
+      "model": "festival_delicacies:block/fermentation_jar",
+      "y": 90
+    }
+  }
+}

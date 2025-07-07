@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -117,7 +118,7 @@ public class StoveBlock extends BaseEntityBlock {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof StoveEntity entity) {
-                entity.drops();
+                Containers.dropContents(level, pos, entity.getInventoryContainer());
             }
         }
         super.onRemove(state, level, pos, newState, move);
@@ -152,7 +153,7 @@ public class StoveBlock extends BaseEntityBlock {
         } else {
             if (heldItem instanceof FlintAndSteelItem) {
                 level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-                level.setBlock(pos, (BlockState) state.setValue(BlockStateProperties.LIT, Boolean.TRUE), 2);
+                level.setBlock(pos, state.setValue(BlockStateProperties.LIT, Boolean.TRUE), 2);
                 heldStack.hurtAndBreak(1, player, (action) -> {
                     action.broadcastBreakEvent(hand);
                 });
@@ -176,7 +177,7 @@ public class StoveBlock extends BaseEntityBlock {
                 if (entity instanceof StoveEntity stoveEntity) {
                     NetworkHooks.openScreen((ServerPlayer) player, stoveEntity, pos);
                 } else {
-                    throw new IllegalStateException("Our Container provider is missing");
+                    throw new IllegalStateException("Our container provider is missing");
                 }
             }
             return InteractionResult.SUCCESS;

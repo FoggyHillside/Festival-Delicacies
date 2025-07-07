@@ -1,6 +1,6 @@
 package cn.foggyhillside.festival_delicacies.client.renderer;
 
-import cn.foggyhillside.festival_delicacies.blocks.DryingRack;
+import cn.foggyhillside.festival_delicacies.blocks.DryingRackBlock;
 import cn.foggyhillside.festival_delicacies.blocks.entities.DryingRackEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -23,7 +23,7 @@ public class DryingRackRenderer implements BlockEntityRenderer<DryingRackEntity>
 
     @Override
     public void render(DryingRackEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
-        Direction direction = (pBlockEntity.getBlockState().getValue(DryingRack.FACING)).getOpposite();
+        Direction direction = (pBlockEntity.getBlockState().getValue(DryingRackBlock.FACING)).getOpposite();
         Vec2[] OFFSETS;
         switch (direction) {
             case NORTH ->

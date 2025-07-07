@@ -1,6 +1,6 @@
 package cn.foggyhillside.festival_delicacies.blocks.entities;
 
-import cn.foggyhillside.festival_delicacies.blocks.DryingRack;
+import cn.foggyhillside.festival_delicacies.blocks.DryingRackBlock;
 import cn.foggyhillside.festival_delicacies.blocks.entities.inventory.DryingRackItemHandler;
 import cn.foggyhillside.festival_delicacies.recipe.DryingRecipe;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockEntities;
@@ -103,7 +103,7 @@ public class DryingRackEntity extends SyncedBlockEntity {
             return;
         }
         ItemStackHandler rackInventory = rackEntity.inventory;
-        Direction direction = state.getValue(DryingRack.FACING).getCounterClockWise();
+        Direction direction = state.getValue(DryingRackBlock.FACING).getCounterClockWise();
         for (int i = 0; i < rackInventory.getSlots(); i++) {
             ItemStack stack = rackInventory.getStackInSlot(i);
             if (!stack.isEmpty()) {
@@ -116,12 +116,12 @@ public class DryingRackEntity extends SyncedBlockEntity {
                         setChanged(level, pos, state);
                     } else {
                         rackInventory.setStackInSlot(i, recipe.get().getResultItem(level.registryAccess()).copy());
-                        Utils.dropItem(level, rackInventory.getStackInSlot(i), pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
+                        Utils.dropItem(level, rackInventory.getStackInSlot(i).split(rackInventory.getStackInSlot(i).getCount()), pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
                         rackEntity.progressArray[i] = 0;
                         setChanged(level, pos, state);
                     }
                 } else {
-                    Utils.dropItem(level, stack, pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
+                    Utils.dropItem(level, stack.split(stack.getCount()), pos.getX() + 0.5F, pos.getY() + 1F, pos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
                     setChanged(level, pos, state);
                 }
             }

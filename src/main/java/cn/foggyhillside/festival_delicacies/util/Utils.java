@@ -8,13 +8,17 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -60,6 +64,17 @@ public class Utils {
             }
         }
         return results;
+    }
+
+    //BlockEntity
+    public static void splitAndSpawnExperience(ServerLevel level, Vec3 pos, int craftedAmount, float experience) {
+        int expTotal = Mth.floor(craftedAmount * experience);
+        float expFraction = Mth.frac(craftedAmount * experience);
+        if (expFraction != 0.0F && Math.random() < expFraction) {
+            ++expTotal;
+        }
+
+        ExperienceOrb.award(level, pos, expTotal);
     }
 
     //Config
@@ -111,7 +126,7 @@ public class Utils {
 
     //Item
     public static void dropItem(Level level, ItemStack stack, double x, double y, double z, double xMotion, double yMotion, double zMotion) {
-        ItemEntity entity = new ItemEntity(level, x, y, z, stack.split(stack.getCount()));
+        ItemEntity entity = new ItemEntity(level, x, y, z, stack);
         entity.setDeltaMovement(xMotion, yMotion, zMotion);
         level.addFreshEntity(entity);
     }

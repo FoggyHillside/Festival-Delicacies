@@ -4,6 +4,7 @@
     "item": "minecraft:porkchop"
   },
   "result": {
-    "item": "festival_delicacies:preserved_meat"
+    "item": "festival_delicacies:preserved_meat",
+    "count": 2
   }
 }

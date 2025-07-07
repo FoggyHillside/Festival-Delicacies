@@ -1,10 +1,7 @@
 package cn.foggyhillside.festival_delicacies.registry;
 
 import cn.foggyhillside.festival_delicacies.FestivalDelicacies;
-import cn.foggyhillside.festival_delicacies.blocks.entities.ChoppingBlockEntity;
-import cn.foggyhillside.festival_delicacies.blocks.entities.DryingRackEntity;
-import cn.foggyhillside.festival_delicacies.blocks.entities.StoveEntity;
-import cn.foggyhillside.festival_delicacies.blocks.entities.WoodenPlateEntity;
+import cn.foggyhillside.festival_delicacies.blocks.entities.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,5 +19,7 @@ public class ModBlockEntities {
             () -> BlockEntityType.Builder.of(ChoppingBlockEntity::new, ModBlocks.CHOPPING_BLOCK.get()).build(null));
     public static final RegistryObject<BlockEntityType<DryingRackEntity>> DRYING_RACK = BLOCK_ENTITIES.register("drying_rack",
             () -> BlockEntityType.Builder.of(DryingRackEntity::new, ModBlocks.DRYING_RACK.get()).build(null));
+    public static final RegistryObject<BlockEntityType<FermentationJarEntity>> FERMENTATION_JAR = BLOCK_ENTITIES.register("fermentation_jar",
+            () -> BlockEntityType.Builder.of(FermentationJarEntity::new, ModBlocks.FERMENTATION_JAR.get()).build(null));
 
 }

@@ -30,7 +30,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 
-public class DryingRack extends BaseEntityBlock {
+public class DryingRackBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     protected static final VoxelShape SHAPE = Shapes.or(
             Block.box(0.0F, 0.0F, 0.0F, 2.0F, 15.99F, 2.0F),
@@ -40,7 +40,7 @@ public class DryingRack extends BaseEntityBlock {
             Block.box(0.0F, 4.0F, 0.0F, 16.0F, 6.0F, 16.0F),
             Block.box(0.0F, 12.0F, 0.0F, 16.0F, 14.0F, 16.0F));
 
-    public DryingRack(Properties pProperties) {
+    public DryingRackBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH));
     }
@@ -61,8 +61,8 @@ public class DryingRack extends BaseEntityBlock {
                     if (heldStack.isEmpty() && !rackEntity.isEmpty()) {
                         NonNullList<ItemStack> list = rackEntity.getInventoryList();
                         Direction direction = pState.getValue(FACING).getCounterClockWise();
-                        for (int i = 0; i < list.size(); i++) {
-                            Utils.dropItem(pLevel, list.get(i), pPos.getX() + 0.5F, pPos.getY() + 1F, pPos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
+                        for (ItemStack itemStack : list) {
+                            Utils.dropItem(pLevel, itemStack.split(itemStack.getCount()), pPos.getX() + 0.5F, pPos.getY() + 1F, pPos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
                         }
                         Arrays.fill(rackEntity.getProgressArray(), 0);
                         pLevel.updateNeighbourForOutputSignal(pPos, this);
