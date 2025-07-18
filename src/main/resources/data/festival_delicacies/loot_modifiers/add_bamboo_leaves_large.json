@@ -6,8 +6,12 @@
       "properties": {
         "leaves": "large"
       }
+    },
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.8
     }
   ],
   "item": "festival_delicacies:bamboo_leaves",
-  "type": "festival_delicacies:bamboo_leaves"
+  "type": "festival_delicacies:item_addition"
 }

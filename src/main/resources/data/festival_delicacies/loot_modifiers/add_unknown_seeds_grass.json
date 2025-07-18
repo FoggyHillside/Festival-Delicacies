@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:block_state_property",
+      "block": "minecraft:grass"
+    },
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.2
+    }
+  ],
+  "item": "festival_delicacies:unknown_seeds",
+  "type": "festival_delicacies:item_addition"
+}

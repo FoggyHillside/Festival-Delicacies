@@ -56,22 +56,23 @@ public class FestivalDelicacies {
                 output.accept(ModItems.RED_BEAN_PASTE.get());
                 output.accept(ModItems.RED_BEAN.get());
                 output.accept(ModItems.RICE.get());
-                output.accept(ModItems.JUJUBE.get());
                 output.accept(ModItems.PRESERVED_MEAT.get());
                 output.accept(ModItems.BAMBOO_LEAVES.get());
-                output.accept(ModItems.MUGWORT_LEAVES.get());
+                output.accept(ModItems.MUGWORT.get());;
+                output.accept(ModItems.UNKNOWN_SEEDS.get());
                 output.accept(ModItems.CHINESE_CABBAGE_SEEDS.get());
                 output.accept(ModItems.CHINESE_CABBAGE.get());
                 output.accept(ModItems.CHINESE_CABBAGE_LEAF.get());
                 output.accept(ModItems.GARLIC.get());
-                output.accept(ModItems.GREENONION.get());
+                output.accept(ModItems.GREEN_ONION_SEEDS.get());
+                output.accept(ModItems.GREEN_ONION.get());
+                output.accept(ModItems.EGGPLANT_SEEDS.get());
                 output.accept(ModItems.EGGPLANT.get());
                 output.accept(ModItems.EGGPLANT_SLICE.get());
-                output.accept(ModItems.EGGPLANT_SEEDS.get());
-                output.accept(ModItems.GARLIC_CHIVE.get());
                 output.accept(ModItems.GARLIC_CHIVE_SEEDS.get());
-                output.accept(ModItems.FENNEL.get());
+                output.accept(ModItems.GARLIC_CHIVE.get());
                 output.accept(ModItems.FENNEL_SEEDS.get());
+                output.accept(ModItems.FENNEL.get());
                 output.accept(DumplingItem.makeDumpling(5,
                         ModItems.GARLIC_CHIVE.get(),
                         Items.EGG));
@@ -80,8 +81,13 @@ public class FestivalDelicacies {
                         Items.COOKED_PORKCHOP));
                 output.accept(DumplingItem.makeDumpling(7,
                         Items.COOKED_PORKCHOP,
-                        ModItems.GREENONION.get()));
+                        ModItems.GREEN_ONION.get()));
                 output.accept(ModItems.WONTON.get());
+                output.accept(ModItems.WILD_GARLIC.get());
+                output.accept(ModItems.JUJUBE.get());
+                output.accept(ModItems.JUJUBE_SAPLING.get());
+                output.accept(ModItems.JUJUBE_LEAVES.get());
+                output.accept(ModItems.JUJUBE_LOG.get());
             }).build());
 
     public FestivalDelicacies() {
@@ -97,6 +103,7 @@ public class FestivalDelicacies {
         ModMenuTypes.MENU_TYPES.register(modEventBus);
         ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         ModRecipeTypes.RECIPE_TYPES.register(modEventBus);
+        ModTreeDecorators.DECORATOR_TYPES.register(modEventBus);
         ModLootModifiers.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 

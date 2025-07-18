@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "festival_delicacies:block/eggplant_stage4"
+    "cross": "festival_delicacies:block/rice_ear_stage3"
   }
 }

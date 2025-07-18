@@ -4,25 +4,13 @@
       "model": "festival_delicacies:block/eggplant_stage0"
     },
     "age=1": {
-      "model": "festival_delicacies:block/eggplant_stage0"
+      "model": "festival_delicacies:block/eggplant_stage1"
     },
     "age=2": {
-      "model": "festival_delicacies:block/eggplant_stage1"
+      "model": "festival_delicacies:block/eggplant_stage2"
     },
     "age=3": {
-      "model": "festival_delicacies:block/eggplant_stage1"
-    },
-    "age=4": {
-      "model": "festival_delicacies:block/eggplant_stage2"
-    },
-    "age=5": {
-      "model": "festival_delicacies:block/eggplant_stage2"
-    },
-    "age=6": {
       "model": "festival_delicacies:block/eggplant_stage3"
-    },
-    "age=7": {
-      "model": "festival_delicacies:block/eggplant_stage4"
     }
   }
 }

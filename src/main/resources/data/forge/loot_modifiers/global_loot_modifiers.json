@@ -3,6 +3,8 @@
   "entries": [
     "festival_delicacies:add_bamboo_leaves_large",
     "festival_delicacies:add_bamboo_leaves_small",
+    "festival_delicacies:add_unknown_seeds_grass",
+    "festival_delicacies:add_unknown_seeds_tall_grass",
     "festival_delicacies:add_village_plains_house",
     "festival_delicacies:add_village_taiga_house",
     "festival_delicacies:add_village_snowy_house",

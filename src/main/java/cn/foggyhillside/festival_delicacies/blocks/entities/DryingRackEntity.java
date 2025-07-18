@@ -61,11 +61,11 @@ public class DryingRackEntity extends SyncedBlockEntity {
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
-        if (pTag.contains("inventory")) {
-            this.inventory.deserializeNBT(pTag.getCompound("inventory"));
+        if (pTag.contains("Inventory")) {
+            this.inventory.deserializeNBT(pTag.getCompound("Inventory"));
         }
-        if (pTag.contains("progress", 11)) {
-            int[] arrayProgress = pTag.getIntArray("progress");
+        if (pTag.contains("Progress", 11)) {
+            int[] arrayProgress = pTag.getIntArray("Progress");
             System.arraycopy(arrayProgress, 0, this.progressArray, 0, Math.min(this.progressArray.length, arrayProgress.length));
         }
     }
@@ -167,7 +167,7 @@ public class DryingRackEntity extends SyncedBlockEntity {
 
     public boolean addItem(ItemStack heldStack, Player player, int nextSlot) {
         if (!heldStack.isEmpty() && heldStack.is(ModTags.DRYING_RACK_ALLOWED)) {
-            if (!player.isCreative()) {
+            if (!player.getAbilities().instabuild) {
                 this.inventory.setStackInSlot(nextSlot, heldStack.split(1));
             } else {
                 this.inventory.setStackInSlot(nextSlot, heldStack.copyWithCount(1));

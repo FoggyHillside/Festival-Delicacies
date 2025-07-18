@@ -16,25 +16,28 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-public class BambooLeavesAdditionModifier extends LootModifier {
+public class ItemAdditionModifier extends LootModifier {
 
-    public static final Supplier<Codec<BambooLeavesAdditionModifier>> CODEC = Suppliers.memoize(() ->
+    public static final Supplier<Codec<ItemAdditionModifier>> CODEC = Suppliers.memoize(() ->
             RecordCodecBuilder.create(inst -> codecStart(inst)
                     .and(ForgeRegistries.ITEMS.getCodec().fieldOf("item").forGetter((m) -> m.item))
-                    .apply(inst, BambooLeavesAdditionModifier::new)));
+                    .and(Codec.INT.optionalFieldOf("count", 1).forGetter((m) -> m.count))
+                    .apply(inst, ItemAdditionModifier::new)));
 
     private final Item item;
 
-    protected BambooLeavesAdditionModifier(LootItemCondition[] conditionsIn, Item item) {
+    private final int count;
+
+    protected ItemAdditionModifier(LootItemCondition[] conditionsIn, Item item, int count) {
         super(conditionsIn);
         this.item = item;
+        this.count = count;
     }
 
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-        if (context.getRandom().nextFloat() > 0.2) {
-            generatedLoot.add(new ItemStack(item, 1));
-        }
+        generatedLoot.add(new ItemStack(item, count));
+
         return generatedLoot;
     }
 

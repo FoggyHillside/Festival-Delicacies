@@ -134,9 +134,9 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider, Reci
     @Override
     protected void saveAdditional(CompoundTag nbt) {
         super.saveAdditional(nbt);
-        nbt.put("inventory", inventory.serializeNBT());
-        nbt.putInt("progress", this.progress);
-        nbt.putInt("maxprogress", this.maxProgress);
+        nbt.put("Inventory", inventory.serializeNBT());
+        nbt.putInt("Progress", this.progress);
+        nbt.putInt("MaxProgress", this.maxProgress);
         CompoundTag compoundRecipes = new CompoundTag();
         this.usedRecipeTracker.forEach((recipeId, craftedAmount) -> compoundRecipes.putInt(recipeId.toString(), craftedAmount));
         nbt.put("RecipesUsed", compoundRecipes);
@@ -144,9 +144,9 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider, Reci
 
     @Override
     public void load(CompoundTag nbt) {
-        inventory.deserializeNBT(nbt.getCompound("inventory"));
-        this.progress = nbt.getInt("progress");
-        this.maxProgress = nbt.getInt("maxprogress");
+        inventory.deserializeNBT(nbt.getCompound("Inventory"));
+        this.progress = nbt.getInt("Progress");
+        this.maxProgress = nbt.getInt("MaxProgress");
         CompoundTag compoundRecipes = nbt.getCompound("RecipesUsed");
         for (String key : compoundRecipes.getAllKeys()) {
             this.usedRecipeTracker.put(new ResourceLocation(key), compoundRecipes.getInt(key));

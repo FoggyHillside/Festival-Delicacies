@@ -7,5 +7,14 @@
         "type": "event"
       }
     ]
+  },
+  "block.fruit_pick": {
+    "subtitle": "festival_delicacies.subtitles.fruit_pick",
+    "sounds": [
+      {
+        "name": "block.sweet_berry_bush.pick_berries",
+        "type": "event"
+      }
+    ]
   }
 }

@@ -11,5 +11,6 @@ public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, FestivalDelicacies.MODID);
 
     public static final RegistryObject<SoundEvent> CHOP = SOUNDS.register("block.chop", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(FestivalDelicacies.MODID, "block.chop")));
+    public static final RegistryObject<SoundEvent> FRUIT_PICK = SOUNDS.register("block.fruit_pick", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(FestivalDelicacies.MODID, "block.fruit_pick")));
 
 }

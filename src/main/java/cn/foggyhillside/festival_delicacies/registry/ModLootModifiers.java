@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModLootModifiers {
     public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> LOOT_MODIFIERS = DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, FestivalDelicacies.MODID);
 
-    public static final RegistryObject<Codec<? extends IGlobalLootModifier>> BAMBOO_LEAVES_SERIALIZERS = LOOT_MODIFIERS.register("bamboo_leaves", BambooLeavesAdditionModifier.CODEC);
+    public static final RegistryObject<Codec<? extends IGlobalLootModifier>> ITEM_ADDITION_SERIALIZERS = LOOT_MODIFIERS.register("item_addition", ItemAdditionModifier.CODEC);
     public static final RegistryObject<Codec<? extends IGlobalLootModifier>> LOOT_TABLE_SERIALIZERS = LOOT_MODIFIERS.register("loot_table", LootTableAdditionModifier.CODEC);
 
     public static void register(IEventBus bus) {

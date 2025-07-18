@@ -3,7 +3,6 @@ package cn.foggyhillside.festival_delicacies.blocks;
 import cn.foggyhillside.festival_delicacies.FestivalDelicacies;
 import cn.foggyhillside.festival_delicacies.blocks.entities.ChoppingBlockEntity;
 import cn.foggyhillside.festival_delicacies.recipe.ChoppingRecipe;
-import cn.foggyhillside.festival_delicacies.registry.ModBlockEntities;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockStateProperties;
 import cn.foggyhillside.festival_delicacies.registry.ModSounds;
 import cn.foggyhillside.festival_delicacies.registry.ModTags;
@@ -26,10 +25,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -122,6 +120,20 @@ public class ChoppingBlock extends BaseEntityBlock {
     }
 
     @Override
+    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pPos, BlockPos pNeighborPos) {
+        BlockState newState = super.updateShape(pState, pDirection, pNeighborState, pLevel, pPos, pNeighborPos);
+        if(pLevel.getBlockEntity(pPos) instanceof ChoppingBlockEntity entity){
+            if(entity.getItemStack().isEmpty() && newState.getValue(WITH_KNIFE)){
+                return newState.setValue(WITH_KNIFE, false);
+            } else if(!entity.getItemStack().isEmpty() && !pState.getValue(WITH_KNIFE)){
+                return newState.setValue(WITH_KNIFE, true);
+            }
+        }
+
+        return newState;
+    }
+
+    @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack heldStack = pPlayer.getItemInHand(pHand);
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
@@ -130,6 +142,7 @@ public class ChoppingBlock extends BaseEntityBlock {
             if (choppingBlockEntity.getItemStack().isEmpty()) {
                 if (isKnife(heldStack) && choppingBlockEntity.addItem(heldStack, pPlayer)) {
                     pLevel.playSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(WITH_KNIFE, true));
                     return InteractionResult.SUCCESS;
                 }
             } else if (heldStack.isEmpty()) {
@@ -138,6 +151,7 @@ public class ChoppingBlock extends BaseEntityBlock {
                     return InteractionResult.SUCCESS;
                 } else if (pHand.equals(InteractionHand.MAIN_HAND) && choppingBlockEntity.extractItem(pPlayer, pHand)) {
                     pLevel.playSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.WOOD_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(WITH_KNIFE, false));
                     return InteractionResult.SUCCESS;
                 }
             } else {
@@ -151,7 +165,7 @@ public class ChoppingBlock extends BaseEntityBlock {
                         spawnChoppingParticles(pLevel, pPos, heldStack);
                         if (!pPlayer.isCreative()) {
                             heldStack.shrink(1);
-                            choppingBlockEntity.itemHurt(pLevel, pPos, pState);
+                            choppingBlockEntity.itemHurt(pLevel, pPos);
                         }
                         for (ItemStack stack : list) {
                             Utils.dropItem(pLevel, stack.split(stack.getCount()), pPos.getX() + 0.5F, pPos.getY() + 0.3F, pPos.getZ() + 0.5F, direction.getStepX() * 0.2F, 0F, direction.getStepZ() * 0.2F);
@@ -184,16 +198,12 @@ public class ChoppingBlock extends BaseEntityBlock {
 
     @Override
     public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return 60;
+        return 30;
     }
 
     @Override
     public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return 100;
+        return 30;
     }
 
-    @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return pLevel.isClientSide ? null : createTickerHelper(pBlockEntityType, ModBlockEntities.CHOPPING_BLOCK.get(), ChoppingBlockEntity::tick);
-    }
 }

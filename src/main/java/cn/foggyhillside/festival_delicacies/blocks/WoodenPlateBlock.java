@@ -1,7 +1,6 @@
 package cn.foggyhillside.festival_delicacies.blocks;
 
 import cn.foggyhillside.festival_delicacies.blocks.entities.WoodenPlateEntity;
-import cn.foggyhillside.festival_delicacies.registry.ModBlockEntities;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockStateProperties;
 import cn.foggyhillside.festival_delicacies.registry.ModItems;
 import cn.foggyhillside.festival_delicacies.registry.ModTags;
@@ -15,10 +14,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -46,6 +44,16 @@ public class WoodenPlateBlock extends BaseEntityBlock {
     }
 
     @Override
+    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pPos, BlockPos pNeighborPos) {
+        BlockState newState = super.updateShape(pState, pDirection, pNeighborState, pLevel, pPos, pNeighborPos);
+        if (pLevel.getBlockEntity(pPos) instanceof WoodenPlateEntity entity) {
+            return entity.getLastPlateState(newState);
+        }
+
+        return newState;
+    }
+
+    @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         ItemStack heldStack = pPlayer.getItemInHand(pHand);
@@ -54,10 +62,12 @@ public class WoodenPlateBlock extends BaseEntityBlock {
                 if (!heldStack.isEmpty() && !plateEntity.isFull()
                         && (heldStack.is(ModTags.DUMPLING) || heldStack.is(ModItems.QINGTUAN.get()) || heldStack.is(ModTags.MOONCAKE))) {
                     if (plateEntity.addItem(heldStack, pPlayer)) {
+                        pLevel.setBlockAndUpdate(pPos, plateEntity.getLastPlateState(pState));
                         return InteractionResult.SUCCESS;
                     }
                 } else if (heldStack.isEmpty() && !plateEntity.isEmpty()) {
                     if (plateEntity.extractItem(pPlayer, pHand)) {
+                        pLevel.setBlockAndUpdate(pPos, plateEntity.getLastPlateState(pState));
                         return InteractionResult.SUCCESS;
                     }
                 }
@@ -137,9 +147,13 @@ public class WoodenPlateBlock extends BaseEntityBlock {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
-    @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return level.isClientSide ? null : createTickerHelper(blockEntityType, ModBlockEntities.WOODEN_PLATE.get(), WoodenPlateEntity::tick);
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return 30;
+    }
+
+    @Override
+    public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return 30;
     }
 }

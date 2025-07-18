@@ -2,10 +2,10 @@
   "type": "festival_delicacies:stove",
   "ingredients": [
     {
-      "item": "festival_delicacies:red_bean"
+      "tag": "forge:crops/red_bean"
     },
     {
-      "item": "festival_delicacies:red_bean"
+      "tag": "forge:crops/red_bean"
     }
   ],
   "result": {

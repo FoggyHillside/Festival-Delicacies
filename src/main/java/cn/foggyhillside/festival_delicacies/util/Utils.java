@@ -4,7 +4,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -25,7 +27,9 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utils {
     //JEI
@@ -129,5 +133,18 @@ public class Utils {
         ItemEntity entity = new ItemEntity(level, x, y, z, stack);
         entity.setDeltaMovement(xMotion, yMotion, zMotion);
         level.addFreshEntity(entity);
+    }
+
+    public static List<Item> getItemsByTag(RegistryAccess registryAccess, TagKey<Item> tagKey) {
+        try {
+            Registry<Item> registry = registryAccess.registryOrThrow(ForgeRegistries.ITEMS.getRegistryKey());
+            return registry.getTag(tagKey)
+                    .orElseThrow(() -> new IllegalStateException("Tag not found: " + tagKey.location()))
+                    .stream()
+                    .map(Holder::value)
+                    .collect(Collectors.toList());
+        } catch (IllegalStateException e) {
+            return new ArrayList<>();
+        }
     }
 }
