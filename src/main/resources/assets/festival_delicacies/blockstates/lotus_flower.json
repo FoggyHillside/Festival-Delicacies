@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "festival_delicacies:block/lotus_flower_low"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_flower_mid"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_flower_high"
+      }
+    ]
+  }
+}

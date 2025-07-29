@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "festival_delicacies:block/lotus_leaf_bud"
+    },
+    "age=1": [
+      {
+        "model": "festival_delicacies:block/lotus_leaf"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_leaf",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/lotus_leaf",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/lotus_leaf",
+        "y": 270
+      }
+    ],
+    "age=2": [
+      {
+        "model": "festival_delicacies:block/lotus_flower_low"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_flower_mid"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_flower_high"
+      }
+    ],
+    "age=3": [
+      {
+        "model": "festival_delicacies:block/lotus_seedpod"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod",
+        "y": 270
+      }
+    ]
+  }
+}

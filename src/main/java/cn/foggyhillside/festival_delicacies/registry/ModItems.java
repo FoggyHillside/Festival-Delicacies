@@ -89,6 +89,14 @@ public class ModItems {
             () -> new ItemNameBlockItem(ModBlocks.RED_BEAN.get(), new Item.Properties()));
     public static final RegistryObject<Item> RICE = ITEMS.register("rice",
             () -> new ItemNameBlockItem(ModBlocks.RICE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> LOTUS_ROOT = ITEMS.register("lotus_root",
+            () -> new ItemNameBlockItem(ModBlocks.LOTUS.get(), new Item.Properties().food(FoodList.LOTUS_ROOT)));
+    public static final RegistryObject<Item> LOTUS_SEEDS = ITEMS.register("lotus_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.LOTUS.get(), new Item.Properties().food(FoodList.LOTUS_SEEDS)));
+    public static final RegistryObject<Item> LOTUS_FLOWER = ITEMS.register("lotus_flower",
+            () -> new PlaceOnWaterBlockItem(ModBlocks.LOTUS_FLOWER.get(), new Item.Properties()));
+    public static final RegistryObject<Item> LOTUS_LEAF = ITEMS.register("lotus_leaf",
+            () -> new PlaceOnWaterBlockItem(ModBlocks.LOTUS_LEAF.get(), new Item.Properties()));
     //Dumplings
     public static final RegistryObject<Item> BOILED_DUMPLING = ITEMS.register("boiled_dumpling",
             () -> new DumplingItem(new Item.Properties().food(FoodList.DUMPLING), true));

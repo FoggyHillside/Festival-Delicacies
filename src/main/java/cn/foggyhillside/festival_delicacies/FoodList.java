@@ -20,6 +20,8 @@ public class FoodList {
     public static final FoodProperties EGGPLANT_SLICE = new FoodProperties.Builder().nutrition(1).saturationMod(0.4F).build();
     public static final FoodProperties GARLIC_CHIVE = new FoodProperties.Builder().nutrition(1).saturationMod(0.2F).build();
     public static final FoodProperties FENNEL = new FoodProperties.Builder().nutrition(1).saturationMod(0.2F).build();
+    public static final FoodProperties LOTUS_ROOT = new FoodProperties.Builder().nutrition(3).saturationMod(0.2F).build();
+    public static final FoodProperties LOTUS_SEEDS = new FoodProperties.Builder().nutrition(1).saturationMod(0.2F).build();
 
     //Mooncake Food Properties | Update Needed!!!
     public static final FoodProperties FIVE_NUTS_MOONCAKE = new FoodProperties.Builder().nutrition(1).saturationMod(0.2F).build();

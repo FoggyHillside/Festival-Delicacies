@@ -119,7 +119,7 @@ public class WoodenPlateEntity extends SyncedBlockEntity {
         return pState;
     }
 
-    public BlockState getLastPlateState(BlockState pState){
+    public BlockState getLastPlateState(BlockState pState) {
         BlockState newState = updateItemTypeState(pState, inventory.getStackInSlot(0));
         int amount = getItemAmount();
         if (!newState.getValue(WoodenPlateBlock.AMOUNT).equals(amount)) {

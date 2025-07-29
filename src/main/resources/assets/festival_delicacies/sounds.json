@@ -16,5 +16,23 @@
         "type": "event"
       }
     ]
+  },
+  "block.fermentation_jar.open": {
+    "subtitle": "festival_delicacies.subtitles.fermentation_jar.open",
+    "sounds": [
+      {
+        "name": "block.decorated_pot.place",
+        "type": "event"
+      }
+    ]
+  },
+  "block.fermentation_jar.close": {
+    "subtitle": "festival_delicacies.subtitles.fermentation_jar.close",
+    "sounds": [
+      {
+        "name": "block.decorated_pot.place",
+        "type": "event"
+      }
+    ]
   }
 }

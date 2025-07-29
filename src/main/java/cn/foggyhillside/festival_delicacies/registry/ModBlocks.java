@@ -45,6 +45,12 @@ public class ModBlocks {
             () -> new RiceBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
     public static final RegistryObject<Block> RICE_EAR = BLOCKS.register("rice_ear",
             () -> new RiceEarBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+    public static final RegistryObject<Block> LOTUS = BLOCKS.register("lotus",
+            () -> new LotusBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+    public static final RegistryObject<Block> LOTUS_STALK = BLOCKS.register("lotus_stalk",
+            () -> new LotusStalkBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+    public static final RegistryObject<Block> LOTUS_AERIAL_PART = BLOCKS.register("lotus_aerial_part",
+            () -> new LotusAerialPartBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
     //Wild Plant
     public static final RegistryObject<Block> WILD_GARLIC = BLOCKS.register("wild_garlic",
@@ -63,6 +69,12 @@ public class ModBlocks {
             FruitTreeLogBlock::new);
     public static final RegistryObject<Block> POTTED_JUJUBE_SAPLING = BLOCKS.register("potted_jujube_sapling",
             () -> flowerPot(JUJUBE_SAPLING.get()));
+
+    //Decorations
+    public static final RegistryObject<Block> LOTUS_LEAF = BLOCKS.register("lotus_leaf",
+            () -> new WaterlilyBlock(BlockBehaviour.Properties.copy(Blocks.LILY_PAD)));
+    public static final RegistryObject<Block> LOTUS_FLOWER = BLOCKS.register("lotus_flower",
+            () -> new WaterlilyBlock(BlockBehaviour.Properties.copy(Blocks.LILY_PAD)));
 
     private static FlowerPotBlock flowerPot(Block block) {
         BlockBehaviour.Properties properties = BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY);

@@ -3,7 +3,9 @@ package cn.foggyhillside.festival_delicacies.blocks.screen;
 import cn.foggyhillside.festival_delicacies.blocks.entities.FermentationJarEntity;
 import cn.foggyhillside.festival_delicacies.registry.ModBlocks;
 import cn.foggyhillside.festival_delicacies.registry.ModMenuTypes;
+import cn.foggyhillside.festival_delicacies.registry.ModSounds;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -96,6 +98,14 @@ public class FermentationJarMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, entity.getBlockPos()), pPlayer, ModBlocks.FERMENTATION_JAR.get());
+    }
+
+    @Override
+    public void removed(Player pPlayer) {
+        super.removed(pPlayer);
+        if (!this.level.isClientSide()) {
+            this.level.playSound(null, entity.getBlockPos(), ModSounds.FERMENTATION_JAR_CLOSE.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
+        }
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

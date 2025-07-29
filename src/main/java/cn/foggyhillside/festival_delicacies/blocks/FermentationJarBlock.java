@@ -3,9 +3,11 @@ package cn.foggyhillside.festival_delicacies.blocks;
 import cn.foggyhillside.festival_delicacies.blocks.entities.FermentationJarEntity;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockEntities;
 import cn.foggyhillside.festival_delicacies.registry.ModBlockStateProperties;
+import cn.foggyhillside.festival_delicacies.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -58,6 +60,7 @@ public class FermentationJarBlock extends BaseEntityBlock {
             if (!pLevel.isClientSide) {
                 BlockEntity entity = pLevel.getBlockEntity(pPos);
                 if (entity instanceof FermentationJarEntity jarEntity) {
+                    pLevel.playSound(null, pPos, ModSounds.FERMENTATION_JAR_OPEN.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
                     NetworkHooks.openScreen((ServerPlayer) pPlayer, jarEntity, pPos);
                 } else {
                     throw new IllegalStateException("Our container provider is missing");

@@ -11,4 +11,5 @@ public class ModBlockStateProperties {
     public static final IntegerProperty AMOUNT = IntegerProperty.create("amount", 0, 6);
     public static final BooleanProperty KNIFE_INSERTED = BooleanProperty.create("knife_inserted");
     public static final BooleanProperty WITH_KNIFE = BooleanProperty.create("with_knife");
+    public static final BooleanProperty HAS_STALK = BooleanProperty.create("has_stalk");
 }

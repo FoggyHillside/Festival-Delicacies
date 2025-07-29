@@ -32,17 +32,12 @@ public class RiceEarBlock extends CropBlock {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE_BY_AGE[pState.getValue(RICE_AGE)];
+        return SHAPE_BY_AGE[this.getAge(pState)];
     }
 
     @Override
     protected IntegerProperty getAgeProperty() {
         return RICE_AGE;
-    }
-
-    @Override
-    public int getAge(BlockState pState) {
-        return pState.getValue(RICE_AGE);
     }
 
     @Override
@@ -57,7 +52,7 @@ public class RiceEarBlock extends CropBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(RICE_AGE);
+        pBuilder.add(this.getAgeProperty());
     }
 
     @Override

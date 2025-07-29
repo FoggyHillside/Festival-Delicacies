@@ -5,7 +5,6 @@ import cn.foggyhillside.festival_delicacies.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -59,11 +58,6 @@ public class RiceBlock extends BushBlock implements BonemealableBlock, LiquidBlo
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return super.mayPlaceOn(pState, pLevel, pPos) || pState.is(BlockTags.DIRT);
-    }
-
-    @Override
     public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
         return new ItemStack(ModItems.RICE.get());
     }
@@ -100,7 +94,6 @@ public class RiceBlock extends BushBlock implements BonemealableBlock, LiquidBlo
 
     @Override
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        super.tick(pState, pLevel, pPos, pRandom);
         if (!pLevel.isAreaLoaded(pPos, 1)) {
             return;
         }
@@ -110,14 +103,15 @@ public class RiceBlock extends BushBlock implements BonemealableBlock, LiquidBlo
             if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(pLevel, pPos, pState, pRandom.nextInt((int) (25.0F / f) + 1) == 0)) {
                 if (i < MAX_AGE) {
                     pLevel.setBlock(pPos, pState.setValue(AGE, i + 1), 2);
-                    net.minecraftforge.common.ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
                 } else {
                     RiceEarBlock riceEar = (RiceEarBlock) ModBlocks.RICE_EAR.get();
-                    if (pLevel.getBlockState(pPos.above()).isAir() && riceEar.canSurvive(pState, pLevel, pPos.above())) {
+                    BlockState aboveState = pLevel.getBlockState(pPos.above());
+                    if (aboveState.isAir() && riceEar.canSurvive(aboveState, pLevel, pPos.above())) {
                         pLevel.setBlock(pPos.above(), riceEar.defaultBlockState(), 2);
                     }
-                    net.minecraftforge.common.ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
                 }
+
+                net.minecraftforge.common.ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
             }
 
         }
@@ -152,7 +146,7 @@ public class RiceBlock extends BushBlock implements BonemealableBlock, LiquidBlo
             if (!pState.getValue(HAS_EAR)) {
                 RiceEarBlock riceEar = (RiceEarBlock) ModBlocks.RICE_EAR.get();
                 pLevel.setBlockAndUpdate(pPos, pState.setValue(AGE, MAX_AGE));
-                if (aboveState.isAir() && riceEar.canSurvive(pState, pLevel, pPos.above())) {
+                if (aboveState.isAir() && riceEar.canSurvive(aboveState, pLevel, pPos.above())) {
                     int ageLeft = growAge - MAX_AGE - 1;
                     pLevel.setBlock(pPos.above(), riceEar.defaultBlockState().setValue(RiceEarBlock.RICE_AGE, ageLeft), 2);
                 }

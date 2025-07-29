@@ -73,8 +73,8 @@ public class DryingRackEntity extends SyncedBlockEntity {
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
-        pTag.put("inventory", this.inventory.serializeNBT());
-        pTag.putIntArray("progress", progressArray);
+        pTag.put("Inventory", this.inventory.serializeNBT());
+        pTag.putIntArray("Progress", progressArray);
     }
 
     @Override

@@ -3,6 +3,9 @@
   "values": [
     "festival_delicacies:chopping_block",
     "festival_delicacies:drying_rack",
-    "festival_delicacies:wooden_plate"
+    "festival_delicacies:wooden_plate",
+    "#festival_delicacies:crops",
+    "festival_delicacies:rice",
+    "festival_delicacies:lotus"
   ]
 }

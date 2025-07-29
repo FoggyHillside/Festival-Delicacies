@@ -59,6 +59,10 @@ public class StoveBlock extends BaseEntityBlock {
                 .setValue(RED_STONE, 0));
     }
 
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
+    }
 
     @OnlyIn(Dist.CLIENT)
     @Override
@@ -106,11 +110,6 @@ public class StoveBlock extends BaseEntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new StoveEntity(pos, state);
-    }
-
-    @Override
-    public RenderShape getRenderShape(BlockState state) {
-        return RenderShape.MODEL;
     }
 
     @Override

@@ -73,6 +73,10 @@ public class FestivalDelicacies {
                 output.accept(ModItems.GARLIC_CHIVE.get());
                 output.accept(ModItems.FENNEL_SEEDS.get());
                 output.accept(ModItems.FENNEL.get());
+                output.accept(ModItems.LOTUS_ROOT.get());
+                output.accept(ModItems.LOTUS_SEEDS.get());
+                output.accept(ModItems.LOTUS_FLOWER.get());
+                output.accept(ModItems.LOTUS_LEAF.get());
                 output.accept(DumplingItem.makeDumpling(5,
                         ModItems.GARLIC_CHIVE.get(),
                         Items.EGG));
