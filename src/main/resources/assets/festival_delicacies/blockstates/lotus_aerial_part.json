@@ -1,25 +1,11 @@
 {
   "variants": {
     "age=0": {
-      "model": "festival_delicacies:block/lotus_leaf_bud"
+      "model": "festival_delicacies:block/lotus_bud"
     },
-    "age=1": [
-      {
-        "model": "festival_delicacies:block/lotus_leaf"
-      },
-      {
-        "model": "festival_delicacies:block/lotus_leaf",
-        "y": 90
-      },
-      {
-        "model": "festival_delicacies:block/lotus_leaf",
-        "y": 180
-      },
-      {
-        "model": "festival_delicacies:block/lotus_leaf",
-        "y": 270
-      }
-    ],
+    "age=1": {
+      "model": "festival_delicacies:block/lotus_bud"
+    },
     "age=2": [
       {
         "model": "festival_delicacies:block/lotus_flower_low"
@@ -33,18 +19,93 @@
     ],
     "age=3": [
       {
-        "model": "festival_delicacies:block/lotus_seedpod"
+        "model": "festival_delicacies:block/lotus_seedpod_low45"
       },
       {
-        "model": "festival_delicacies:block/lotus_seedpod",
+        "model": "festival_delicacies:block/lotus_seedpod_low45",
         "y": 90
       },
       {
-        "model": "festival_delicacies:block/lotus_seedpod",
+        "model": "festival_delicacies:block/lotus_seedpod_low45",
         "y": 180
       },
       {
-        "model": "festival_delicacies:block/lotus_seedpod",
+        "model": "festival_delicacies:block/lotus_seedpod_low45",
+        "y": 270
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_low90"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_low90",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_low90",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_low90",
+        "y": 270
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_low135"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_low135",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_low135",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_low135",
+        "y": 270
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high45"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high45",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high45",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high45",
+        "y": 270
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high90"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high90",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high90",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high90",
+        "y": 270
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high135"
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high135",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high135",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/lotus_seedpod_high135",
         "y": 270
       }
     ]

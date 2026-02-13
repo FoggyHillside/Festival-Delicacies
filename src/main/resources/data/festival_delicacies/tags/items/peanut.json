@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "#forge:vegetables/peanut",
+      "required": false
+    },
+    {
+      "id": "#forge:crops/peanut",
+      "required": false
+    },
+    {
+      "id": "#forge:peanut",
+      "required": false
+    }
+  ]
+}

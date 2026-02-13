@@ -244,15 +244,18 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider, Reci
 
     private static boolean canOutput(Level level, StoveEntity entity, StoveRecipe recipe) {
         var registryAccess = level.registryAccess();
-        return entity.inventory.getStackInSlot(10) == ItemStack.EMPTY
-                || (entity.inventory.getStackInSlot(10).getItem() == recipe.getResultItem(registryAccess).getItem()
-                && entity.inventory.getStackInSlot(10).getCount() < recipe.getResultItem(registryAccess).getMaxStackSize());
+        ItemStack resultSlot = entity.inventory.getStackInSlot(10);
+        ItemStack recipeResult = recipe.getResultItem(registryAccess);
+        return resultSlot == ItemStack.EMPTY
+                || (resultSlot.getItem() == recipeResult.getItem()
+                && recipeResult.getMaxStackSize() - resultSlot.getCount() >= recipeResult.getCount());
     }
 
     private static boolean canOutputDumpling(StoveEntity entity, ItemStack result) {
-        return entity.inventory.getStackInSlot(10) == ItemStack.EMPTY
-                || (ItemStack.isSameItemSameTags(entity.inventory.getStackInSlot(10), result)
-                && entity.inventory.getStackInSlot(10).getCount() < result.getMaxStackSize());
+        ItemStack resultSlot = entity.inventory.getStackInSlot(10);
+        return resultSlot == ItemStack.EMPTY
+                || (ItemStack.isSameItemSameTags(resultSlot, result)
+                && result.getMaxStackSize() - resultSlot.getCount() >= result.getCount());
     }
 
     private static boolean isLit(BlockState state) {
@@ -275,8 +278,7 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider, Reci
                 }
                 yield true;
             }
-            default ->
-                    throw new IllegalStateException("Unexpected value: " + state.getValue(StoveBlock.START_BUTTON));
+            default -> throw new IllegalStateException("Unexpected value: " + state.getValue(StoveBlock.START_BUTTON));
         };
     }
 
@@ -295,11 +297,7 @@ public class StoveEntity extends SyncedBlockEntity implements MenuProvider, Reci
         for (int i = 0; i < 11; i++) {
             ItemStack stack = entity.inventory.getStackInSlot(i);
 
-            if (i < 9) {
-                if (stack != ItemStack.EMPTY) {
-                    container.addItem(stack);
-                }
-            } else {
+            if (!stack.isEmpty()) {
                 container.setItem(i, stack);
             }
         }

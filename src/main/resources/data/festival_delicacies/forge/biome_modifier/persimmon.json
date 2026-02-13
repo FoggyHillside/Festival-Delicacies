@@ -1,0 +1,12 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "minecraft:river",
+    "minecraft:sparse_jungle",
+    "minecraft:forest",
+    "minecraft:birch_forest",
+    "minecraft:old_growth_birch_forest"
+  ],
+  "features": "festival_delicacies:patch_persimmon",
+  "step": "vegetal_decoration"
+}

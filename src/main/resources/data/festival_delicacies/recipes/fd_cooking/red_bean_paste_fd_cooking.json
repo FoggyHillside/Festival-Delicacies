@@ -6,6 +6,9 @@
     },
     {
       "tag": "forge:crops/red_bean"
+    },
+    {
+      "tag": "forge:crops/red_bean"
     }
   ],
   "recipe_book_tab": "misc",
@@ -17,6 +20,5 @@
     "item": "minecraft:bowl"
   },
   "experience": 0.35,
-  "cookingtime": 100,
-  "cookingType": "default"
+  "cookingtime": 100
 }

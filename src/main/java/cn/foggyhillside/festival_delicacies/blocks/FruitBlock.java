@@ -22,7 +22,7 @@ public class FruitBlock extends CropBlock {
     protected final Supplier<Item> fruitItem;
 
     public FruitBlock(Supplier<Item> pItem) {
-        super(BlockBehaviour.Properties.copy(Blocks.WHEAT));
+        super(BlockBehaviour.Properties.copy(Blocks.WHEAT).offsetType(BlockBehaviour.OffsetType.XZ));
         this.fruitItem = pItem;
     }
 
@@ -37,7 +37,7 @@ public class FruitBlock extends CropBlock {
         if (pLevel.getRawBrightness(pPos, 0) >= 9) {
             int i = this.getAge(pState);
             if (i < this.getMaxAge()) {
-                float f = 10;
+                float f = 10; // Fixed the value of growth speed
                 if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(pLevel, pPos, pState, pRandom.nextInt((int) (25.0F / f) + 1) == 0)) {
                     pLevel.setBlock(pPos, this.getStateForAge(i + 1), 2);
                     net.minecraftforge.common.ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);

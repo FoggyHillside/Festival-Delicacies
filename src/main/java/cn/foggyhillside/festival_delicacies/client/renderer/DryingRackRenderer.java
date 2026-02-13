@@ -4,7 +4,6 @@ import cn.foggyhillside.festival_delicacies.blocks.DryingRackBlock;
 import cn.foggyhillside.festival_delicacies.blocks.entities.DryingRackEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -17,8 +16,10 @@ import net.minecraft.world.phys.Vec2;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class DryingRackRenderer implements BlockEntityRenderer<DryingRackEntity> {
-    public DryingRackRenderer(BlockEntityRendererProvider.Context pContext) {
+    ItemRenderer itemRenderer;
 
+    public DryingRackRenderer(BlockEntityRendererProvider.Context pContext) {
+        this.itemRenderer = pContext.getItemRenderer();
     }
 
     @Override
@@ -35,8 +36,9 @@ public class DryingRackRenderer implements BlockEntityRenderer<DryingRackEntity>
             default ->
                     OFFSETS = new Vec2[]{new Vec2(0.75F, 0.6875F), new Vec2(0.5F, 0.6875F), new Vec2(0.25F, 0.6875F), new Vec2(0.75F, 0.3125F), new Vec2(0.5F, 0.3125F), new Vec2(0.25F, 0.3125F)};
         }
+
         ItemStackHandler inventory = pBlockEntity.getInventory();
-        ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+
         for (int i = 0; i < inventory.getSlots(); i++) {
             ItemStack stack = inventory.getStackInSlot(i);
             if (stack.isEmpty()) {

@@ -1,5 +1,12 @@
 {
   "values": [
-    "festival_delicacies:jujube_log"
+    "festival_delicacies:jujube_log",
+    "festival_delicacies:olive_log",
+    "festival_delicacies:walnut_log",
+    "festival_delicacies:apricot_log",
+    "festival_delicacies:tangerine_log",
+    "festival_delicacies:persimmon_log",
+    "festival_delicacies:hawthorn_log",
+    "festival_delicacies:peach_log"
   ]
 }

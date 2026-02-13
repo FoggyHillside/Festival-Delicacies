@@ -1,7 +1,7 @@
 {
   "type": "forge:add_features",
   "biomes": [
-    "minecraft:plains",
+    "minecraft:river",
     "minecraft:forest",
     "minecraft:birch_forest",
     "minecraft:old_growth_birch_forest"

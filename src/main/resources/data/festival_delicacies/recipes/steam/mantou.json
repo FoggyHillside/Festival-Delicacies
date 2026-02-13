@@ -1,0 +1,14 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "tag": "festival_delicacies:dough"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:mantou"
+  },
+  "experience": 1.0,
+  "cookingtime": 200,
+  "cookingType": "steam"
+}

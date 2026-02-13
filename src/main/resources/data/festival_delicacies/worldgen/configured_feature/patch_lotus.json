@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "festival_delicacies:lotus",
+        "config": {}
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:would_survive",
+            "state": {
+              "Name": "festival_delicacies:lotus"
+            }
+          }
+        }
+      ]
+    },
+    "tries": 36,
+    "xz_spread": 7,
+    "y_spread": 0
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/flower_pot_cross",
+  "textures": {
+    "plant": "festival_delicacies:block/peach_sapling"
+  },
+  "render_type": "cutout"
+}

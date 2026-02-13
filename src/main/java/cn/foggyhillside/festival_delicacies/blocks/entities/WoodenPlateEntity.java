@@ -31,7 +31,7 @@ public class WoodenPlateEntity extends SyncedBlockEntity {
             ModItems.BAOZI.get(), 3,
             ModItems.QINGTUAN.get(), 4,
             ModItems.FIVE_NUTS_MOONCAKE.get(), 5,
-            ModItems.HAWTHORN_AND_JUJUBE_PASTE_MOONCAKE.get(), 6,
+            ModItems.HAWTHORN_WITH_JUJUBE_PASTE_MOONCAKE.get(), 6,
             ModItems.LOTUS_SEED_PASTE_WITH_SALTED_YOLK_MOONCAKE.get(), 7,
             ModItems.PRESERVED_MEAT_MOONCAKE.get(), 8);
     private final ItemStackHandler inventory;

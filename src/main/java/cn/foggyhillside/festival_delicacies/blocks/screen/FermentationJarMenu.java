@@ -1,6 +1,7 @@
 package cn.foggyhillside.festival_delicacies.blocks.screen;
 
 import cn.foggyhillside.festival_delicacies.blocks.entities.FermentationJarEntity;
+import cn.foggyhillside.festival_delicacies.blocks.entities.container.MenuResultSlot;
 import cn.foggyhillside.festival_delicacies.registry.ModBlocks;
 import cn.foggyhillside.festival_delicacies.registry.ModMenuTypes;
 import cn.foggyhillside.festival_delicacies.registry.ModSounds;
@@ -47,7 +48,7 @@ public class FermentationJarMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 4, 48, 58));
             this.addSlot(new SlotItemHandler(handler, 5, 66, 58));
             this.addSlot(new SlotItemHandler(handler, 6, 112, 49));
-            this.addSlot(new SlotItemHandler(handler, 7, 93, 19));
+            this.addSlot(new MenuResultSlot(inventory.player, (RecipeHolder) entity, handler, 7, 93, 19));
         });
 
         addDataSlots(data);

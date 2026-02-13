@@ -1,0 +1,149 @@
+{
+  "variants": {
+    "north_branch=false,south_branch=false,east_branch=false,west_branch=false": {
+      "model": "festival_delicacies:block/apricot_log"
+    },
+    "north_branch=true,south_branch=true,east_branch=true,west_branch=true": [
+      {
+        "model": "festival_delicacies:block/apricot_log_full"
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_full",
+        "y": 90
+      }
+    ],
+    "north_branch=false,south_branch=true,east_branch=true,west_branch=true": [
+      {
+        "model": "festival_delicacies:block/apricot_log_ta",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_tb",
+        "y": 90
+      }
+    ],
+    "north_branch=true,south_branch=false,east_branch=true,west_branch=true": [
+      {
+        "model": "festival_delicacies:block/apricot_log_ta",
+        "y": 270
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_tb",
+        "y": 270
+      }
+    ],
+    "north_branch=true,south_branch=true,east_branch=false,west_branch=true": [
+      {
+        "model": "festival_delicacies:block/apricot_log_ta",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_tb",
+        "y": 180
+      }
+    ],
+    "north_branch=true,south_branch=true,east_branch=true,west_branch=false": [
+      {
+        "model": "festival_delicacies:block/apricot_log_ta"
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_tb"
+      }
+    ],
+    "north_branch=true,south_branch=true,east_branch=false,west_branch=false": [
+      {
+        "model": "festival_delicacies:block/apricot_log_i"
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_i",
+        "y": 180
+      }
+    ],
+    "north_branch=false,south_branch=false,east_branch=true,west_branch=true": [
+      {
+        "model": "festival_delicacies:block/apricot_log_i",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_i",
+        "y": 270
+      }
+    ],
+    "north_branch=true,south_branch=false,east_branch=true,west_branch=false": [
+      {
+        "model": "festival_delicacies:block/apricot_log_l1",
+        "y": 270
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_l2",
+        "y": 270
+      }
+    ],
+    "north_branch=false,south_branch=true,east_branch=false,west_branch=true": [
+      {
+        "model": "festival_delicacies:block/apricot_log_l1",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_l2",
+        "y": 90
+      }
+    ],
+    "north_branch=true,south_branch=false,east_branch=false,west_branch=true": [
+      {
+        "model": "festival_delicacies:block/apricot_log_l1",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_l2",
+        "y": 180
+      }
+    ],
+    "north_branch=false,south_branch=true,east_branch=true,west_branch=false": [
+      {
+        "model": "festival_delicacies:block/apricot_log_l1"
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_l2"
+      }
+    ],
+    "north_branch=false,south_branch=false,east_branch=true,west_branch=false": [
+      {
+        "model": "festival_delicacies:block/apricot_log_sa",
+        "y": 270
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_sb",
+        "y": 270
+      }
+    ],
+    "north_branch=false,south_branch=true,east_branch=false,west_branch=false": [
+      {
+        "model": "festival_delicacies:block/apricot_log_sa"
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_sb"
+      }
+    ],
+    "north_branch=true,south_branch=false,east_branch=false,west_branch=false": [
+      {
+        "model": "festival_delicacies:block/apricot_log_sa",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_sb",
+        "y": 180
+      }
+    ],
+    "north_branch=false,south_branch=false,east_branch=false,west_branch=true": [
+      {
+        "model": "festival_delicacies:block/apricot_log_sa",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/apricot_log_sb",
+        "y": 90
+      }
+    ]
+  }
+}

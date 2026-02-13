@@ -1,0 +1,26 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:lotus_seeds"
+    },
+    {
+      "item": "festival_delicacies:lotus_seeds"
+    },
+    {
+      "item": "festival_delicacies:lotus_seeds"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:sweetened_lotus_seed_paste"
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "experience": 0.35,
+  "cookingtime": 100,
+  "cookingType": "default"
+}

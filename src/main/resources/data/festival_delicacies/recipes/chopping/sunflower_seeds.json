@@ -1,0 +1,12 @@
+{
+  "type": "festival_delicacies:chopping",
+  "ingredient": {
+    "item": "minecraft:sunflower"
+  },
+  "results": [
+    {
+      "item": "festival_delicacies:sunflower_seeds",
+      "count": 4
+    }
+  ]
+}

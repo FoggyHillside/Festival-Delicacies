@@ -1,6 +1,6 @@
 package cn.foggyhillside.festival_delicacies.worldgen;
 
-import cn.foggyhillside.festival_delicacies.blocks.FruitTreeLogBlock;
+import cn.foggyhillside.festival_delicacies.blocks.FruitLogBlock;
 import cn.foggyhillside.festival_delicacies.registry.ModTreeDecorators;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -33,10 +33,10 @@ public class LogInCrownDecorator extends TreeDecorator {
             branch[3] = pContext.leaves().contains(logPos.west());
             if (branch[0] || branch[1] || branch[2] || branch[3]) {
                 pContext.setBlock(logPos, blockProvider.getState(pContext.random(), logPos)
-                        .setValue(FruitTreeLogBlock.NORTH_BRANCH, branch[0])
-                        .setValue(FruitTreeLogBlock.EAST_BRANCH, branch[1])
-                        .setValue(FruitTreeLogBlock.SOUTH_BRANCH, branch[2])
-                        .setValue(FruitTreeLogBlock.WEST_BRANCH, branch[3]));
+                        .setValue(FruitLogBlock.NORTH_BRANCH, branch[0])
+                        .setValue(FruitLogBlock.EAST_BRANCH, branch[1])
+                        .setValue(FruitLogBlock.SOUTH_BRANCH, branch[2])
+                        .setValue(FruitLogBlock.WEST_BRANCH, branch[3]));
             }
         }
     }

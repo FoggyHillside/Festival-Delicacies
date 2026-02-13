@@ -1,5 +1,12 @@
 {
   "values": [
-    "festival_delicacies:jujube_leaves"
+    "festival_delicacies:jujube_leaves",
+    "festival_delicacies:olive_leaves",
+    "festival_delicacies:walnut_leaves",
+    "festival_delicacies:apricot_leaves",
+    "festival_delicacies:tangerine_leaves",
+    "festival_delicacies:persimmon_leaves",
+    "festival_delicacies:hawthorn_leaves",
+    "festival_delicacies:peach_leaves"
   ]
 }

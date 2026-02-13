@@ -1,7 +1,6 @@
 {
   "values": [
-    {
-      "id": "minecraft:porkchop"
-    }
+    "minecraft:porkchop",
+    "festival_delicacies:persimmon"
   ]
 }

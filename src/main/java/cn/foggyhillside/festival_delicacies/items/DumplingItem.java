@@ -122,7 +122,7 @@ public class DumplingItem extends TooltipItem {
     }
 
     private int getTotalNutrition(List<ItemStack> list) {
-        int nutrition = FoodList.DUMPLING.getNutrition();
+        int nutrition = FoodList.FOOD_2_0$4.getNutrition();
         for (ItemStack item : list) {
             nutrition += getFood(item).getNutrition();
         }
@@ -130,7 +130,7 @@ public class DumplingItem extends TooltipItem {
     }
 
     private float getSaturationMod(List<ItemStack> list) {
-        float t = FoodList.DUMPLING.getNutrition() * FoodList.DUMPLING.getSaturationModifier();
+        float t = FoodList.FOOD_2_0$4.getNutrition() * FoodList.FOOD_2_0$4.getSaturationModifier();
         for (ItemStack item : list) {
             t += (getFood(item).getSaturationModifier() * getFood(item).getNutrition());
         }

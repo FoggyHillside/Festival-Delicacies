@@ -1,0 +1,24 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "tag": "festival_delicacies:dough"
+    },
+    {
+      "item": "festival_delicacies:jujube_paste"
+    },
+    {
+      "item": "festival_delicacies:hawthorn"
+    },
+    {
+      "item": "festival_delicacies:hawthorn"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:hawthorn_with_jujube_paste_mooncake",
+    "count": 2
+  },
+  "experience": 1.0,
+  "cookingtime": 200,
+  "cookingType": "bake"
+}

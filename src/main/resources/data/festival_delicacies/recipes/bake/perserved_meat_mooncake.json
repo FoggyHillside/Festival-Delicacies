@@ -1,0 +1,17 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "tag": "festival_delicacies:dough"
+    },
+    {
+      "item": "festival_delicacies:preserved_meat"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:preserved_meat_mooncake"
+  },
+  "experience": 1.0,
+  "cookingtime": 200,
+  "cookingType": "bake"
+}

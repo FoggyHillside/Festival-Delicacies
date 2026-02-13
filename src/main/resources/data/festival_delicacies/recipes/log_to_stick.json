@@ -1,11 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    [
-      {
-        "tag": "festival_delicacies:logs"
-      }
-    ]
+    {
+      "tag": "festival_delicacies:logs"
+    }
   ],
   "result": {
     "item": "minecraft:stick",

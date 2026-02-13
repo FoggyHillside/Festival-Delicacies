@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "festival_delicacies:block/apricot_leaves"
+  }
+}

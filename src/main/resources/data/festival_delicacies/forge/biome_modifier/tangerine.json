@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "minecraft:river",
+    "minecraft:forest",
+    "minecraft:sparse_jungle"
+  ],
+  "features": "festival_delicacies:patch_tangerine",
+  "step": "vegetal_decoration"
+}

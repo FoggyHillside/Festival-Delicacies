@@ -1,0 +1,9 @@
+{
+  "type": "festival_delicacies:drying",
+  "ingredient": {
+    "item": "festival_delicacies:persimmon"
+  },
+  "result": {
+    "item": "festival_delicacies:dried_persimmon"
+  }
+}

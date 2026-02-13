@@ -6,8 +6,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -19,18 +17,33 @@ import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.function.Supplier;
 
 public class FruitingCropBlock extends SweetBerryBushBlock {
     public final Supplier<Item> seedItem;
     public final Supplier<Item> fruitItem;
+    private final VoxelShape[] shapesByAge;
 
     public FruitingCropBlock(Properties pProperties, Supplier<Item> seedItem, Supplier<Item> fruitItem) {
         super(pProperties);
         this.seedItem = seedItem;
         this.fruitItem = fruitItem;
+        this.shapesByAge = null;
+    }
+
+    public FruitingCropBlock(Properties pProperties, Supplier<Item> seedItem, Supplier<Item> fruitItem, VoxelShape[] shapesByAge) {
+        super(pProperties);
+        this.seedItem = seedItem;
+        this.fruitItem = fruitItem;
+        this.shapesByAge = shapesByAge;
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return shapesByAge == null ? super.getShape(pState, pLevel, pPos, pContext) : shapesByAge[pState.getValue(AGE)];
     }
 
     @Override
@@ -45,9 +58,7 @@ public class FruitingCropBlock extends SweetBerryBushBlock {
 
     @Override
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-        if (pEntity instanceof LivingEntity && pEntity.getType() != EntityType.FOX && pEntity.getType() != EntityType.BEE) {
-            pEntity.makeStuckInBlock(pState, new Vec3(0.8F, 0.75D, 0.8F));
-        }
+        // Do nothing to prevent damage and slowing effect
     }
 
     @Override

@@ -1,0 +1,16 @@
+{
+  "type": "festival_delicacies:fermenting",
+  "ingredients": [
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "tag": "forge:eggs"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:salted_egg_yolk"
+  },
+  "cookingtime": 36000,
+  "experience": 1.0
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "festival_delicacies:block/fruit_log_ta",
+  "textures": {
+    "top": "festival_delicacies:block/jujube_log_top",
+    "side": "festival_delicacies:block/jujube_log_side",
+    "branch": "festival_delicacies:block/jujube_log_branch"
+  }
+}

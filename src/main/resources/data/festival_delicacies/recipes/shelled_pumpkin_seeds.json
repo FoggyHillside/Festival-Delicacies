@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:pumpkin_seeds"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:shelled_pumpkin_seeds",
+    "count": 3
+  }
+}

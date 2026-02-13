@@ -1,0 +1,14 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "festival_delicacies:dough"
+    }
+  ],
+  "recipe_book_tab": "misc",
+  "result": {
+    "item": "festival_delicacies:mantou"
+  },
+  "experience": 1.0,
+  "cookingtime": 200
+}

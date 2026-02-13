@@ -1,0 +1,20 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "tag": "festival_delicacies:dough"
+    },
+    {
+      "item": "festival_delicacies:sweetened_lotus_seed_paste"
+    },
+    {
+      "item": "festival_delicacies:salted_egg_yolk"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:lotus_seed_paste_with_salted_yolk_mooncake"
+  },
+  "experience": 1.0,
+  "cookingtime": 200,
+  "cookingType": "bake"
+}

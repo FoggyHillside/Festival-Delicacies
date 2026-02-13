@@ -1,5 +1,12 @@
 {
   "values": [
-    "festival_delicacies:potted_jujube_sapling"
+    "festival_delicacies:potted_jujube_sapling",
+    "festival_delicacies:potted_olive_sapling",
+    "festival_delicacies:potted_walnut_sapling",
+    "festival_delicacies:potted_apricot_sapling",
+    "festival_delicacies:potted_tangerine_sapling",
+    "festival_delicacies:potted_persimmon_sapling",
+    "festival_delicacies:potted_hawthorn_sapling",
+    "festival_delicacies:potted_peach_sapling"
   ]
 }

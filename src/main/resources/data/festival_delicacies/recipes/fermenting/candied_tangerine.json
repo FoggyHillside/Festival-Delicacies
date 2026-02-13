@@ -1,0 +1,19 @@
+{
+  "type": "festival_delicacies:fermenting",
+  "ingredients": [
+    {
+      "item": "festival_delicacies:tangerine"
+    },
+    {
+      "item": "festival_delicacies:tangerine"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:candied_tangerine"
+  },
+  "cookingtime": 36000,
+  "experience": 1.0
+}

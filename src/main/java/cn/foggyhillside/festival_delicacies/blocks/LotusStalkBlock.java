@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class LotusStalkBlock extends BushBlock implements BonemealableBlock, LiquidBlockContainer {
     public static final BooleanProperty HAS_STALK = ModBlockStateProperties.HAS_STALK;
-    private static final VoxelShape SHAPE = Block.box(1.0F, 0.0F, 1.0F, 15.0F, 16.0F, 15.0F);
+    private static final VoxelShape SHAPE = Block.box(5.0F, 0.0F, 5.0F, 11.0F, 16.0F, 11.0F);
 
     public LotusStalkBlock(Properties pProperties) {
         super(pProperties);
@@ -138,7 +138,11 @@ public class LotusStalkBlock extends BushBlock implements BonemealableBlock, Liq
             if (!isMaxHeight(pLevel, pPos) && fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8 && this.canSurvive(aboveState, pLevel, pPos.above())) {
                 pLevel.setBlock(pPos.above(), this.defaultBlockState(), 2);
             } else if (aboveState.isAir() && aerialPart.canSurvive(aboveState, pLevel, pPos.above())) {
-                pLevel.setBlock(pPos.above(), aerialPart.defaultBlockState().setValue(LotusAerialPartBlock.LOTUS_AGE, getBonemealAgeIncrease(pLevel) - 1), 2);
+                int ageIncrease = getBonemealAgeIncrease(pLevel) - 1;
+                pLevel.setBlock(pPos.above(), aerialPart.defaultBlockState().setValue(LotusAerialPartBlock.LOTUS_AGE, ageIncrease), 2);
+                if (ageIncrease >= 2) {
+                    aerialPart.growLilyPadRandomly(pLevel, pPos.above(), pRandom);
+                }
             }
         } else if (aboveState.getBlock().equals(ModBlocks.LOTUS_STALK.get()) || aboveState.getBlock().equals(ModBlocks.LOTUS_AERIAL_PART.get())) {
             BonemealableBlock growable = (BonemealableBlock) pLevel.getBlockState(pPos.above()).getBlock();

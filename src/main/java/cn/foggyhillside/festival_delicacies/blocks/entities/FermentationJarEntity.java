@@ -192,11 +192,7 @@ public class FermentationJarEntity extends SyncedBlockEntity implements MenuProv
         for (int i = 0; i < SLOTS; i++) {
             ItemStack stack = entity.inventory.getStackInSlot(i);
 
-            if (i < SLOTS - 2) {
-                if (stack != ItemStack.EMPTY) {
-                    container.addItem(stack);
-                }
-            } else {
+            if (!stack.isEmpty()) {
                 container.setItem(i, stack);
             }
         }
@@ -205,18 +201,52 @@ public class FermentationJarEntity extends SyncedBlockEntity implements MenuProv
     }
 
     private static void craftItem(Level level, FermentationJarEntity entity, FermentingRecipe recipe) {
+        ItemStack result = recipe.getResultItem(level.registryAccess());
+        int m = 1;
+        int t = 0;
         for (int i = 0; i < SLOTS - 1; i++) {
-            if (entity.inventory.getStackInSlot(i) != ItemStack.EMPTY) {
-                if (entity.inventory.getStackInSlot(i).hasCraftingRemainingItem()) {
-                    spawnItem(entity, level, entity.inventory.getStackInSlot(i).getCraftingRemainingItem());
-                }
-                entity.inventory.extractItem(i, 1, false);
+            ItemStack stack = entity.inventory.getStackInSlot(i);
+            if (!stack.equals(ItemStack.EMPTY)) {
+                m = stack.getCount();
+                t = i + 1;
+                break;
             }
         }
-        entity.inventory.setStackInSlot(SLOTS - 1, new ItemStack(recipe.getResultItem(level.registryAccess()).getItem(),
+
+        for (int i = t; i < SLOTS - 1; i++) {
+            ItemStack stack = entity.inventory.getStackInSlot(i);
+            if (!stack.equals(ItemStack.EMPTY)) {
+                m = Math.min(m, stack.getCount());
+            }
+        }
+
+        m = Math.min(m, result.getMaxStackSize());
+
+        if (!entity.inventory.getStackInSlot(SLOTS - 1).equals(ItemStack.EMPTY)) {
+            int i = (result.getMaxStackSize() - entity.inventory.getStackInSlot(SLOTS - 1).getCount()) / result.getCount();
+            m = Math.min(m, i);
+        }
+
+        for (int i = 0; i < SLOTS - 1; i++) {
+            ItemStack stack = entity.inventory.getStackInSlot(i);
+            if (!stack.equals(ItemStack.EMPTY)) {
+                if (stack.hasCraftingRemainingItem()) {
+                    ItemStack remaining = stack.getCraftingRemainingItem();
+                    remaining.setCount(m);
+                    spawnItem(entity, level, remaining);
+                }
+                entity.inventory.extractItem(i, m, false);
+            }
+        }
+
+        entity.inventory.setStackInSlot(SLOTS - 1, new ItemStack(result.getItem(),
                 entity.inventory.getStackInSlot(7).getCount()
-                        + recipe.getResultItem(level.registryAccess()).getCount()));
-        entity.setRecipeUsed(recipe);
+                        + result.getCount() * m));
+
+        while (m != 0) {
+            entity.setRecipeUsed(recipe);
+            m--;
+        }
         entity.resetProgress();
 
     }
@@ -230,10 +260,11 @@ public class FermentationJarEntity extends SyncedBlockEntity implements MenuProv
     }
 
     private static boolean canOutput(Level level, FermentationJarEntity entity, FermentingRecipe recipe) {
-        var registryAccess = level.registryAccess();
-        return entity.inventory.getStackInSlot(SLOTS - 1) == ItemStack.EMPTY
-                || (entity.inventory.getStackInSlot(SLOTS - 1).getItem() == recipe.getResultItem(registryAccess).getItem()
-                && entity.inventory.getStackInSlot(SLOTS - 1).getCount() < recipe.getResultItem(registryAccess).getMaxStackSize());
+        ItemStack resultSlot = entity.inventory.getStackInSlot(SLOTS - 1);
+        ItemStack recipeResult = recipe.getResultItem(level.registryAccess());
+        return resultSlot.equals(ItemStack.EMPTY)
+                || (resultSlot.getItem().equals(recipeResult.getItem())
+                && recipeResult.getMaxStackSize() - resultSlot.getCount() >= recipeResult.getCount());
     }
 
     private void resetProgress() {

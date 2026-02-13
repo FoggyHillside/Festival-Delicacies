@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/lily_pad",
-  "textures": {
-    "particle": "festival_delicacies:block/lotus_leaf",
-    "texture": "festival_delicacies:block/lotus_leaf"
-  }
-}

@@ -1,11 +1,13 @@
 package cn.foggyhillside.festival_delicacies.blocks;
 
 import cn.foggyhillside.festival_delicacies.registry.ModBlocks;
+import cn.foggyhillside.festival_delicacies.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -20,13 +22,21 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class LotusBlock extends LotusStalkBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
-    private static final VoxelShape SHAPE_1 = Block.box(3.0F, 0.0F, 3.0F, 13.0F, 8.0F, 13.0F);
-    private static final VoxelShape SHAPE_2 = Block.box(2.0F, 0.0F, 2.0F, 14.0F, 12.0F, 14.0F);
-    private static final VoxelShape SHAPE_3 = Block.box(1.0F, 0.0F, 1.0F, 15.0F, 16.0F, 15.0F);
+    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
+            Block.box(5.0F, 0.0F, 5.0F, 11.0F, 8.0F, 11.0F),
+            Block.box(5.0F, 0.0F, 5.0F, 11.0F, 12.0F, 11.0F),
+            Block.box(5.0F, 0.0F, 5.0F, 11.0F, 12.0F, 11.0F),
+            Block.box(5.0F, 0.0F, 5.0F, 11.0F, 16.0F, 11.0F)
+    };
 
     public LotusBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.defaultBlockState().setValue(this.getAgeProperty(), 0).setValue(HAS_STALK, false));
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+        return new ItemStack(ModItems.LOTUS_ROOT.get());
     }
 
     protected IntegerProperty getAgeProperty() {
@@ -51,11 +61,7 @@ public class LotusBlock extends LotusStalkBlock {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return switch (this.getAge(pState)) {
-            case 0 -> SHAPE_1;
-            case 3 -> SHAPE_3;
-            default -> SHAPE_2;
-        };
+        return SHAPE_BY_AGE[getAge(pState)];
     }
 
     @Override

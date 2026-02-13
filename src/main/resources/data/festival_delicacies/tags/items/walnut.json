@@ -1,0 +1,13 @@
+{
+  "values": [
+    "festival_delicacies:walnut",
+    {
+      "id": "caupona:walnut",
+      "required": false
+    },
+    {
+      "id": "croptopia:walnut",
+      "required": false
+    }
+  ]
+}

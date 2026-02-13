@@ -20,10 +20,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class RiceEarBlock extends CropBlock {
     public static final IntegerProperty RICE_AGE = BlockStateProperties.AGE_3;
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.box(3.0F, 0.0F, 3.0F, 13.0F, 8.0F, 13.0F),
-            Block.box(3.0F, 0.0F, 3.0F, 13.0F, 10.0F, 13.0F),
-            Block.box(2.0F, 0.0F, 2.0F, 14.0F, 12.0F, 14.0F),
-            Block.box(1.0F, 0.0F, 1.0F, 15.0F, 16.0F, 15.0F)
+            Block.box(3.0F, 0.0F, 3.0F, 13.0F, 15.0F, 13.0F),
+            Block.box(3.0F, 0.0F, 3.0F, 13.0F, 15.0F, 13.0F),
+            Block.box(3.0F, 0.0F, 3.0F, 13.0F, 15.0F, 13.0F),
+            Block.box(1.0F, 0.0F, 1.0F, 15.0F, 15.0F, 15.0F)
     };
 
     public RiceEarBlock(Properties pProperties) {

@@ -1,0 +1,140 @@
+{
+  "variants": {
+    "age=0": [
+      {
+        "model": "festival_delicacies:block/persimmon_stage0"
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage0",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage0",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage0",
+        "y": 270
+      }
+    ],
+    "age=1": [
+      {
+        "model": "festival_delicacies:block/persimmon_stage0"
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage0",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage0",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage0",
+        "y": 270
+      }
+    ],
+    "age=2": [
+      {
+        "model": "festival_delicacies:block/persimmon_stage1"
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage1",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage1",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage1",
+        "y": 270
+      }
+    ],
+    "age=3": [
+      {
+        "model": "festival_delicacies:block/persimmon_stage1"
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage1",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage1",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage1",
+        "y": 270
+      }
+    ],
+    "age=4": [
+      {
+        "model": "festival_delicacies:block/persimmon_stage2"
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage2",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage2",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage2",
+        "y": 270
+      }
+    ],
+    "age=5": [
+      {
+        "model": "festival_delicacies:block/persimmon_stage2"
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage2",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage2",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage2",
+        "y": 270
+      }
+    ],
+    "age=6": [
+      {
+        "model": "festival_delicacies:block/persimmon_stage2"
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage2",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage2",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage2",
+        "y": 270
+      }
+    ],
+    "age=7": [
+      {
+        "model": "festival_delicacies:block/persimmon_stage3"
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage3",
+        "y": 90
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage3",
+        "y": 180
+      },
+      {
+        "model": "festival_delicacies:block/persimmon_stage3",
+        "y": 270
+      }
+    ]
+  }
+}

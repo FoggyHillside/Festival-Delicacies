@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "farmersdelight:block/wild_garlic"
+    "layer0": "festival_delicacies:block/wild_garlic"
   }
 }

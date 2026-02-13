@@ -1,0 +1,29 @@
+{
+  "type": "festival_delicacies:stove",
+  "ingredients": [
+    {
+      "tag": "festival_delicacies:dough"
+    },
+    {
+      "tag": "festival_delicacies:walnut"
+    },
+    {
+      "item": "festival_delicacies:apricot_kernel"
+    },
+    {
+      "tag": "festival_delicacies:peanut"
+    },
+    {
+      "tag": "festival_delicacies:sesame"
+    },
+    {
+      "tag": "festival_delicacies:melon_seeds"
+    }
+  ],
+  "result": {
+    "item": "festival_delicacies:five_nuts_mooncake"
+  },
+  "experience": 1.0,
+  "cookingtime": 200,
+  "cookingType": "bake"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "festival_delicacies:chopping",
+  "ingredient": {
+    "item": "festival_delicacies:apricot"
+  },
+  "results": [
+    {
+      "item": "festival_delicacies:apricot_pulp",
+      "count": 2
+    },
+    {
+      "item": "festival_delicacies:apricot_kernel"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "festival_delicacies:block/fruit_log_tb",
+  "textures": {
+    "top": "festival_delicacies:block/olive_log_top",
+    "side": "festival_delicacies:block/olive_log_side",
+    "branch": "festival_delicacies:block/olive_log_branch"
+  }
+}

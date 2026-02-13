@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "festival_delicacies:item/hawthorn_with_jujube_paste_mooncake"
+  }
+}
