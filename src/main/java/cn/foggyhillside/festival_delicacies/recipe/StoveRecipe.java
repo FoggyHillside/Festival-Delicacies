@@ -172,7 +172,7 @@ public class StoveRecipe implements Recipe<SimpleContainer> {
             float experience = buffer.readFloat();
             int cookTime = buffer.readVarInt();
             int cookingType = buffer.readVarInt();
-            return new StoveRecipe(id, container, output, inputItemsIn, experience, cookTime, cookingType);
+            return new StoveRecipe(id, output, container, inputItemsIn, experience, cookTime, cookingType);
         }
 
         public void toNetwork(FriendlyByteBuf buffer, StoveRecipe recipe) {
